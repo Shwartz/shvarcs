@@ -32,5 +32,11 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"dependencies": {
+		"@sveltejs/adapter-vercel": "^3.0.3"
+	}
 }
