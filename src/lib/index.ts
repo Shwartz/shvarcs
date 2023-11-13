@@ -1,16 +1,17 @@
+import { NOTION_DATABASE_ID } from '$env/static/private';
 import { Client } from '@notionhq/client';
-import { getDatabaseById } from './notion/api';
+import { getDatabaseById, getPageById } from './notion/api';
 
-type Tokens = { notionToken: string, databaseId: string, vercelByPassToken?: string };
+type Tokens = { notionToken: string };
 type InitConfig = { tokens: Tokens };
-export type BlogClient = { client: Client, config: Tokens };
+export type BlogClient = { client: Client };
 let notionClient: BlogClient;
 
 export const initNotion = (config: InitConfig): BlogClient => {
 	const client = new Client({
 		auth: config.tokens.notionToken
 	});
-	notionClient = { client, config: config.tokens };
+	notionClient = { client };
 	return notionClient;
 };
 export const getAllPosts = async () => {
@@ -26,7 +27,7 @@ export const getAllPosts = async () => {
 			};
 		}
 
-		const res = await getDatabaseById(notionClient);
+		const res = await getDatabaseById(notionClient, NOTION_DATABASE_ID);
 		console.log('res: ', res.length);
 
 
@@ -50,3 +51,41 @@ export const getAllPosts = async () => {
 		};
 	}
 };
+
+export const getPost = async (id: string) => {
+	try {
+		if (!notionClient) {
+			return {
+				error: {
+					code: 400,
+					message: 'Notion client is not initialized'
+				}
+			};
+		}
+
+		const res = await getPageById(notionClient, id);
+
+		if (res.page.object === 'page') {
+			return {
+				page: res.page,
+				block: res.block
+			};
+
+		} else {
+			return {
+				error: {
+					code: 400,
+					message: `Error: Expected page but returned type is ${res.object}`
+				}
+			};
+		}
+
+	} catch (error) {
+		return {
+			error: {
+				code: 500,
+				message: 'Some error occurred'
+			}
+		};
+	}
+}

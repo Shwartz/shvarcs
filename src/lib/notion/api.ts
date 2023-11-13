@@ -1,4 +1,6 @@
-export const getDatabaseById = async (blogClient: any) => {
+import { createSlug } from '$lib/utils';
+
+export const getDatabaseById = async (blogClient: any, ID: string) => {
 	try {
 		const notion = blogClient.client;
 		let posts;
@@ -8,7 +10,7 @@ export const getDatabaseById = async (blogClient: any) => {
 		}
 
 		const database = await notion.databases.query({
-			database_id: blogClient.config.databaseId,
+			database_id: ID,
 			filter: {
 				property: 'Publish',
 				checkbox: {
@@ -20,15 +22,39 @@ export const getDatabaseById = async (blogClient: any) => {
 		if (database.results.length > 0) {
 			posts = database.results.map((item: any) => {
 				return {
-					url: item.url,
 					id: item.id,
-					fullItem: item,
 					title: item.properties.Name.title[0].plain_text,
+					slug: createSlug(item.properties.Name.title[0].plain_text, item.id),
+					summary: item.properties.Summary.rich_text[0].plain_text,
+					fullItem: item,
 				};
 			});
 		}
 
 		return posts;
+
+	} catch (error) {
+		return { error };
+	}
+};
+
+export const getPageById = async (blogClient: any, ID: string) => {
+	try {
+		const notion = blogClient.client;
+
+		if (!notion) {
+			return { code: 400, message: 'Invalid or missing notion secret' };
+		}
+
+		const page = await notion.pages.retrieve({page_id: ID});
+		const block = await notion.blocks.children.list({
+			block_id: ID,
+			page_size: 100
+		});
+		console.log({page});
+		console.log({block});
+
+		return {page, block};
 
 	} catch (error) {
 		return { error };
