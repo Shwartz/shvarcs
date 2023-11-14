@@ -46,15 +46,12 @@ export const getPageById = async (blogClient: any, ID: string) => {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
-		const page = await notion.pages.retrieve({page_id: ID});
 		const block = await notion.blocks.children.list({
 			block_id: ID,
 			page_size: 100
 		});
-		console.log({page});
-		console.log({block});
 
-		return {page, block};
+		return {block};
 
 	} catch (error) {
 		return { error };

@@ -5,7 +5,6 @@
 	import ImageBlock from "./ImageBlock.svelte";
 	import NumberedList from "./NumberedList.svelte";
 	import BulletList from "./BulletList.svelte";
-	import Embed from "./Embed.svelte";
     export let block: BlockObjectResponse;
     //$: console.log("type",block.type);
 </script>
@@ -25,6 +24,4 @@
     <BulletList {block} />
 {:else if block.type=="image"}
     <ImageBlock {block} />
-{:else if block.type=="embed"}
-    <Embed {block} />
 {/if}

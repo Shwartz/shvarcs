@@ -65,17 +65,16 @@ export const getPost = async (id: string) => {
 
 		const res = await getPageById(notionClient, id);
 
-		if (res.page.object === 'page') {
+		if (res.block.results.length > 0) {
 			return {
-				page: res.page,
-				block: res.block
+				resBlock: res.block
 			};
 
 		} else {
 			return {
 				error: {
 					code: 400,
-					message: `Error: Expected page but returned type is ${res.object}`
+					message: `Error: Expected blocks but there were none`
 				}
 			};
 		}

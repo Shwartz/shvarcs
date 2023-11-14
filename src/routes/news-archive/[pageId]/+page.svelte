@@ -1,8 +1,15 @@
 <script>
+	import { base } from '$app/paths';
+	import Block from '$lib/components/Block.svelte';
 	export let data;
 	console.log('DATA: ----', data);
+	const {blocks} = data;
 </script>
 
-<div>Serving page by ID</div>
-<p>Data: {data.postId}</p>
-<div>Page: {data.page}</div>
+<a href='{base}/news-archive'>Back to news</a>
+{#each blocks as block}
+	<div class="my-4">
+		<Block {block} />
+	</div>
+{/each}
+
