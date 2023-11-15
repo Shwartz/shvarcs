@@ -57,3 +57,39 @@ export const getPageById = async (blogClient: any, ID: string) => {
 		return { error };
 	}
 };
+
+export const getSearch = async (blogClient: any, ID: string, searchString: string) => {
+	try {
+		const notion = blogClient.client;
+		let posts;
+
+		if (!notion) {
+			return { code: 400, message: 'Invalid or missing notion secret' };
+		}
+
+		const database = await notion.databases.query({
+			database_id: ID,
+			filter: {
+				property: 'Search Tags',
+				contains: searchString
+			}
+		});
+
+		if (database.results.length > 0) {
+			posts = database.results.map((item: any) => {
+				return {
+					id: item.id,
+					title: item.properties.Name.title[0].plain_text,
+					slug: createSlug(item.properties.Name.title[0].plain_text, item.id),
+					summary: item.properties.Summary.rich_text[0].plain_text,
+					fullItem: item,
+				};
+			});
+		}
+
+		return posts;
+
+	} catch (error) {
+		return { error };
+	}
+};

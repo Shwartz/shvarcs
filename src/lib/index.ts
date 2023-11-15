@@ -15,8 +15,6 @@ export const initNotion = (config: InitConfig): BlogClient => {
 	return notionClient;
 };
 export const getAllPosts = async () => {
-	console.log({ notionClient });
-	console.log('test');
 	try {
 		if (!notionClient) {
 			return {
@@ -27,12 +25,10 @@ export const getAllPosts = async () => {
 			};
 		}
 
-		const res = await getDatabaseById(notionClient, NOTION_DATABASE_ID);
-		console.log('res: ', res.length);
+		const posts = await getDatabaseById(notionClient, NOTION_DATABASE_ID);
 
-
-		if (res.length > 0) {
-			return { res };
+		if (posts.length > 0) {
+			return { posts };
 		} else {
 			return {
 				error: {

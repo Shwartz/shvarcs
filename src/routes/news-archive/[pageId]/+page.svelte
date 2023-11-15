@@ -8,8 +8,6 @@
 
 <a href='{base}/news-archive'>Back to news</a>
 {#each blocks as block}
-	<div class="my-4">
 		<Block {block} />
-	</div>
 {/each}
 
