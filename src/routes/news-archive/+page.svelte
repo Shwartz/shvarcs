@@ -20,6 +20,8 @@
 		<button type='submit'>Search</button>
 	</form>
 
+	<p>Search results</p>
+
 	<ul>
 		{#each data.posts as post}
 			<li>
