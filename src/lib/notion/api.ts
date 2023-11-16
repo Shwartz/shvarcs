@@ -1,15 +1,18 @@
 import { createSlug } from '$lib/utils';
+import { Client } from '@notionhq/client';
+import { NOTION_TOKEN } from '$env/static/private';
 
-export const getDatabaseById = async (blogClient: any, ID: string) => {
+export const notionClient: Client = new Client({ auth: NOTION_TOKEN });
+
+export const getDatabaseById = async (ID: string) => {
 	try {
-		const notion = blogClient.client;
 		let posts;
 
-		if (!notion) {
+		if (!notionClient) {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
-		const database = await notion.databases.query({
+		const database = await notionClient.databases.query({
 			database_id: ID,
 			filter: {
 				property: 'Publish',
@@ -26,7 +29,7 @@ export const getDatabaseById = async (blogClient: any, ID: string) => {
 					title: item.properties.Name.title[0].plain_text,
 					slug: createSlug(item.properties.Name.title[0].plain_text, item.id),
 					summary: item.properties.Summary.rich_text[0].plain_text,
-					fullItem: item,
+					fullItem: item
 				};
 			});
 		}
@@ -38,56 +41,62 @@ export const getDatabaseById = async (blogClient: any, ID: string) => {
 	}
 };
 
-export const getPageById = async (blogClient: any, ID: string) => {
+export const getPageById = async (ID: string) => {
 	try {
-		const notion = blogClient.client;
-
-		if (!notion) {
+		if (!notionClient) {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
-		const block = await notion.blocks.children.list({
+		const block = await notionClient.blocks.children.list({
 			block_id: ID,
 			page_size: 100
 		});
 
-		return {block};
+		return { block };
 
 	} catch (error) {
 		return { error };
 	}
 };
 
-export const getSearch = async (blogClient: any, ID: string, searchString: string) => {
+export const getSearch = async (ID: string, searchString: FormDataEntryValue | null) => {
 	try {
-		const notion = blogClient.client;
 		let posts;
-
-		if (!notion) {
+		if (!notionClient) {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
-		const database = await notion.databases.query({
+		console.log('--- searchString: ', searchString);
+		//https://github.com/makenotion/notion-sdk-js
+
+		const database = await notionClient.databases.query({
 			database_id: ID,
 			filter: {
-				property: 'Search Tags',
-				contains: searchString
-			}
+				property: "Search",
+				rich_text: {
+					contains: 'Astro'
+				},
+			},
 		});
 
-		if (database.results.length > 0) {
+		console.log({database});
+
+		if (database?.results?.length > 0) {
 			posts = database.results.map((item: any) => {
 				return {
 					id: item.id,
 					title: item.properties.Name.title[0].plain_text,
 					slug: createSlug(item.properties.Name.title[0].plain_text, item.id),
 					summary: item.properties.Summary.rich_text[0].plain_text,
-					fullItem: item,
+					fullItem: item
 				};
 			});
+
+			return posts;
+		} else {
+			return [];
 		}
 
-		return posts;
 
 	} catch (error) {
 		return { error };

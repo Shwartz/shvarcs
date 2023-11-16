@@ -1,33 +1,11 @@
 import { NOTION_DATABASE_ID } from '$env/static/private';
-import { Client } from '@notionhq/client';
 import { getDatabaseById, getPageById } from './notion/api';
 
-type Tokens = { notionToken: string };
-type InitConfig = { tokens: Tokens };
-export type BlogClient = { client: Client };
-let notionClient: BlogClient;
-
-export const initNotion = (config: InitConfig): BlogClient => {
-	const client = new Client({
-		auth: config.tokens.notionToken
-	});
-	notionClient = { client };
-	return notionClient;
-};
 export const getAllPosts = async () => {
 	try {
-		if (!notionClient) {
-			return {
-				error: {
-					code: 400,
-					message: 'Notion client is not initialized'
-				}
-			};
-		}
+		const posts = await getDatabaseById(NOTION_DATABASE_ID);
 
-		const posts = await getDatabaseById(notionClient, NOTION_DATABASE_ID);
-
-		if (posts.length > 0) {
+		if (posts?.length > 0) {
 			return { posts };
 		} else {
 			return {
@@ -50,16 +28,7 @@ export const getAllPosts = async () => {
 
 export const getPost = async (id: string) => {
 	try {
-		if (!notionClient) {
-			return {
-				error: {
-					code: 400,
-					message: 'Notion client is not initialized'
-				}
-			};
-		}
-
-		const res = await getPageById(notionClient, id);
+		const res = await getPageById(id);
 
 		if (res.block.results.length > 0) {
 			return {
