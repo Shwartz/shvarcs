@@ -14,7 +14,8 @@ export const actions = {
 			const posts = await getSearch(NOTION_DATABASE_ID, searchTerm);
 			console.log({posts});
 
-			if (posts?.length > 0) {
+			// if no errors
+			if (Array.isArray(posts)) {
 				return { posts };
 			} else {
 				return {

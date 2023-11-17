@@ -59,7 +59,7 @@ export const getPageById = async (ID: string) => {
 	}
 };
 
-export const getSearch = async (ID: string, searchString: FormDataEntryValue | null) => {
+export const getSearch = async (ID: string, searchString = '') => {
 	try {
 		let posts;
 		if (!notionClient) {
@@ -68,21 +68,24 @@ export const getSearch = async (ID: string, searchString: FormDataEntryValue | n
 
 		console.log('--- searchString: ', searchString);
 		//https://github.com/makenotion/notion-sdk-js
+		if (searchString.length < 4) {
+			return;
+		}
 
-		const database = await notionClient.databases.query({
+		const searchResult = await notionClient.databases.query({
 			database_id: ID,
 			filter: {
 				property: "Search",
 				rich_text: {
-					contains: 'Astro'
+					contains: searchString
 				},
 			},
 		});
 
-		console.log({database});
+		console.log({searchResult});
 
-		if (database?.results?.length > 0) {
-			posts = database.results.map((item: any) => {
+		if (searchResult?.results?.length > 0) {
+			posts = searchResult.results.map((item: any) => {
 				return {
 					id: item.id,
 					title: item.properties.Name.title[0].plain_text,
@@ -96,8 +99,6 @@ export const getSearch = async (ID: string, searchString: FormDataEntryValue | n
 		} else {
 			return [];
 		}
-
-
 	} catch (error) {
 		return { error };
 	}
