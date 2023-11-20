@@ -5,14 +5,23 @@
   export let form: ActionData;
   import {base} from '$app/paths';
 
-  const searchResults = Array.isArray(form?.posts) ? form.posts : null;
+  let searchResults = Array.isArray(form?.posts) ? form.posts : null;
+
+  const resetSearch = () => {
+    console.log('reset search');
+    searchResults = null;
+  }
 
   console.log({data});
   console.log({searchResults});
 </script>
 
 <div>
-    <h1>News Archive</h1>
+    <h1>Front-end News Archive</h1>
+    <p>I compile news every week by reviewing a few newsletters, X (Twitter) and checking some random sources to stay up
+        to date with the latest trends of the Front-End world. Naturally, as a Notion user, I jot down whatever
+        interests me. I found it handy more than once to search for THAT specific article(s) about a particular feature.
+        Now, I'm transferring my archive to the web using SvelteKit and Notion's API. </p>
 
     <form method='POST' action='?/search'>
         <input
@@ -23,8 +32,9 @@
         <button type='submit'>Search</button>
     </form>
 
-    {#if searchResults?.length > 0}
-        <p>Search results</p>
+    {#if searchResults && searchResults.length > 0}
+        <h3>Search results</h3>
+        <a on:click={resetSearch} href="{base}/news-archive">Back to all posts</a>
         <ul>
             {#each searchResults as post}
                 <li>
@@ -35,11 +45,11 @@
         </ul>
     {/if}
 
-    {#if searchResults?.length === 0}
+    {#if searchResults && searchResults.length === 0}
         <p>No results</p>
     {/if}
 
-    {#if !(searchResults?.length > 0)}
+    {#if !(searchResults && searchResults.length > 0)}
         <ul>
             {#each data.posts as post}
                 <li>
