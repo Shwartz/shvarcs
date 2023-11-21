@@ -1,18 +1,27 @@
 <script lang="ts">
   import type {ActionData, PageData} from './$types';
+  import {superForm} from "sveltekit-superforms/client";
+  import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+  import {searchSchema} from "$lib/forms/searchSchema";
 
   export let data: PageData;
-  export let form: ActionData;
+
   import {base} from '$app/paths';
 
-  let searchResults = Array.isArray(form?.posts) ? form.posts : null;
+  const {form, errors, enhance, delayed, reset} = superForm(data.form, {
+    validators: searchSchema,
+    resetForm: true,
+  });
+
+  $:searchResults = Array.isArray(data?.searchPostResults) ? data.searchPostResults : null;
 
   const resetSearch = () => {
     console.log('reset search');
     searchResults = null;
+    console.log('222 searchResults: ', searchResults);
   }
 
-  console.log({data});
+  console.log('111 data page: ', data);
   console.log({searchResults});
 </script>
 
@@ -23,14 +32,27 @@
         interests me. I found it handy more than once to search for THAT specific article(s) about a particular feature.
         Now, I'm transferring my archive to the web using SvelteKit and Notion's API. </p>
 
-    <form method='POST' action='?/search'>
+    <SuperDebug data={$form} />
+    <form method='POST' use:enhance action='?/search'>
         <input
                 type='text'
-                name='search'
+                name='searchTerm'
+                id='searchTerm'
                 autocomplete='off'
-                placeholder='Search for the post'/>
-        <button type='submit'>Search</button>
+                placeholder='Search for the post'
+                bind:value={$form.searchTerm}
+        />
+        {#if $errors.searchTerm}
+            <small class="warning">{$errors.searchTerm}</small>
+        {/if}
+        <div class="send">
+            {#if $delayed}
+                <p>LOADER</p>
+            {/if}
+            <button type='submit'>Search</button>
+        </div>
     </form>
+    {console.log('in page searchResults: ', searchResults)}
 
     {#if searchResults && searchResults.length > 0}
         <h3>Search results</h3>
@@ -51,7 +73,7 @@
 
     {#if !(searchResults && searchResults.length > 0)}
         <ul>
-            {#each data.posts as post}
+            {#each data.page.posts as post}
                 <li>
                     <h4><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h4>
                     <p>{post.summary}</p>

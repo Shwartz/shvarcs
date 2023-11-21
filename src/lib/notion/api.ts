@@ -66,8 +66,6 @@ export const getSearch = async (ID: string, searchString = '') => {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
-		console.log('--- searchString: ', searchString);
-		//https://github.com/makenotion/notion-sdk-js
 		if (searchString.length < 4) {
 			return;
 		}
