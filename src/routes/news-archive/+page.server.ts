@@ -7,10 +7,10 @@ import {superValidate, message} from "sveltekit-superforms/server"
 
 interface Message {
   status: 'error' | 'success';
-  text: string
+  text: string;
+  searchResults?: object;
 }
 
-let searchPostResults;
 
 export const load = async (event) => {
   const form = await superValidate(event, searchSchema);
@@ -18,17 +18,13 @@ export const load = async (event) => {
   return {
     page: getAllPosts(),
     form,
-    searchPostResults
   }
 };
 export const actions = {
   search: async (event) => {
-    // const data = await request.formData();
     const form = await superValidate<typeof searchSchema, Message>(event, searchSchema);
     const {searchTerm} = form.data;
-    // const searchTerm = data.get('search');
     // do something with data
-    console.log('Search data: ', form);
     if (!form.valid) {
       return message(form, {
         status: 'error',
@@ -38,12 +34,10 @@ export const actions = {
 
     try {
       const posts = await getSearch(NOTION_DATABASE_ID, searchTerm);
-      console.log({posts});
 
 			// if no errors
 			if (Array.isArray(posts)) {
-        searchPostResults = posts;
-				return message(form, {status: 'success', text: "Found search results"});
+				return message(form, {status: 'success', text: "Found search results", searchResults: posts})
 			} else {
 				return {
 					error: {
