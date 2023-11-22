@@ -11,6 +11,9 @@ interface Message {
   searchResults?: object;
 }
 
+const isPlural = (len, one, many) => {
+  return len > 1 ? many : one;
+}
 
 export const load = async (event) => {
   const form = await superValidate(event, searchSchema);
@@ -37,7 +40,9 @@ export const actions = {
 
 			// if no errors
 			if (Array.isArray(posts)) {
-				return message(form, {status: 'success', text: "Found search results", searchResults: posts})
+        const len = posts.length;
+        const happyResponseText = `There ${isPlural(len, 'is', 'are')} ${len} ${isPlural(len, 'post', 'posts')} with the tag "${searchTerm}"`;
+				return message(form, {status: 'success', text: happyResponseText, searchResults: posts})
 			} else {
 				return {
 					error: {

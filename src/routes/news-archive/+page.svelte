@@ -17,10 +17,11 @@
 
 <div>
     <h1>Front-end News Archive</h1>
-    <p>I compile news every week by reviewing a few newsletters, X (Twitter) and checking some random sources to stay up
-        to date with the latest trends of the Front-End world. Naturally, as a Notion user, I jot down whatever
-        interests me. I found it handy more than once to search for THAT specific article(s) about a particular feature.
-        Now, I'm transferring my archive to the web using SvelteKit and Notion's API. </p>
+    <p>
+        To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters during the week. <br/>
+        Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found it handy more than once to search for THAT specific article(s) about a particular feature.<br/>
+        Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and Notion's API.
+    </p>
 
     <!--<SuperDebug data={$form}/>-->
     <form method='POST' use:enhance action='?/search'>
@@ -40,17 +41,17 @@
 
     </form>
     {#if $errors.searchTerm}
-        <small class="warning">{$errors.searchTerm}</small>
+        <h6 class="warning">{$errors.searchTerm}</h6>
     {/if}
 
     {#if $message && $message?.searchResults?.length > 0}
-        <h3>Search results</h3>
+        <h6>{$message.text}</h6>
         <a href="{base}/news-archive">Back to all posts</a>
         <ul>
             {#each $message.searchResults as post}
                 <li>
-                    <h4><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h4>
-                    <p>{post.summary}</p>
+                    <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
+                    <div>{post.summary}</div>
                 </li>
             {/each}
         </ul>
@@ -66,8 +67,8 @@
         <ul>
             {#each data.page.posts as post}
                 <li>
-                    <h4><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h4>
-                    <p>{post.summary}</p>
+                    <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
+                    <div>{post.summary}</div>
                 </li>
             {/each}
         </ul>
@@ -75,17 +76,27 @@
 </div>
 
 <style lang='scss'>
-  li {
-    border-bottom: 1px solid grey;
-  }
-
   form {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    margin-bottom: 0.5rem;
 
     button, input {
       margin: 0;
     }
+  }
+
+  ul {
+    margin-top: 2rem;
+
+    h5 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  li {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid grey;
   }
 </style>
