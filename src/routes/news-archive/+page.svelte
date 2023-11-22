@@ -3,6 +3,7 @@
   import {superForm} from "sveltekit-superforms/client";
   /*import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';*/
   import {searchSchema} from "$lib/forms/searchSchema";
+  import { Diamonds} from "svelte-loading-spinners";
 
   export let data: PageData;
 
@@ -31,16 +32,16 @@
                 placeholder='Search for the post'
                 bind:value={$form.searchTerm}
         />
-        {#if $errors.searchTerm}
-            <small class="warning">{$errors.searchTerm}</small>
-        {/if}
-        <div class="send">
-            {#if $delayed}
-                <p>LOADER</p>
-            {/if}
+
             <button type='submit'>Search</button>
-        </div>
+            {#if $delayed}
+                <Diamonds color="#ffb300" />
+            {/if}
+
     </form>
+    {#if $errors.searchTerm}
+        <small class="warning">{$errors.searchTerm}</small>
+    {/if}
 
     {#if $message && $message?.searchResults?.length > 0}
         <h3>Search results</h3>
@@ -76,5 +77,15 @@
 <style lang='scss'>
   li {
     border-bottom: 1px solid grey;
+  }
+
+  form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    button, input {
+      margin: 0;
+    }
   }
 </style>
