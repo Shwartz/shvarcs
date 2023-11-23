@@ -8,6 +8,7 @@
   export let data: PageData;
 
   import {base} from '$app/paths';
+  import Footer from "$lib/components/Footer.svelte";
 
   const {form, errors, enhance, delayed, reset, message} = superForm(data.form, {
     validators: searchSchema,
@@ -15,7 +16,7 @@
   });
 </script>
 
-<div>
+<div class="newsArchive">
     <h1>Front-end News Archive</h1>
     <p>
         To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters during the week. <br/>
@@ -73,9 +74,15 @@
             {/each}
         </ul>
     {/if}
+
+    <Footer/>
 </div>
 
 <style lang='scss'>
+  .newsArchive {
+    padding-top: 2rem;
+  }
+
   form {
     display: flex;
     gap: 0.5rem;

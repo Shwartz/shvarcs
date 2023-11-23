@@ -11,7 +11,7 @@ interface Message {
   searchResults?: object;
 }
 
-const isPlural = (len, one, many) => {
+const isPlural = (len: number, one: string, many: string) => {
   return len > 1 ? many : one;
 }
 
