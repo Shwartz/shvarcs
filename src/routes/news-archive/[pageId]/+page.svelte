@@ -4,7 +4,7 @@
   import Footer from "$lib/components/Footer.svelte";
 
   export let data;
-  console.log('DATA: ----', data);
+  // console.log('DATA: ----', data);
   const {blocks} = data;
 </script>
 

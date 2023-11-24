@@ -2,6 +2,7 @@
 	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 	import Heading from './Heading.svelte';
 	import Paragraph from './Paragraph.svelte';
+	import Code from "$lib/components/Code.svelte";
 	import ImageBlock from './ImageBlock.svelte';
 	import NumberedList from './NumberedList.svelte';
 	import BulletList from './BulletList.svelte';
@@ -19,6 +20,8 @@
 	<Heading heading={block} />
 {:else if block.type === "paragraph"}
 	<Paragraph paragraph={block} />
+{:else if block.type === "code"}
+	<Code code={block} />
 {:else if block.type === "numbered_list_item"}
 	<NumberedList {block} />
 {:else if block.type === "bulleted_list_item"}
