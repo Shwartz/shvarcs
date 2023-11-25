@@ -2,6 +2,11 @@
 	import {base} from "$app/paths";
 </script>
 
+<svelte:head>
+	<title>Andris Shvarcs | Web developer</title>
+	<meta name='description' content='Web, Front-end, news trends - page' />
+</svelte:head>
+
 <div class='wrap'>
 	<div>
 		<h1>Shvarcs</h1>

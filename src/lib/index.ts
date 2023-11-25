@@ -4,6 +4,7 @@ import pMemoize from 'p-memoize';
 import ExpiryMap from "expiry-map";
 
 const expireCacheTime = 1000 * 60 * 60;
+// const expireCacheTime = 1000;
 
 const cacheAllPosts = new ExpiryMap(expireCacheTime);
 const cacheGetPost = new ExpiryMap(expireCacheTime);
