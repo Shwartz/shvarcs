@@ -3,8 +3,10 @@ import { getDatabaseById, getPageById } from './notion/api';
 import pMemoize from 'p-memoize';
 import ExpiryMap from "expiry-map";
 
-const cacheAllPosts = new ExpiryMap(1000 * 60 * 60);
-const cacheGetPost = new ExpiryMap(1000 * 60 * 60);
+const expireCacheTime = 1000 * 60 * 60;
+
+const cacheAllPosts = new ExpiryMap(expireCacheTime);
+const cacheGetPost = new ExpiryMap(expireCacheTime);
 export const getAllPosts = pMemoize(async () => {
 	try {
 		const posts = await getDatabaseById(NOTION_DATABASE_ID);
