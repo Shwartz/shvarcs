@@ -12,6 +12,8 @@ export const getDatabaseById = async (ID: string) => {
 			return { code: 400, message: 'Invalid or missing notion secret' };
 		}
 
+		console.log('Before Request happened');
+
 		const database = await notionClient.databases.query({
 			database_id: ID,
 			filter: {
@@ -21,6 +23,8 @@ export const getDatabaseById = async (ID: string) => {
 				}
 			}
 		});
+
+		console.log('After Request happened - Database: ', database.results.length);
 
 		if (database.results.length > 0) {
 			posts = database.results.map((item: any) => {

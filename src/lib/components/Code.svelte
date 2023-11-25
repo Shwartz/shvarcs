@@ -11,7 +11,7 @@
   }
 
   export let code: CodeBlockObjectResponse;
-  console.log('--- code: ', code);
+  // console.log('--- code: ', code);
   let initialText = "";
   $: paraText = code?.code?.rich_text?.reduce((accumulator, para) => {
     return para.href ? accumulator + `<a href='${para.href}' target='_blank'>${para.plain_text}</a>` : accumulator + `<code><pre>${escapeHtmlEntities(para.plain_text)}</pre></code>`;
