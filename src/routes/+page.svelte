@@ -4,7 +4,7 @@
 
 <svelte:head>
 	<title>Andris Shvarcs | Web developer</title>
-	<meta name='description' content='Web, Front-end, news trends - page' />
+	<meta name='description' content='Web, latest Front-end news, blog' />
 </svelte:head>
 
 <div class='wrap'>
