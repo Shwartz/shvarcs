@@ -27,6 +27,8 @@ export const actions = {
   search: async (event) => {
     const form = await superValidate<typeof searchSchema, Message>(event, searchSchema);
     const {searchTerm} = form.data;
+    // seems Notion has min char limit four, so to search 'CSS' I add empty char as 'CSS '
+    const updatedSearchTerm = searchTerm.length === 3 ? `${searchTerm} ` : searchTerm;
     // do something with data
     if (!form.valid) {
       return message(form, {
@@ -36,14 +38,14 @@ export const actions = {
     }
 
     try {
-      const posts = await getSearch(NOTION_DATABASE_ID, searchTerm);
-
+      const posts = await getSearch(NOTION_DATABASE_ID, updatedSearchTerm);
 			// if no errors
 			if (Array.isArray(posts)) {
         const len = posts.length;
         const happyResponseText = `There ${isPlural(len, 'is', 'are')} ${len} ${isPlural(len, 'post', 'posts')} with the tag "${searchTerm}"`;
 				return message(form, {status: 'success', text: happyResponseText, searchResults: posts})
 			} else {
+        console.error('error 1');
 				return {
 					error: {
 						code: 400,
@@ -53,6 +55,7 @@ export const actions = {
 			}
 
     } catch (error) {
+      console.error('error 2', error);
       return {
         error: {
           code: 500,
