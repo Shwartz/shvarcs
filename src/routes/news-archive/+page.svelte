@@ -10,15 +10,20 @@
   import {base} from '$app/paths';
   import Footer from "$lib/components/Footer.svelte";
 
-  const {form, errors, enhance, delayed, reset, message} = superForm(data.form, {
+  const {form, errors, enhance, delayed, message} = superForm(data.form, {
     validators: searchSchema,
     resetForm: true,
   });
 </script>
 
 <svelte:head>
-    <title>All News | Front-end News Archive</title>
-    <meta name="description" content="Weekly news compilation from condensed from different sources" />
+    {#if $message?.text}
+        <title>Search News</title>
+        <meta name="description" content="Search News: {$message.text}" />
+    {:else}
+        <title>All News | Front-end News Archive</title>
+        <meta name="description" content="Weekly news compilation from different sources" />
+    {/if}
 </svelte:head>
 
 <div class="newsArchive">
