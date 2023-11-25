@@ -8,6 +8,11 @@
   const {blocks} = data;
 </script>
 
+<svelte:head>
+    <title>{blocks[0]['heading_1']['rich_text'][0]['plain_text']}</title>
+    <meta name="description" content="{blocks[1]['paragraph']['rich_text'][0]['plain_text']}" />
+</svelte:head>
+
 <div class="newsArchivePost">
     <a class="back" href='{base}/news-archive'>Back to all news</a>
     <h1 class="pageTitle">Front-end News Archive</h1>

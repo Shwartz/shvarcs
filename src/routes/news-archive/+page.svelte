@@ -16,6 +16,11 @@
   });
 </script>
 
+<svelte:head>
+    <title>All News | Front-end News Archive</title>
+    <meta name="description" content="Weekly news compilation from condensed from different sources" />
+</svelte:head>
+
 <div class="newsArchive">
     <h1>Front-end News Archive</h1>
     <p>
