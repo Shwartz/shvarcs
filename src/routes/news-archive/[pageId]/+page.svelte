@@ -9,7 +9,8 @@
 </script>
 
 <div class="newsArchivePost">
-    <a href='{base}/news-archive'>Back to news</a>
+    <a class="back" href='{base}/news-archive'>Back to all news</a>
+    <h1 class="pageTitle">Front-end News Archive</h1>
     {#each blocks as block}
         <Block {block}/>
     {/each}
@@ -18,12 +19,27 @@
 
 <style lang='scss'>
   .newsArchivePost {
+    position: relative;
     padding-top: 2rem;
+
+    .back {
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+    }
+
+    .pageTitle {
+      line-height: 1.1;
+      font-size: 3rem;
+      font-weight: normal;
+      margin: 0;
+    }
 
     :global(h1) {
       font-size: 1.4rem;
       font-weight: bold;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     :global(h2) {
@@ -32,8 +48,8 @@
     }
 
     :global(h3) {
+      margin: 2.6rem 0 0.8rem;
       font-size: 1.6rem;
-      margin-top: 2rem;
     }
 
     :global(p) {

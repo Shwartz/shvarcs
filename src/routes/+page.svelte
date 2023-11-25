@@ -1,7 +1,11 @@
+<script>
+	import {base} from "$app/paths";
+</script>
+
 <div class='wrap'>
 	<div>
 		<h1>Shvarcs</h1>
-		<p>Under construction</p>
+		<p>Under construction and some re-branding. In a meantime, there is a <a href="{base}/news-archive">News Archive</a></p>
 	</div>
 </div>
 
@@ -33,5 +37,8 @@
 
 	p {
     color: #909090;
+	}
+	a {
+		text-decoration: underline;
 	}
 </style>

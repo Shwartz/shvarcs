@@ -61,7 +61,7 @@
     {#if $message && $message?.searchResults?.length === 0}
         <h3>Nothing came up</h3>
         <a href="{base}/news-archive">Back to all posts</a>
-        <p>This is very simple search. Try simple keywords like: "Astro, React, CSS"</p>
+        <p>Currently this is very simplified search version. Try keywords like: "Astro, React, CSS" and similar</p>
     {/if}
 
     {#if !($message)}
