@@ -1,11 +1,16 @@
 import { NOTION_DATABASE_ID } from '$env/static/private';
 import { getDatabaseById, getPageById } from './notion/api';
+import pMemoize from 'p-memoize';
+import ExpiryMap from "expiry-map";
 
-export const getAllPosts = async () => {
+const cacheAllPosts = new ExpiryMap(1000 * 60 * 60);
+const cacheGetPost = new ExpiryMap(1000 * 60 * 60);
+export const getAllPosts = pMemoize(async () => {
 	try {
 		const posts = await getDatabaseById(NOTION_DATABASE_ID);
 
 		if (posts?.length > 0) {
+			console.log('getAllPosts: ', posts.length);
 			return { posts };
 		} else {
 			return {
@@ -24,13 +29,14 @@ export const getAllPosts = async () => {
 			}
 		};
 	}
-};
+}, {cache: cacheAllPosts});
 
-export const getPost = async (id: string) => {
+export const getPost = pMemoize(async (id: string) => {
 	try {
 		const res = await getPageById(id);
 
 		if (res.block.results.length > 0) {
+			console.log('getPost: ', res.block.results.length);
 			return {
 				resBlock: res.block
 			};
@@ -52,4 +58,4 @@ export const getPost = async (id: string) => {
 			}
 		};
 	}
-}
+}, {cache: cacheGetPost});
