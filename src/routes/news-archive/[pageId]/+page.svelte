@@ -2,6 +2,7 @@
   import {base} from '$app/paths';
   import Block from '$lib/components/Block.svelte';
   import Footer from "$lib/components/Footer.svelte";
+  import Meta from "$lib/components/Meta.svelte";
 
   export let data;
   // console.log('DATA: ----', data);
@@ -9,8 +10,10 @@
 </script>
 
 <svelte:head>
-    <title>{blocks[0]['heading_1']['rich_text'][0]['plain_text']}</title>
-    <meta name="description" content="{blocks[1]['paragraph']['rich_text'][0]['plain_text']}" />
+    <Meta
+            title="{blocks[0]['heading_1']['rich_text'][0]['plain_text']}"
+            description="{blocks[1]['paragraph']['rich_text'][0]['plain_text']}"
+    />
 </svelte:head>
 
 <div class="newsArchivePost">

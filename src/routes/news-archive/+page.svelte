@@ -1,32 +1,45 @@
 <script lang="ts">
-  import type {ActionData, PageData} from './$types';
+  import type {PageData} from './$types';
   import {superForm} from "sveltekit-superforms/client";
   /*import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';*/
   import {searchSchema} from "$lib/forms/searchSchema";
-  import { Diamonds} from "svelte-loading-spinners";
+  import {Diamonds} from "svelte-loading-spinners";
 
   export let data: PageData;
 
   import {base} from '$app/paths';
   import Footer from "$lib/components/Footer.svelte";
+  import Meta from "$lib/components/Meta.svelte";
 
-  const {form, errors, enhance, delayed, reset, message} = superForm(data.form, {
+  const {form, errors, enhance, delayed, message} = superForm(data.form, {
     validators: searchSchema,
     resetForm: true,
   });
 </script>
 
 <svelte:head>
-    <title>All News | Front-end News Archive</title>
-    <meta name="description" content="Weekly news compilation from condensed from different sources" />
+    {#if $message?.text}
+        <Meta
+                title="Search News | Front-end News Archive"
+                description="Search News: {$message.text}"
+        />
+    {:else}
+        <Meta
+                title="All News | Front-end News Archive"
+                description="Weekly news compilation from different sources"
+        />
+    {/if}
 </svelte:head>
 
 <div class="newsArchive">
     <h1>Front-end News Archive</h1>
     <p>
-        To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters during the week. <br/>
-        Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found it handy more than once to search for THAT specific article(s) about a particular feature.<br/>
-        Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and Notion's API.
+        To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters
+        during the week. <br/>
+        Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found it
+        handy more than once to search for THAT specific article(s) about a particular feature.<br/>
+        Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and Notion's
+        API.
     </p>
 
     <!--<SuperDebug data={$form}/>-->
@@ -40,10 +53,10 @@
                 bind:value={$form.searchTerm}
         />
 
-            <button type='submit'>Search</button>
-            {#if $delayed}
-                <Diamonds color="#ffb300" />
-            {/if}
+        <button type='submit'>Search</button>
+        {#if $delayed}
+            <Diamonds color="#ffb300"/>
+        {/if}
 
     </form>
     {#if $errors.searchTerm}

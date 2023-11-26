@@ -1,10 +1,13 @@
 <script>
 	import {base} from "$app/paths";
+	import Meta from "$lib/components/Meta.svelte";
 </script>
 
 <svelte:head>
-	<title>Andris Shvarcs | Web developer</title>
-	<meta name='description' content='Web, latest Front-end news, blog' />
+	<Meta
+			title="Andris Shvarcs | Web developer"
+			description="Web, latest Front-end news, blog"
+	/>
 </svelte:head>
 
 <div class='wrap'>
