@@ -28,7 +28,7 @@ export const getDatabaseById = async (ID: string) => {
 			]
 		});
 
-		console.log('After Request happened - Database: ', database.results.length);
+		// console.log('After Request happened - Database: ', database.results.length);
 
 		if (database.results.length > 0) {
 			posts = database.results.map((item: any) => {
@@ -88,7 +88,7 @@ export const getSearch = async (ID: string, searchString = '') => {
 			},
 		});
 
-		console.log({searchResult});
+		// console.log({searchResult});
 
 		if (searchResult?.results?.length > 0) {
 			posts = searchResult.results.map((item: any) => {
