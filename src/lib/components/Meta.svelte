@@ -10,3 +10,4 @@
 <meta property="og:description" content="{description}" />
 <meta property="twitter:title" content="{title}" />
 <meta property="twitter:description" content="{description}" />
+<meta name="robots" content="index,follow" />
