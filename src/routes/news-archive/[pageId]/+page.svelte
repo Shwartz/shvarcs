@@ -2,18 +2,23 @@
   import {base} from '$app/paths';
   import Block from '$lib/components/Block.svelte';
   import Footer from "$lib/components/Footer.svelte";
-  import Meta from "$lib/components/Meta.svelte";
 
   export let data;
   // console.log('DATA: ----', data);
   const {blocks} = data;
+  const title = blocks[0]['heading_1']['rich_text'][0]['plain_text'];
+  const description = blocks[1]['paragraph']['rich_text'][0]['plain_text'];
 </script>
 
 <svelte:head>
-    <Meta
-            title="{blocks[0]['heading_1']['rich_text'][0]['plain_text']}"
-            description="{blocks[1]['paragraph']['rich_text'][0]['plain_text']}"
-    />
+    <title>{title}</title>
+    <meta name="title" content="{title}"/>
+    <meta name="description" content="{description}"/>
+    <meta property="og:title" content="{title}"/>
+    <meta property="og:description" content="{description}"/>
+    <meta property="twitter:title" content="{title}"/>
+    <meta property="twitter:description" content="{description}"/>
+    <meta name="robots" content="index,follow"/>
 </svelte:head>
 
 <div class="newsArchivePost">

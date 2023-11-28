@@ -9,26 +9,39 @@
 
   import {base} from '$app/paths';
   import Footer from "$lib/components/Footer.svelte";
-  import Meta from "$lib/components/Meta.svelte";
+  // import Meta from "$lib/components/Meta.svelte";
 
   const {form, errors, enhance, delayed, message} = superForm(data.form, {
     validators: searchSchema,
     resetForm: true,
   });
+  const title = "Front-end News Archive";
+  const titleSearch = "Search News | Front-end News Archive";
+  const description = "Weekly news compilation from different sources";
+  const descriptionSearch = "Search News: ";
+  const searchTerm = form?.searchTerm;
+  const messageText = message?.text;
 </script>
 
 <svelte:head>
     {#if $message?.text}
-        <Meta
-                title="Search News | Front-end News Archive"
-                description="Search News: {$message.text}"
-        />
+        <title>{titleSearch}</title>
+        <meta name="title" content="{titleSearch}"/>
+        <meta name="description" content="{descriptionSearch} {searchTerm}"/>
+        <meta property="og:title" content="{titleSearch}"/>
+        <meta property="og:description" content="{descriptionSearch} {messageText}"/>
+        <meta property="twitter:title" content="{titleSearch}"/>
+        <meta property="twitter:description" content="{descriptionSearch} {messageText}"/>
     {:else}
-        <Meta
-                title="All News | Front-end News Archive"
-                description="Weekly news compilation from different sources"
-        />
+        <title>{title}</title>
+        <meta name="title" content="{title}"/>
+        <meta name="description" content="{description}"/>
+        <meta property="og:title" content="{title}"/>
+        <meta property="og:description" content="{description}"/>
+        <meta property="twitter:title" content="{title}"/>
+        <meta property="twitter:description" content="{description}"/>
     {/if}
+        <meta name="robots" content="index,follow"/>
 </svelte:head>
 
 <div class="newsArchive">
