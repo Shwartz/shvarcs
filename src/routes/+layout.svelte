@@ -1,12 +1,13 @@
 <script>
 	import "./globalStyles.css";
-	import "./temp-style.css"
+	import "./temp-style.css";
+	import { fade } from 'svelte/transition';
 	import {navigationIsDelayed} from "$lib/utils/NavigationIsDelayed.ts";
 </script>
 
 <div class='page'>
 	{#if $navigationIsDelayed}
-		<div class="loader"></div>
+		<div class="loader" transition:fade={{duration:200}}></div>
 	{/if}
 	<slot/>
 </div>
