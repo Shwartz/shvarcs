@@ -72,7 +72,7 @@
         {/if}
 
     </form>
-    {#if $errors.searchTerm}
+    {#if $errors.searchTerm && !$message}
         <h6 class="warning">{$errors.searchTerm}</h6>
     {/if}
 
