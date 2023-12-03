@@ -1,7 +1,7 @@
 <script>
 	import {base} from "$app/paths";
 	// import Meta from "$lib/components/Meta.svelte";
-	const title = "Andris Shvarcs | Web developer";
+	const title = "Andris Švarcs | Frontend developer";
 	const description = "Web, latest Front-end news, blog";
 </script>
 
@@ -18,7 +18,7 @@
 
 <div class='wrap'>
 	<div>
-		<h1>Shvarcs</h1>
+		<h1>Švarcs</h1>
 		<p>Under construction and some re-branding. In a meantime, there is a <a href="{base}/news-archive">News Archive</a></p>
 	</div>
 </div>
