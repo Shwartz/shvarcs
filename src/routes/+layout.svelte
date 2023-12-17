@@ -3,16 +3,46 @@
   import "./temp-style.css";
   import {fade} from 'svelte/transition';
   import {navigationIsDelayed} from "$lib/utils/NavigationIsDelayed.ts";
+  import {base} from "$app/paths";
+  import {page} from "$app/stores";
+
+  $:url = $page.url.pathname.split("/")[1];
 </script>
 
 <div class='page'>
     {#if $navigationIsDelayed}
         <div class="loader" transition:fade={{duration:200}}></div>
     {/if}
+    <nav class="section large">
+        <ul>
+            <li>
+                <a href="{base}/">Andris Švarcs</a>
+            </li>
+            <li>
+                <a class:active={url === 'thoughts'} href="{base}/thoughts">Thoughts</a>
+            </li>
+            <li>
+                <a class:active={url === 'news-archive'} href="{base}/news-archive">News Archive</a>
+            </li>
+        </ul>
+    </nav>
     <slot/>
 </div>
 
 <style lang='scss'>
+  nav ul {
+    display: flex;
+    gap: 1rem;
+
+    li:first-child {
+      margin-right: auto;
+    }
+
+    a.active {
+      text-decoration: underline;
+    }
+  }
+
   .loader {
     position: fixed;
     top: 0;
