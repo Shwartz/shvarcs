@@ -148,14 +148,14 @@ section > div,
 @media (min-width: 500px) {
     section > div,
     .section > * {
-        padding: 2rem 4rem;
+        padding: 0 4rem;
     }
 }
 
 @media (min-width: 1300px) {
     section > div,
     .section > * {
-        padding: 2rem 4rem;
+        padding: 0 4rem;
     }
 }
 
@@ -172,6 +172,14 @@ section.large > div,
 /**
 UTILITIES
  */
+ul.list {
+    margin-top: 1rem;
+}
+ul.list li {
+      list-style: disc;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+}
 p, label {
     margin-top: 1rem;
     font-size: 1.2rem;
