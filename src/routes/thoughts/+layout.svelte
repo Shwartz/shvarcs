@@ -1,8 +1,6 @@
 <script></script>
 
-<div class='page'>
-    <slot/>
-</div>
+<slot/>
 
 <style lang='scss'>
 </style>

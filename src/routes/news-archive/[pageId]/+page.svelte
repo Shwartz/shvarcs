@@ -21,14 +21,16 @@
     <meta name="robots" content="index,follow"/>
 </svelte:head>
 
-<div class="newsArchivePost">
-    <a class="back" href='{base}/news-archive'>Back to all news</a>
-    <h1 class="pageTitle">Front-end News Archive</h1>
-    {#each blocks as block}
-        <Block {block}/>
-    {/each}
-    <Footer/>
-</div>
+<section class="medium">
+    <div class="newsArchivePost">
+        <a class="back" href='{base}/news-archive'>Back to all news</a>
+        <h1 class="pageTitle">Front-end News Archive</h1>
+        {#each blocks as block}
+            <Block {block}/>
+        {/each}
+        <Footer/>
+    </div>
+</section>
 
 <style lang='scss'>
   .newsArchivePost {
@@ -37,8 +39,8 @@
 
     .back {
       position: absolute;
+      top: 0;
       left: 0;
-      top: 0.5rem;
     }
 
     .pageTitle {

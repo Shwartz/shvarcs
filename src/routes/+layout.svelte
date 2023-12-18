@@ -33,6 +33,7 @@
   nav ul {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 
     li:first-child {
       margin-right: auto;
