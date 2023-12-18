@@ -37,6 +37,7 @@
         --preformatted: #ccc;
         --disabled: #111;
     }
+
     /* Add a bit of transparency so light media isn't so glaring in dark mode */
     img,
     video {
@@ -312,9 +313,16 @@ aside {
     margin-inline-start: 15px;
     float: right;
 }
+
 *[dir="rtl"] aside {
     float: left;
 }
+
+section, .section {
+    padding: 0 1rem 0;
+    margin: 0;
+}
+
 
 /* Make aside full-width on mobile */
 @media only screen and (max-width: 720px) {
@@ -336,10 +344,11 @@ article h2:first-child,
 section h2:first-child {
     margin-top: 1rem;
 }
-
-section {
-    padding: 2rem 1rem 0;
-    margin: 3rem 0 0;
+@media only screen and (min-width: 720px) {
+    section {
+        padding: 2rem 1rem 0;
+        margin: 3rem 0 0;
+    }
 }
 
 /* Don't double separators when chaining sections */
@@ -421,6 +430,7 @@ button,
     max-width: 100%;
     display: inline-block;
 }
+
 textarea,
 select,
 input {
@@ -428,9 +438,11 @@ input {
     background-color: var(--bg);
     border: 1px solid var(--border);
 }
+
 label {
     display: block;
 }
+
 textarea:not([cols]) {
     width: 100%;
 }
@@ -444,6 +456,7 @@ select:not([multiple]) {
     background-repeat: no-repeat;
     padding-inline-end: 25px;
 }
+
 *[dir="rtl"] select:not([multiple]) {
     background-position: 10px, 15px;
 }
@@ -485,6 +498,7 @@ input[type="checkbox"]:checked::after {
     font-size: 1.8em;
     transform: rotate(45deg);
 }
+
 input[type="radio"]:checked::after {
     /* creates a colored circle for the checked radio button  */
     content: " ";
@@ -510,7 +524,7 @@ input[type="radio"]:checked::after {
 /* Set a height for color input */
 input[type="color"] {
     height: 2.5rem;
-    padding:  0.2rem;
+    padding: 0.2rem;
 }
 
 /* do not show border around file selector button */
