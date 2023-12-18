@@ -28,7 +28,7 @@ export const getAllPosts = pMemoize(async () => {
 		return {
 			error: {
 				code: 500,
-				message: 'Some error occurred'
+				message: 'Can\'t connect to DB'
 			}
 		};
 	}
@@ -57,7 +57,7 @@ export const getPost = pMemoize(async (id: string) => {
 		return {
 			error: {
 				code: 500,
-				message: 'Some error occurred'
+				message: 'Can\'t connect to DB'
 			}
 		};
 	}

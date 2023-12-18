@@ -41,79 +41,79 @@
         <meta property="twitter:title" content="{title}"/>
         <meta property="twitter:description" content="{description}"/>
     {/if}
-        <meta name="robots" content="index,follow"/>
+    <meta name="robots" content="index,follow"/>
 </svelte:head>
 
-<div class="newsArchive">
-    <h1>Front-end News Archive</h1>
-    <p>
-        To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters
-        during the week. <br/>
-        Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found it
-        handy more than once to search for THAT specific article(s) about a particular feature.<br/>
-        Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and Notion's
-        API.
-    </p>
+<section class="medium">
+    <div>
+        <h1>Front-end News Archive</h1>
+        <p>
+            To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters
+            during the week. <br/>
+            Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found
+            it
+            handy more than once to search for THAT specific article(s) about a particular feature.<br/>
+            Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and
+            Notion's
+            API.
+        </p>
 
-    <!--<SuperDebug data={$form}/>-->
-    <form method='POST' use:enhance action='?/search'>
-        <input
-                type='text'
-                name='searchTerm'
-                id='searchTerm'
-                autocomplete='off'
-                placeholder='Search for the post'
-                bind:value={$form.searchTerm}
-        />
+        <!--<SuperDebug data={$form}/>-->
+        <form method='POST' use:enhance action='?/search'>
+            <input
+                    type='text'
+                    name='searchTerm'
+                    id='searchTerm'
+                    autocomplete='off'
+                    placeholder='Search for the post'
+                    bind:value={$form.searchTerm}
+            />
 
-        <button type='submit'>Search</button>
-        {#if $delayed}
-            <Diamonds color="#ffb300"/>
+            <button type='submit'>Search</button>
+            {#if $delayed}
+                <Diamonds color="#ffb300"/>
+            {/if}
+
+        </form>
+        {#if $errors.searchTerm && !$message}
+            <h6 class="warning">{$errors.searchTerm}</h6>
         {/if}
 
-    </form>
-    {#if $errors.searchTerm && !$message}
-        <h6 class="warning">{$errors.searchTerm}</h6>
-    {/if}
+        {#if $message && $message?.searchResults?.length > 0}
+            <h6>{$message.text}</h6>
+            <a href="{base}/news-archive">Back to all posts</a>
+            <ul>
+                {#each $message.searchResults as post}
+                    <li>
+                        <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
+                        <div>{post.summary}</div>
+                    </li>
+                {/each}
+            </ul>
+        {/if}
 
-    {#if $message && $message?.searchResults?.length > 0}
-        <h6>{$message.text}</h6>
-        <a href="{base}/news-archive">Back to all posts</a>
-        <ul>
-            {#each $message.searchResults as post}
-                <li>
-                    <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
-                    <div>{post.summary}</div>
-                </li>
-            {/each}
-        </ul>
-    {/if}
+        {#if $message && $message?.searchResults?.length === 0}
+            <h3>Nothing came up</h3>
+            <a href="{base}/news-archive">Back to all posts</a>
+            <p>Currently this is very simplified search version. Try keywords like: "Astro, React, CSS" and similar</p>
+        {/if}
 
-    {#if $message && $message?.searchResults?.length === 0}
-        <h3>Nothing came up</h3>
-        <a href="{base}/news-archive">Back to all posts</a>
-        <p>Currently this is very simplified search version. Try keywords like: "Astro, React, CSS" and similar</p>
-    {/if}
+        {#if !($message)}
+            <ul>
+                {#each data.page.posts as post}
+                    <li>
+                        <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
+                        <div>{post.summary}</div>
+                    </li>
+                {/each}
+            </ul>
+        {/if}
 
-    {#if !($message)}
-        <ul>
-            {#each data.page.posts as post}
-                <li>
-                    <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
-                    <div>{post.summary}</div>
-                </li>
-            {/each}
-        </ul>
-    {/if}
-
-    <Footer/>
-</div>
+        <Footer/>
+    </div>
+</section>
 
 <style lang='scss'>
-  .newsArchive {
-    padding-top: 2rem;
-  }
-
   form {
     display: flex;
     gap: 0.5rem;
