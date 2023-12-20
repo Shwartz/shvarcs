@@ -23,8 +23,6 @@
 
 <section class="medium">
     <div class="newsArchivePost">
-        <a class="back" href='{base}/news-archive'>Back to all news</a>
-        <h1 class="pageTitle">Front-end News Archive</h1>
         {#each blocks as block}
             <Block {block}/>
         {/each}
@@ -34,8 +32,6 @@
 
 <style lang='scss'>
   .newsArchivePost {
-    position: relative;
-    padding-top: 2rem;
 
     .back {
       position: absolute;
@@ -51,10 +47,8 @@
     }
 
     :global(h1) {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 2rem;
     }
 
     :global(h2) {
