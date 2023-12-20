@@ -141,10 +141,6 @@ section > div,
     width: 100%;
 }
 
-.page section:last-of-type {
-    margin-bottom: 12rem;
-}
-
 @media (min-width: 500px) {
     section > div,
     .section > * {

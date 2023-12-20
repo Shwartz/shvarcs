@@ -2,7 +2,7 @@
 	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 	import Heading from './Heading.svelte';
 	import Paragraph from './Paragraph.svelte';
-	import Code from "$lib/components/Code.svelte";
+	import Code from "$lib/components/notionUtils/Code.svelte";
 	import ImageBlock from './ImageBlock.svelte';
 	import NumberedList from './NumberedList.svelte';
 	import BulletList from './BulletList.svelte';

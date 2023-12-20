@@ -1,6 +1,6 @@
 <script>
   import {base} from '$app/paths';
-  import Block from '$lib/components/Block.svelte';
+  import Block from '$lib/components/notionUtils/Block.svelte';
   import Footer from "$lib/components/Footer.svelte";
 
   export let data;
