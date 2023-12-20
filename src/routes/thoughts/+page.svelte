@@ -1,8 +1,8 @@
 <script>
   import {base} from "$app/paths";
   // import Meta from "$lib/components/Meta.svelte";
-  const title = "Andris Švarcs | Frontend developer";
-  const description = "I'm a front-end developer from London, focusing on CSS, HTML, ReactJS, and SvelteKit. I mostly find myself as a translator between designers and developers";
+  const title = "Random thoughts as posts";
+  const description = "Mostly Front-end thoughts, but it might be quite random posts on anything that triggers my interest";
 </script>
 
 <svelte:head>
