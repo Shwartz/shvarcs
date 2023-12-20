@@ -45,6 +45,7 @@
 <style lang='scss'>
   nav ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1rem;
 
@@ -53,11 +54,31 @@
     }
 
     li:first-child {
+      width: 100%;
       margin-right: auto;
+    }
+
+    li:last-child {
+      margin-left: auto;
     }
 
     a.active {
       text-decoration: underline;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    nav ul {
+      flex-wrap: nowrap;
+
+
+      li:first-child {
+        width: auto;
+      }
+
+      li:last-child {
+        margin-left: 1rem;
+      }
     }
   }
 
