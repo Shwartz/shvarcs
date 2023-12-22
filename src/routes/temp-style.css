@@ -13,7 +13,7 @@ html {
     --text-light: #585858;
     --text-light-opacity: rgba(88, 88, 88, 0.50);
     --border: #898EA4;
-    --accent: #0d47a1;
+    --accent: #4989ed;
     --code: #d81b60;
     --preformatted: #444;
     --marked: #ffdd33;
@@ -314,9 +314,11 @@ aside {
 
 section, .section {
     padding: 0 1rem 0;
-    margin: 0;
 }
 
+section {
+    margin-bottom: 3rem;
+}
 
 /* Make aside full-width on mobile */
 @media only screen and (max-width: 720px) {
@@ -338,10 +340,14 @@ article h2:first-child,
 section h2:first-child {
     margin-top: 1rem;
 }
+
+section {
+    padding: 1rem 1rem 0;
+}
 @media only screen and (min-width: 720px) {
     section {
         padding: 1rem 1rem 0;
-        margin: 1rem 0 0;
+        margin: 1rem 0 3rem;
     }
 }
 
