@@ -40,13 +40,24 @@
         </ul>
     </nav>
     <slot/>
+    <footer>
+        <div>
+            <p>Get in touch: <a href="https://fosstodon.org/@shvarcs" target="_blank">Mastodon</a></p>
+        </div>
+    </footer>
 </div>
 
 <style lang='scss'>
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
   nav ul {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    width: 100%;
     margin-top: 1rem;
 
     li {

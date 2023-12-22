@@ -24,6 +24,10 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body {
+    height: 100%;
+}
+
 /* Reapply the pointer cursor for anchor tags */
 a, button {
     cursor: revert;
@@ -129,32 +133,57 @@ SITE SKELETON
  */
 section,
 .section {
-    margin: auto;
     display: flex;
     justify-content: center;
     scroll-margin-top: 3rem;
 }
 
+footer {
+    --s: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding: 0 1rem 0;
+    background: var(--disabled, grey);
+
+    &:before {
+        content: "";
+        position: absolute;
+        height: 0.4rem;
+        top: -0.4rem;
+        left: 0;
+        right: 0;
+
+        background: repeating-conic-gradient(var(--bg) 0 25%, var(--disabled) 0 50%) 0 0/var(--s) var(--s) round;
+        pointer-events: none;
+    }
+}
+
+footer > div,
 section > div,
 .section > * {
-    padding: 1rem 1rem 4rem;
+    padding: 1rem 1rem 0;
     width: 100%;
 }
 
 @media (min-width: 500px) {
+    footer > div,
     section > div,
     .section > * {
-        padding: 0 4rem;
+        padding: 0 4rem 0;
     }
 }
 
 @media (min-width: 1300px) {
+    footer > div,
     section > div,
     .section > * {
         padding: 0 4rem;
     }
 }
 
+footer > div,
 section.medium > div,
 .section.medium > * {
     max-width: 900px;

@@ -1,7 +1,5 @@
 <script>
-  import {base} from '$app/paths';
   import Block from '$lib/components/notionUtils/Block.svelte';
-  import Footer from "$lib/components/Footer.svelte";
 
   export let data;
   // console.log('DATA: ----', data);
@@ -26,7 +24,6 @@
         {#each blocks as block}
             <Block {block}/>
         {/each}
-        <Footer/>
     </div>
 </section>
 

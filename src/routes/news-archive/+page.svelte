@@ -8,7 +8,6 @@
   export let data: PageData;
 
   import {base} from '$app/paths';
-  import Footer from "$lib/components/Footer.svelte";
   // import Meta from "$lib/components/Meta.svelte";
 
   const {form, errors, enhance, delayed, message} = superForm(data.form, {
@@ -108,8 +107,6 @@
                 {/each}
             </ul>
         {/if}
-
-        <Footer/>
     </div>
 </section>
 
