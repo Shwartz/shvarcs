@@ -53,28 +53,45 @@
     flex-direction: column;
     height: 100%;
   }
-  nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    margin-top: 1rem;
+  nav {
+    --s: 40px;
+    position: relative;
 
-    li {
+    &:before {
+      content: "";
+      position: absolute;
+      height: 0.4rem;
+      bottom: -0.4rem;
+      left: 0;
+      right: 0;
+
+      background: repeating-conic-gradient(var(--bg) 0 25%, var(--disabled) 0 50%) 0 0/var(--s) var(--s) round;
+      pointer-events: none;
+    }
+
+    ul {
       display: flex;
-    }
-
-    li:first-child {
+      flex-wrap: wrap;
+      gap: 1rem;
       width: 100%;
-      margin-right: auto;
-    }
+      margin: 1rem 0;
 
-    li:last-child {
-      margin-left: auto;
-    }
+      li {
+        display: flex;
+      }
 
-    a.active {
-      text-decoration: underline;
+      li:first-child {
+        width: 100%;
+        margin-right: auto;
+      }
+
+      li:last-child {
+        margin-left: auto;
+      }
+
+      a.active {
+        text-decoration: underline;
+      }
     }
   }
 
