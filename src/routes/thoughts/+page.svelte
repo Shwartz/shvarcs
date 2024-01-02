@@ -1,7 +1,7 @@
 <script>
   import {base} from "$app/paths";
   // import Meta from "$lib/components/Meta.svelte";
-  const title = "Random thoughts as posts";
+  const title = "Random thoughts";
   const description = "Mostly Front-end thoughts, but it might be quite random posts on anything that triggers my interest";
 </script>
 
@@ -20,6 +20,9 @@
     <section class="medium">
         <div>
             <h1>Thoughts</h1>
+            <p>
+                <a href="{base}/thoughts/how-to-deal-with-CSS">How to deal with CSS | May, 2023</a>
+            </p>
             <p>
                 <a href="{base}/thoughts/svelte-vs-reactjs">Svelte vs ReactJS | September, 2022</a>
             </p>
