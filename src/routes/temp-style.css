@@ -17,6 +17,7 @@ html {
     --code: #d81b60;
     --preformatted: #444;
     --marked: #ffdd33;
+    --marked-text: var(--text);
     --disabled: #efefef;
 }
 
@@ -30,6 +31,7 @@ html[data-theme='dark'] {
     --accent: #ffb300;
     --code: #f06292;
     --preformatted: #ccc;
+    --marked-text: var(--bg);
     --disabled: #111;
 }
 
@@ -65,7 +67,7 @@ body {
     color: var(--text);
     background-color: var(--bg);
     font-size: 1.15rem;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
 }
 
