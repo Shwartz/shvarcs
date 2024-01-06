@@ -42,7 +42,7 @@
     <slot/>
     <footer>
         <div>
-            <p>Get in touch: <a href="https://fosstodon.org/@shvarcs" target="_blank">Mastodon</a></p>
+            <p>&copy;2024 <a href="https://shvarcs.com">Andris Švarcs</a> | Get in touch: <a href="https://fosstodon.org/@shvarcs" target="_blank">Mastodon</a></p>
         </div>
     </footer>
 </div>
