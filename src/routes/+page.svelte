@@ -20,8 +20,9 @@
     <div>
         <p>
             <img src={imgAndris}
-                 alt="Andris Švarcs proudly kept a hand on the Cessna plane, which he partly flew above Surrey.">
-            I have been working as a web developer for over 15 years. I call myself a <em>Product-minded</em> engineer. I worked
+                 alt="A picture of the Owner of the website, where he is trying to look intelligent and welcoming">
+            I have been working as a web developer for over 15 years. I call myself a <em>Product-minded</em> engineer.
+            I worked
             in small agencies and enterprise-level companies during my career. The products I built or worked on as a
             team include domains like finance, tourism, health, dashboard web apps and more. </p>
 
@@ -32,11 +33,9 @@
 
         <p>Much like my fellow developers, I stay up-to-date on the latest in the tech world. I utilise Notion to
             capture my musings, and over the past few years, I've compiled many ideas waiting to be shared with the
-            world. Also, this is my third attempt to redesign my website. I recall my last live blog back in 2013.</p>
+            world. Also, this is my third attempt to redesign my website. I recall my last live blog back in 2013, which
+            means it took me ten years to finally produce this rushed version. </p>
 
-        <p>Determined to transform my Notion notes into tangible blog posts, I've adopted a different approach. Rather
-            than striving for perfection before going live, as I have done in the past, this time, everything is live,
-            and I'm refining and enhancing as I progress.</p>
     </div>
 </section>
 
