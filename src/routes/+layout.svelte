@@ -13,7 +13,6 @@
   onMount(() => {
     ThemeSwitcher.init();
   });
-
 </script>
 
 <div class='page'>
