@@ -62,5 +62,15 @@
       margin: 0.5rem 0 0;
     }
 
+    :global(pre) {
+      background-color: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--standard-border-radius);
+      margin-bottom: 1rem;
+      padding: 1rem 1.4rem;
+      max-width: 100%;
+      overflow: auto;
+
+    }
   }
 </style>

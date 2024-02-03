@@ -1,12 +1,10 @@
 <script>
   import {CodePen} from "sveltekit-embed";
-  import {Highlight, HighlightSvelte, LineNumbers} from "svelte-highlight";
-  import {typescript, css} from "svelte-highlight/languages";
-  import monokai from "svelte-highlight/styles/monokai";
+  import HighLightWrap from "$lib/components/HighLightWrap.svelte";
 
 
-  const source1 = `h3:is(h1 + *) {
-    color: red;
+  const source1 = `    h3:is(h1 + *) {
+        color: red;
     }
 
     p {
@@ -32,7 +30,7 @@
   {@html atomOneDark}
 </svelte:head>
 
-<Highlight language={typescript} {code} />`;
+  <Highlight language={typescript} {code} />`;
 
 
   const title = "My findings on :is(), :where(), :has() and :not() | Post";
@@ -48,8 +46,6 @@
     <meta property="twitter:title" content="{title}"/>
     <meta property="twitter:description" content="{description}"/>
     <meta name="robots" content="index,follow"/>
-
-    {@html monokai}
 </svelte:head>
 
 <section class="medium">
@@ -61,12 +57,10 @@
             summary.</p>
 
         <h3>Code highlight method</h3>
-        <div style="margin: 1rem 0">
-            <HighlightSvelte code={source1}/>
-            <HighlightSvelte code={sourc2} let:highlighted>
-                <LineNumbers {highlighted}/>
-            </HighlightSvelte>
-        </div>
+
+
+        <HighLightWrap source={source1} />
+        <HighLightWrap source={sourc2} />
 
 
         <p><code>:is()</code> and <code>:where()</code> are the same apart of one detail, their specificity is
