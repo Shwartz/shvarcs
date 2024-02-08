@@ -20,7 +20,7 @@
     <div>
         <p>
             <img src={imgAndris}
-                 alt="A picture of the Owner of the website, where he is trying to look intelligent and welcoming">
+                 alt="The Owner of the website, where he is trying to look intelligent and welcoming">
             I have been working as a web developer for over 15 years. I call myself a <em>Product-minded</em> engineer.
             I worked
             in small agencies and enterprise-level companies during my career. The products I built or worked on as a
