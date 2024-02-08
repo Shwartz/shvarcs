@@ -21,8 +21,8 @@
         <div>
             <h1>Thoughts</h1>
             <p>
-                <a href="{base}/thoughts/my-findings-on-CSS-pseudo-selectors">My findings on :is(), :where(), :has() and :not() |
-                    February, 2024</a>
+                <a href="{base}/thoughts/practical-usage-of-CSS-pseudo-selectors">Practical usage of CSS pseudo-class
+                    selectors is(), where(), has() and not() | February, 2024</a>
             </p>
             <p>
                 <a href="{base}/thoughts/how-to-deal-with-CSS">How to deal with CSS | May, 2023</a>
