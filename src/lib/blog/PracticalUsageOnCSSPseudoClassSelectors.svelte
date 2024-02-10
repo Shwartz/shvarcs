@@ -208,7 +208,7 @@ a:not([href = "https://shvarcs.com"]) {
                     <li>Next element</li>
                     <li>Next element</li>
                     <li>Next element</li>
-                    <li>Next element</li>
+                    <li>Last element</li>
                 </ul>
             </figure>
             <figure>
