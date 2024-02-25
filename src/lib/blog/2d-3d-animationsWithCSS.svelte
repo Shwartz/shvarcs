@@ -17,6 +17,9 @@ transform: translateY(-1rem)`
   $:ex1Style = `transform: translate(${x1Perc}, ${y1Perc})`;
   $:ex1BgStyle = hasPercentToggle ? `background-size: 48px 48px` : `background: none`;
 
+  $:x2Val = 0;
+  $:ex2Style = `transform: translate(0, ${x2Val}%)`;
+
 
   const title = "2D and 3D animations using CSS | Post";
   const description = "2D and 3D animations using CSS with interactive examples";
@@ -63,13 +66,13 @@ transform: translateY(-1rem)`
             <label class="horizontal" for="x1">
                 <span>x-axis</span>
                 <input orient="horizontal" bind:value={x1Val} name="x1" type="range" min="0" max="100" step="10"/>
-                <span class="value">{x1Val}%</span>
+                <span class="value">{x1Perc}</span>
             </label>
             <div class="vertical">
                 <label for="y1">
                     <span>y-axis</span>
                     <input orient="vertical" bind:value={y1Val} name="y1" type="range" min="0" max="100" step="10"/>
-                    <span class="value vertical">{y1Val}%</span>
+                    <span class="value vertical">{y1Perc}</span>
                 </label>
                 <figure style={ex1BgStyle} bind:clientWidth={ex1BoxWidth} bind:clientHeight={ex1BoxHeight}>
                     <span style={ex1Style} id="circleEx1"></span>
@@ -101,9 +104,28 @@ transform: translateY(-1rem)`
                 <code>transform: translate(50%, 50%)</code></p>
             <p>That is the fun part, the Circle knows only its own dimensions, but knows nothing about the parent box.
                 Instead it uses the element size itself. So, for 100% translate would happened exactly at the size of
-                the element, in this case 48px to the right (or down).</p>
+                the element, in this case 48px to whatever direction.</p>
             <p>Toggle between px and % to see the difference. So, when Circle is pushed by percentage it will move to
                 direction based on its own size. 100% right would mean - "moving right exactly the size of itself".</p>
+            <p>This is the most amazing and powerful part of the translate()! Probably the only one way where you can
+                move an element exactly for 50% to any directions without knowing the size of the element.</p>
+
+            <p class="ex2Wrap">
+                <span>transform: translate(0, <code>{x2Val}%</code>)</span>
+                <label class="horizontal" for="x2">
+                    <input orient="horizontal" bind:value={x2Val} name="x2" type="range" min="-100" max="100"/>
+                </label>
+            </p>
+
+            <div class="example2 codeExample">
+                <figure>
+                    <div class="shadow">Some block</div>
+                    <div style={ex2Style} class="movable">Some block</div>
+                </figure>
+            </div>
+        </div>
+        <div>
+            <h3>Size, Perspective and Rotation</h3>
         </div>
     </div>
 </section>
@@ -134,7 +156,16 @@ transform: translateY(-1rem)`
     font-size: 0.8rem;
   }
 
-  .codeExample {
+  figure {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    border: 1px solid var(--accent);
+    color: var(--text-light);
+    height: 250px;
+  }
+
+  .example1 {
     margin-top: 3rem;
 
     figure {
@@ -142,12 +173,6 @@ transform: translateY(-1rem)`
       linear-gradient(to bottom, rgba(203, 213, 225, 0.5) 1px, transparent 1px);
       background-size: 48px 48px;
       background-position: -1px -1px;
-
-      position: relative;
-      width: 100%;
-      margin: 0;
-      border: 1px solid var(--accent);
-      color: var(--text-light);
     }
 
     input {
@@ -199,11 +224,6 @@ transform: translateY(-1rem)`
         height: 140px;
       }
     }
-  }
-
-  .example1 figure {
-    height: 250px;
-    width: 100%;
 
     #circleEx1 {
       position: absolute;
@@ -215,6 +235,50 @@ transform: translateY(-1rem)`
       height: 48px;
       border-radius: 50%;
       transition: transform 0.3s;
+    }
+  }
+
+  .ex2Wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    label {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 1rem 0;
+
+      input {
+        margin: 0;
+      }
+    }
+  }
+
+  .example2 {
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-image: linear-gradient(to right, rgba(203, 213, 225, 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(203, 213, 225, 0.5) 1px, transparent 1px);
+      background-size: 50% 50%;
+      background-position: -1px -1px;
+    }
+
+    div.movable {
+      border: 1px solid var(--accent);
+      transform: translate(0, 0);
+      padding: 1rem;
+      background: rgba(0,0,0,0.2)
+    }
+    div.shadow {
+      border: 1px dotted var(--accent);
+      position: absolute;
+      padding: 1rem;
+      opacity: 0.5;
     }
   }
 
