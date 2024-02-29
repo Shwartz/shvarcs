@@ -5,7 +5,9 @@
     `transform: translate(20px, 50px),
 transform: translate(10%, -50px),
 transform: translateX(2em),
-transform: translateY(-1rem)`
+transform: translateY(-1rem)`;
+  /* Exercise 1 */
+
 
   let hasPercentToggle = false;
   let ex1BoxWidth = 0;
@@ -17,8 +19,38 @@ transform: translateY(-1rem)`
   $:ex1Style = `transform: translate(${x1Perc}, ${y1Perc})`;
   $:ex1BgStyle = hasPercentToggle ? `background-size: 48px 48px` : `background: none`;
 
+  /* Exercise 2 */
   $:x2Val = 0;
   $:ex2Style = `transform: translate(0, ${x2Val}%)`;
+
+  /* Exercise 3 */
+  let x3SkewX = 0;
+  let x3SkewY = 0;
+  let x3ScaleX = 1;
+  let x3ScaleY = 1;
+  let x3RotateZ = 0;
+  let x3RotateX = 0;
+  let x3RotateY = 0;
+
+  function resetEx3() {
+    x3SkewX = 0;
+    x3SkewY = 0;
+    x3ScaleX = 1;
+    x3ScaleY = 1;
+    x3RotateZ = 0;
+    x3RotateX = 0;
+    x3RotateY = 0;
+  }
+
+  $:ex3Style = `transform: skew(${x3SkewX}deg, ${x3SkewY}deg)
+    scale(${x3ScaleX}, ${x3ScaleY})
+    rotateZ(${x3RotateZ}deg) rotateX(${x3RotateX}deg) rotateY(${x3RotateY}deg)`;
+
+  const source3 =
+    `transform:
+    skew(${x3SkewX}deg, ${x3SkewY}deg)
+    scale(${x3ScaleX}, ${x3ScaleY})
+    rotateZ(${x3RotateZ}deg) rotateX(${x3RotateX}deg) rotateY(${x3RotateY}deg)`;
 
 
   const title = "2D and 3D animations using CSS | Post";
@@ -53,7 +85,7 @@ transform: translateY(-1rem)`
         <p>As you can see from example above, you can use positive, negative values as well as different length
             units.</p>
 
-        <h3>Example with 2D animation</h3>
+        <h3>Examples with 2D animation</h3>
         <p>Box width: {ex1BoxWidth}px, height: {ex1BoxHeight}px, <span
                 style="display:inline-block">Circle: 48px x 48px</span></p>
         <div class="toggle">
@@ -124,9 +156,54 @@ transform: translateY(-1rem)`
                 </figure>
             </div>
         </div>
-        <div>
-            <h3>Size, Perspective and Rotation</h3>
+        <div class="example3">
+            <h3>Skew, Size and Rotation</h3>
+            <p>Why not to bend some elements, right? If you want to do that then probably Skew will help you most, but
+                play with all of them and see how they change element in 2D</p>
+            <p>You can apply skew, scale and rotate rules into one rule like so:</p>
+            <HighLightWrap source={source3}/>
+
+
+            <div class="flex">
+                <div>
+                    <input orient="horizontal" bind:value={x3SkewX} name="x3SkewX" type="range" min="-50"
+                           max="50"/> {x3SkewX} deg<br/>
+                    <input orient="horizontal" bind:value={x3SkewY} name="x3SkewY" type="range" min="-50"
+                           max="50"/> {x3SkewY} deg<br/>
+                    <code>transform: skew({x3SkewX}deg, {x3SkewY}deg)</code>
+                </div>
+                <div>
+                    <input orient="horizontal" bind:value={x3ScaleX} name="x3ScaleX" type="range" min="-2" max="2"
+                           step="0.2"/> {x3ScaleX}<br/>
+                    <input orient="horizontal" bind:value={x3ScaleY} name="x3ScaleY" type="range" min="-2" max="2"
+                           step="0.2"/> {x3ScaleY}<br/>
+                    <code>transform: scale({x3ScaleX}, {x3ScaleY})</code>
+                </div>
+                <div>
+                    <input orient="horizontal" bind:value={x3RotateZ} name="x3RotateX" type="range" min="-180"
+                           max="180"/> {x3RotateZ} deg<br/>
+                    <input orient="horizontal" bind:value={x3RotateX} name="x3RotateX" type="range" min="-180"
+                           max="180"/> {x3RotateX} deg<br/>
+                    <input orient="horizontal" bind:value={x3RotateY} name="x3RotateX" type="range" min="-180"
+                           max="180"/> {x3RotateY} deg<br/>
+                    <code>transform: rotateZ({x3RotateZ}deg) rotateX({x3RotateX}deg) rotateY({x3RotateY}deg)</code>
+                </div>
+                <div>
+                    <button type="button" on:click={resetEx3}>Reset</button>
+                </div>
+            </div>
+            <figure>
+                <div style={ex3Style} class="transformable"></div>
+            </figure>
+            <p>Dive deeper with MDN and learn more about <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">transform</a>.</p>
+
         </div>
+    </div>
+</section>
+<section class="medium">
+    <div>
+        <h2>3D CSS</h2>
     </div>
 </section>
 
@@ -272,13 +349,51 @@ transform: translateY(-1rem)`
       border: 1px solid var(--accent);
       transform: translate(0, 0);
       padding: 1rem;
-      background: rgba(0,0,0,0.2)
+      background: rgba(0, 0, 0, 0.2)
     }
+
     div.shadow {
       border: 1px dotted var(--accent);
       position: absolute;
       padding: 1rem;
       opacity: 0.5;
+    }
+  }
+
+  .example3 {
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .flex {
+      --min: 35ch;
+      --gap: 1rem;
+      display: grid;
+      grid-gap: var(--gap);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+      margin-top: 3rem;
+    }
+
+    .transformable {
+      position: relative;
+      height: 100px;
+      width: 100px;
+      border: 1px solid var(--accent);
+
+      background-image: linear-gradient(to right, rgba(203, 213, 225, 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(203, 213, 225, 0.5) 1px, transparent 1px);
+      background-size: 10px 10px;
+      background-position: -1px -1px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(216, 27, 96, 0.4) 0%, rgba(73, 137, 237, 0.4) 100%);
+      }
     }
   }
 
