@@ -7,6 +7,44 @@ transform: translate(10%, -50px),
 transform: translateX(2em),
 transform: translateY(-1rem)`;
   /* Exercise 1 */
+  /* Exercise 4 */
+  const source2 =
+    `<div class="panel">
+    <div class="face front">This is front</div>
+    <div class="face back">This is back</div>
+</div>`;
+  const source4 =
+    `.panel {
+  position: relative;
+  height: 200px;
+  width: 200px;
+}`;
+  const source5 =
+    `.face {
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 1s;
+}`;
+  const source6 =
+    `.front {
+  transform: perspective(400px) rotateY(0);
+  background: var(--accent);
+}
+
+.back {
+  transform: perspective(400px) rotateY(179.9deg);
+  background: var(--code);
+}
+
+&:hover, &:focus {
+  .front {
+    transform: rotateY(-179.9deg);
+  }
+
+  .back {
+    transform: rotateY(0);
+  }
+}`;
 
 
   let hasPercentToggle = false;
@@ -166,27 +204,27 @@ transform: translateY(-1rem)`;
 
             <div class="flex">
                 <div>
+                    <code>transform: skew({x3SkewX}deg, {x3SkewY}deg)</code>
                     <input orient="horizontal" bind:value={x3SkewX} name="x3SkewX" type="range" min="-50"
                            max="50"/> {x3SkewX} deg<br/>
                     <input orient="horizontal" bind:value={x3SkewY} name="x3SkewY" type="range" min="-50"
                            max="50"/> {x3SkewY} deg<br/>
-                    <code>transform: skew({x3SkewX}deg, {x3SkewY}deg)</code>
                 </div>
                 <div>
-                    <input orient="horizontal" bind:value={x3ScaleX} name="x3ScaleX" type="range" min="-2" max="2"
-                           step="0.2"/> {x3ScaleX}<br/>
-                    <input orient="horizontal" bind:value={x3ScaleY} name="x3ScaleY" type="range" min="-2" max="2"
-                           step="0.2"/> {x3ScaleY}<br/>
                     <code>transform: scale({x3ScaleX}, {x3ScaleY})</code>
+                    <input orient="horizontal" bind:value={x3ScaleX} name="x3ScaleX" type="range" min="-2" max="2"
+                           step="0.1"/> {x3ScaleX}<br/>
+                    <input orient="horizontal" bind:value={x3ScaleY} name="x3ScaleY" type="range" min="-2" max="2"
+                           step="0.1"/> {x3ScaleY}<br/>
                 </div>
                 <div>
+                    <code>transform: rotateZ({x3RotateZ}deg) rotateX({x3RotateX}deg) rotateY({x3RotateY}deg)</code>
                     <input orient="horizontal" bind:value={x3RotateZ} name="x3RotateX" type="range" min="-180"
                            max="180"/> {x3RotateZ} deg<br/>
                     <input orient="horizontal" bind:value={x3RotateX} name="x3RotateX" type="range" min="-180"
                            max="180"/> {x3RotateX} deg<br/>
                     <input orient="horizontal" bind:value={x3RotateY} name="x3RotateX" type="range" min="-180"
                            max="180"/> {x3RotateY} deg<br/>
-                    <code>transform: rotateZ({x3RotateZ}deg) rotateX({x3RotateX}deg) rotateY({x3RotateY}deg)</code>
                 </div>
                 <div>
                     <button type="button" on:click={resetEx3}>Reset</button>
@@ -204,6 +242,52 @@ transform: translateY(-1rem)`;
 <section class="medium">
     <div>
         <h2>3D CSS</h2>
+        <p>By combining different techniques we can make a 3D effects. The best part? The example below doesn't use any
+            JavaScript.</p>
+        <div class="example4">
+            <figure>
+                <div class="panel">
+                    <div class="face front">This is front</div>
+                    <div class="face back">This is back</div>
+                </div>
+                <div class="panel">
+                    <div class="face front">
+                        <svg class="svg-icon"
+                             style="width: 100%; height: 100%; vertical-align: middle;fill: currentColor;overflow: hidden;"
+                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M511.784594 62.907749c-247.25636 0-447.696462 200.421682-447.696462 447.696462 0 247.27478 200.440102 447.696462 447.696462 447.696462 247.27478 0 447.696462-200.421682 447.696462-447.696462C959.481056 263.329431 759.05835 62.907749 511.784594 62.907749zM827.316967 772.669858c-40.914852-17.087167-137.518027-50.604538-197.287295-68.238151-5.119601-1.603521-5.90243-1.859347-5.90243-23.099091 0-17.524119 7.195889-35.157731 14.228049-50.096978 7.631818-16.250102 16.667611-43.537586 19.891026-68.02121 9.090029-10.530844 21.441335-31.29782 29.364795-70.864978 6.975878-34.901905 3.717671-47.583738-0.893346-59.492976-0.490164-1.276063-1.000793-2.515287-1.346671-3.75451-1.74883-8.159844 0.638543-50.677193 6.612605-83.653235 4.136204-22.623253-1.038656-70.715575-32.18912-110.539582-19.674085-25.13854-57.326637-56.033178-126.078487-60.334133l-37.709857 0.037862c-67.583235 4.263094-105.236809 35.157731-124.910894 60.296271-31.151487 39.824007-36.325323 87.916329-32.208563 110.539582 5.993504 32.975019 8.378831 75.492368 6.667863 83.507926-0.38374 1.38351-0.892323 2.622734-1.38351 3.89982-4.607948 11.909238-7.869225 24.591071-0.893346 59.492976 7.92346 39.567157 20.274766 60.334133 29.365818 70.864978 3.223415 24.483624 12.259208 51.771107 19.893072 68.02121 5.592368 11.876492 8.197706 28.018124 8.197706 50.860365 0 21.242813-0.782829 21.49557-5.573949 22.991644-61.827137 18.254759-160.235424 53.81158-196.922998 69.87851-60.353576-71.444169-96.841605-163.697269-96.841605-264.361947 0-226.288816 184.099948-410.387741 410.388764-410.387741 226.288816 0 410.387741 184.097902 410.387741 410.387741C922.172335 610.178043 886.503974 701.5511 827.316967 772.669858z"/>
+                        </svg>
+                        <p>Thomas C. Green</p>
+                    </div>
+                    <div class="face back">
+                        <h3>Thomas C. Green</h3>
+                        <p>4007 Elliott Street</p>
+                        <p>Center Ossipee, NH 03814</p>
+                    </div>
+                </div>
+            </figure>
+        </div>
+        <p>Here is example on how to implement such card</p>
+        <HighLightWrap source={source2}/>
+
+        <p>There is a bit more for CSS. First, we define a Panel which would keep two divs for a Front and Back.</p>
+        <HighLightWrap source={source4}/>
+
+        <p>There I defined shared props. The main thing is that I hide <code>backface-visibility</code>, because I don't
+            want to show it and instead i will show other div's part. I removed design like colours and flex boxes to
+            simplify implementation. I also added animation with 1s duration.</p>
+        <HighLightWrap source={source5}/>
+
+        <p>The last bit is to make that "magical" swap between the front and the back face</p>
+        <p>So, both of those faces are defined as position absolute. That means that the top part is visible by default
+            and other is hidden. Now I tell that front is <code>rotateY(0)</code>, which means - do nothing.</p>
+        <p>The back face is set to <code>rotateY(179.9)</code>, which means that that side is rotated away for now.<br/>
+            Why 179.9? Well, browser will turn always on the shortest route. That way I make sure it will always turn in
+            the one possible way.</p>
+        <p>The last part I do opposite for when user Hovers or Focus on the Panel. So, Front face is turned away while
+            the Back face is turned to the front. I should probably mention that I use SCSS for simplicity.</p>
+        <HighLightWrap source={source6}/>
+
     </div>
 </section>
 
@@ -397,6 +481,68 @@ transform: translateY(-1rem)`;
     }
   }
 
+  .example4 {
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .panel {
+      position: relative;
+      height: 200px;
+      width: 200px;
+
+      .face {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        inset: 0;
+        color: var(--accent-bg);
+        border: 1px solid gold;
+        backface-visibility: hidden;
+        transition: transform 1s;
+      }
+
+      .front {
+        transform: perspective(400px) rotateY(0);
+        background: var(--accent);
+      }
+
+      .back {
+        transform: perspective(400px) rotateY(179.9deg);
+        background: var(--code);
+
+        h3 {
+          margin: 1rem 0;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+
+        p {
+          margin: 0;
+          padding: 0 8px;
+          text-align: left;
+          width: 100%;
+          font-size: 0.8rem;
+        }
+      }
+
+      &:hover, &:focus {
+        .front {
+          transform: rotateY(-179.9deg);
+        }
+
+        .back {
+          transform: rotateY(0);
+        }
+      }
+    }
+  }
 
   .toggle {
     $toggle-bg-color: var(--accent);
