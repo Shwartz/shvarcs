@@ -90,6 +90,26 @@ transform: translateY(-1rem)`;
     scale(${x3ScaleX}, ${x3ScaleY})
     rotateZ(${x3RotateZ}deg) rotateX(${x3RotateX}deg) rotateY(${x3RotateY}deg)`;
 
+  /* Exercise 4 */
+  let x4trX = 0;
+  let x4trY = 0;
+  let x4trZ = 0;
+  $:ex4Style = `transform: perspective(500px) translate3d(${x4trX}px, ${x4trY}px, ${x4trZ}px) rotate(45deg)`;
+
+  /* Exercise 5 */
+  let x5trX = 1;
+  let x5trY = 1;
+  let x5trZ = 1;
+  let x5deg = 40;
+  $:ex5Style = `transform: rotate3d(${x5trX}, ${x5trY}, ${x5trZ}, ${x5deg}deg);`;
+
+  function resetEx6() {
+    x5trX = 1;
+    x5trY = 1;
+    x5trZ = 1;
+    x5deg = 40;
+  }
+
 
   const title = "2D and 3D animations using CSS | Post";
   const description = "2D and 3D animations using CSS with interactive examples";
@@ -201,7 +221,6 @@ transform: translateY(-1rem)`;
             <p>You can apply skew, scale and rotate rules into one rule like so:</p>
             <HighLightWrap source={source3}/>
 
-
             <div class="flex">
                 <div>
                     <code>transform: skew({x3SkewX}deg, {x3SkewY}deg)</code>
@@ -241,7 +260,7 @@ transform: translateY(-1rem)`;
 </section>
 <section class="medium">
     <div>
-        <h2>3D CSS</h2>
+        <h2>3D CSS (kind of)</h2>
         <p>By combining different techniques we can make a 3D effects. The best part? The example below doesn't use any
             JavaScript.</p>
         <div class="example4">
@@ -287,6 +306,73 @@ transform: translateY(-1rem)`;
         <p>The last part I do opposite for when user Hovers or Focus on the Panel. So, Front face is turned away while
             the Back face is turned to the front. I should probably mention that I use SCSS for simplicity.</p>
         <HighLightWrap source={source6}/>
+
+        <h2>3D with translate3d(x, y, z)</h2>
+        <p>All modern devices has not only CPU but also a GPU (Graphical Processing Unit). The
+            purpose of GPU is to tackle graphical rendering and remove some of the CPU tasks. What it means? Basically,
+            if you use CSS3 transition, 3D transforms or Canvas Drawing it would trigger GPU acceleration. Animation
+            becomes very smooth.</p>
+        <p>Instead of using <code>translateX(10px)</code> use <code>translate3d(10px, 0, 0)</code>. The result is the
+            same, but the latter would use GPU acceleration, which improve animation.</p>
+        <p><code>translate3d()</code> let you reposition element in 3D space</p>
+        <div class="example5">
+            <div class="flex">
+                <div>
+                    <code>transform: translate3d({x4trX}px, {x4trY}px, {x4trZ}px)</code><br/>
+                    <input orient="horizontal" bind:value={x4trX} name="x4trX" type="range" min="-100"
+                           max="100"/> X: {x4trX} px<br/>
+                    <input orient="horizontal" bind:value={x4trY} name="x4trY" type="range" min="-100"
+                           max="100"/> Y: {x4trY} px<br/>
+                    <input orient="horizontal" bind:value={x4trZ} name="x4trY" type="range" min="-100"
+                           max="100"/> Z: {x4trZ} px
+                </div>
+            </div>
+            <figure>
+                <div style={ex4Style} class="transformable"></div>
+            </figure>
+        </div>
+        <p>Not much happen above, but lets add rotate and draw a cube with CSS using translate3d</p>
+        <div class="example6">
+            <div class="flex">
+                <div>
+                    <code>transform: rotate3d({x5trX}, {x5trY}, {x5trZ}, {x5deg}deg)</code><br/>
+                    <input orient="horizontal" bind:value={x5trX} name="x5trX" type="range" min="-10"
+                           max="10"/> X: {x5trX}<br/>
+                    <input orient="horizontal" bind:value={x5trY} name="x5trY" type="range" min="-10"
+                           max="10"/> Y: {x5trY}<br/>
+                    <input orient="horizontal" bind:value={x5trZ} name="x5trY" type="range" min="-10"
+                           max="10"/> Z: {x5trZ}<br/>
+                    <input orient="horizontal" bind:value={x5deg} name="x5deg" type="range" min="-180"
+                           max="180"/> deg: {x5deg}
+                </div>
+                <div>
+                    <button type="button" on:click={resetEx6}>Reset</button>
+                </div>
+            </div>
+            <figure>
+                <div style={ex5Style} class="cube">
+                    <div class="face front">1</div>
+                    <div class="face back">2</div>
+                    <div class="face right">3</div>
+                    <div class="face left">4</div>
+                    <div class="face top">5</div>
+                    <div class="face bottom">6</div>
+                </div>
+            </figure>
+        </div>
+        <p>Here is example how to create cube with CSS: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms#setting_perspective">MDN: CSS Perspective</a></p>
+    </div>
+</section>
+<section>
+    <div class="demo">
+        <h2>CSS3 Examples</h2>
+        <div class="panel1">
+            Panel demo
+        </div>
+
+        <div class="panel2">
+            Some <br/>secret <br/> here
+        </div>
 
     </div>
 </section>
@@ -540,6 +626,142 @@ transform: translateY(-1rem)`;
         .back {
           transform: rotateY(0);
         }
+      }
+    }
+  }
+
+  .example5 {
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .transformable {
+      width: 100px;
+      height: 100px;
+      border: 1px solid purple;
+      transform-style: preserve-3d;
+      transition: transform 200ms linear;
+      background: var(--code);
+    }
+  }
+
+  .example6 {
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 500px;
+    }
+
+    .cube {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      transform-style: preserve-3d;
+      transition: transform 200ms linear;
+    }
+
+    .face {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-image: repeating-linear-gradient(0deg, rgba(70,70,70, 0.2) 0px, rgba(70,70,70, 0.2) 1px,transparent 1px, transparent 21px),repeating-linear-gradient(90deg, rgba(70,70,70, 0.2) 0px, rgba(70,70,70, 0.2) 1px,transparent 1px, transparent 21px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+      font-size: 3rem;
+      color: var(--code);
+      border: 1px solid purple;
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(50px);
+    }
+    .bottom {
+      transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(50px);
+    }
+    .left {
+      transform: rotateY(-90deg) translateZ(50px);
+    }
+
+    .front {
+      transform: rotateX(0deg) translateZ(50px);
+    }
+    .back {
+      transform: rotateX(-180deg) translateZ(50px);
+    }
+  }
+
+  .demo {
+    .panel1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: perspective(500px) translate3d(0px, 0px, -50px) rotateX(35deg);
+      height: 200px;
+      width: 200px;
+      margin: 1rem auto 0;
+      background: rgb(255, 255, 255);
+      border-radius: 1rem;
+      border: 2px solid var(--accent);
+      box-shadow: 0 30px 20px -10px var(--shadow);
+      transition: transform 1s;
+
+      &:hover,
+      &:focus {
+        transform: translate3d(0px, 0px, 0px);
+      }
+    }
+
+    .panel2 {
+      position: relative;
+      height: 300px;
+      max-width: 400px;
+      margin: 2rem auto 0;
+      border-radius: 1rem;
+      border: 2px solid var(--code);
+      perspective: 500px;
+      background-color:silver;
+      color: black;
+      background-image:
+              radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+              radial-gradient(circle at 0    150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+              radial-gradient(circle at 50%  100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
+              radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
+              radial-gradient(circle at 0    50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
+      background-size: 100px 50px;
+      font-size: 1.6rem;
+
+
+      &:before {
+        content: "";
+        position: absolute;
+        outline: 1px solid var(--code);
+        left: 50%;
+        border-radius: 0 1rem 1rem 0;
+        height: 100%;
+        width: 50%;
+        transform-origin: top left;
+        transform: rotateY(-180deg);
+        transition: transform 1s;
+        background-color:silver;
+        background-image:
+                radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+                radial-gradient(circle at 0    150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+                radial-gradient(circle at 50%  100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
+                radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
+                radial-gradient(circle at 0    50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
+        background-size: 100px 50px;
+      }
+      &:hover:before,
+      &:focus:before {
+        transform: rotateY(0);
       }
     }
   }

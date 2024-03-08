@@ -8,6 +8,7 @@ html {
 
     /* Default (light) theme */
     --bg: #fff;
+    --shadow: #ababab;
     --accent-bg: #f5f7ff;
     --text: #212121;
     --text-light: #585858;
@@ -24,6 +25,7 @@ html {
 html[data-theme='dark'] {
     color-scheme: dark;
     --bg: #212121;
+    --shadow: #000;
     --accent-bg: #2b2b2b;
     --text: #dcdcdc;
     --text-light: #ababab;
