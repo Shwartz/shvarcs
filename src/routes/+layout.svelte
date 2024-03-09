@@ -86,6 +86,12 @@
     }
   }
 
+  footer {
+    p {
+      margin: 1.5rem 0;
+    }
+  }
+
   @media only screen and (min-width: 800px) {
     nav ul {
       flex-wrap: nowrap;
