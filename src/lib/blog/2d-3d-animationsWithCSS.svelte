@@ -131,19 +131,19 @@ transform: translateY(-1rem)`;
         <time datetime="03-2024">March, 2024</time>
         <h1>2D and 3D animations using CSS with interactive examples</h1>
 
-        <p>2D and 3D animations provide developers with tools to manipulate an element on the screen. That includes
+        <p>2D and 3D animations provide developers with tools to manipulate an element on the screen, including
             <code>position</code>, <code>size</code>, <code>perspective</code> and <code>rotation</code>. </p>
 
         <h2>2D CSS Transform</h2>
 
-        <p>To use 2D animation, you must apply <code>Transform</code> property to an element.</p>
+        <p>To use 2D animation, you must apply the <code>Transform</code> property to an element.</p>
 
         <HighLightWrap source={source1}/>
 
-        <p>As you can see from example above, you can use positive, negative values as well as different length
+        <p>As you can see from example above, you can use positive and negative values and different length
             units.</p>
 
-        <h3>Examples with 2D animation</h3>
+        <h3>Examples of 2D animation</h3>
         <p>Box width: {ex1BoxWidth}px, height: {ex1BoxHeight}px, <span
                 style="display:inline-block">Circle: 48px x 48px</span></p>
         <div class="toggle">
@@ -186,19 +186,19 @@ transform: translateY(-1rem)`;
 </pre>
         <div>
             <p>In the example above, I'm using <code>px</code> values to move yellow circle around the box. So, I know
-                that height is 250px (-2px of
-                the border) and the circle's width/height is 48px so, the formula is<br/>
+                that height is 250px (-2px of the border) and the Circle's width/height is 48px, so the formula is<br/>
                 (boxWidth - 48) * currentStep / 100 <br/>
                 where currentStep is 10, 20 ... or 100</p>
             <p>Why don't I use % for length? Wouldn't that be simpler? <br/>
                 <code>transform: translate(50%, 50%)</code></p>
-            <p>That is the fun part, the Circle knows only its own dimensions, but knows nothing about the parent box.
-                Instead it uses the element size itself. So, for 100% translate would happened exactly at the size of
-                the element, in this case 48px to whatever direction.</p>
-            <p>Toggle between px and % to see the difference. So, when Circle is pushed by percentage it will move to
-                direction based on its own size. 100% right would mean - "moving right exactly the size of itself".</p>
-            <p>This is the most amazing and powerful part of the translate()! Probably the only one way where you can
-                move an element exactly for 50% to any directions without knowing the size of the element.</p>
+            <p>That is the fun part. The Circle knows only its own dimensions but nothing about the parent box.
+                Instead, it uses the element size itself. So, when we translate for 100%, it would move precisely at the
+                element's size, in this case 48px, to whatever direction.</p>
+            <p>Toggle between px and % to see the difference. So, when a Circle is pushed by a percentage, it will move
+                in a direction based on its own size. 100% right would mean "moving right exactly the size of
+                itself."</p>
+            <p>This is a powerful part of the translate()! It is probably the only way to move an element exactly 50% in
+                any direction without knowing its size.</p>
 
             <p class="ex2Wrap">
                 <span>transform: translate(0, <code>{x2Val}%</code>)</span>
@@ -216,9 +216,9 @@ transform: translateY(-1rem)`;
         </div>
         <div class="example3">
             <h3>Skew, Size and Rotation</h3>
-            <p>Why not to bend some elements, right? If you want to do that then probably Skew will help you most, but
-                play with all of them and see how they change element in 2D</p>
-            <p>You can apply skew, scale and rotate rules into one rule like so:</p>
+            <p>Why not bend some elements, right? If you want to do that, Skew will probably help you most but play with
+                all of them and see how they change an element.</p>
+            <p>You can apply Skew, scale and rotate rules into one rule like so:</p>
             <HighLightWrap source={source3}/>
 
             <div class="flex">
@@ -261,7 +261,7 @@ transform: translateY(-1rem)`;
 <section class="medium">
     <div>
         <h2>3D CSS (kind of)</h2>
-        <p>By combining different techniques we can make a 3D effects. The best part? The example below doesn't use any
+        <p>By combining different techniques, we can create 3D effects. The best part? The example below doesn't use any
             JavaScript.</p>
         <div class="example4">
             <figure>
@@ -286,35 +286,40 @@ transform: translateY(-1rem)`;
                 </div>
             </figure>
         </div>
-        <p>Here is example on how to implement such card</p>
+        <p>Here is an example of how to implement such a card:</p>
         <HighLightWrap source={source2}/>
 
-        <p>There is a bit more for CSS. First, we define a Panel which would keep two divs for a Front and Back.</p>
+        <p>There is a bit more to CSS. First, we define a Panel, which would keep two divs for the Front and Back.</p>
         <HighLightWrap source={source4}/>
 
-        <p>There I defined shared props. The main thing is that I hide <code>backface-visibility</code>, because I don't
-            want to show it and instead i will show other div's part. I removed design like colours and flex boxes to
+        <p>There, I defined shared props. The main thing is that I hide <code>backface-visibility</code>, because I
+            don't want to
+            show it; instead, I will show the other div's part. I removed designs like colours and flex boxes to
             simplify implementation. I also added animation with 1s duration.</p>
         <HighLightWrap source={source5}/>
 
         <p>The last bit is to make that "magical" swap between the front and the back face</p>
-        <p>So, both of those faces are defined as position absolute. That means that the top part is visible by default
-            and other is hidden. Now I tell that front is <code>rotateY(0)</code>, which means - do nothing.</p>
-        <p>The back face is set to <code>rotateY(179.9)</code>, which means that that side is rotated away for now.<br/>
-            Why 179.9? Well, browser will turn always on the shortest route. That way I make sure it will always turn in
+        <p>So, both of those faces are defined as position absolute. That means the top part is visible by default, and
+            the other is hidden. Now I tell that the front is <code>rotateY(0)</code>, which means - do nothing.</p>
+
+        <p>The back face is set to <code>rotateY(179.9)</code>, which means that that side is rotated away for now.</p>
+
+        <p>Why 179.9? Well, the browser will always turn on the shortest route. That way I make sure it will always turn
+            in
             the one possible way.</p>
-        <p>The last part I do opposite for when user Hovers or Focus on the Panel. So, Front face is turned away while
+
+        <p>The last part I do opposite for when the user Hovers or Focus on the Panel. So, Front face is turned away
+            while
             the Back face is turned to the front. I should probably mention that I use SCSS for simplicity.</p>
         <HighLightWrap source={source6}/>
 
         <h2>3D with translate3d(x, y, z)</h2>
-        <p>All modern devices has not only CPU but also a GPU (Graphical Processing Unit). The
-            purpose of GPU is to tackle graphical rendering and remove some of the CPU tasks. What it means? Basically,
-            if you use CSS3 transition, 3D transforms or Canvas Drawing it would trigger GPU acceleration. Animation
-            becomes very smooth.</p>
+        <p>All modern devices have a CPU and a GPU (Graphical Processing Unit). The GPU's purpose is to tackle graphical
+            rendering and remove some of the CPU tasks. What does this mean? Basically, if you use CSS3 transitions, 3D
+            transforms, or Canvas Drawing, it would trigger GPU acceleration. Animation becomes very smooth.</p>
         <p>Instead of using <code>translateX(10px)</code> use <code>translate3d(10px, 0, 0)</code>. The result is the
-            same, but the latter would use GPU acceleration, which improve animation.</p>
-        <p><code>translate3d()</code> let you reposition element in 3D space</p>
+            same, but the latter would use GPU acceleration, which improves animation.</p>
+        <p><code>translate3d()</code> lets you reposition elements in 3D space</p>
         <div class="example5">
             <div class="flex">
                 <div>
@@ -331,7 +336,7 @@ transform: translateY(-1rem)`;
                 <div style={ex4Style} class="transformable"></div>
             </figure>
         </div>
-        <p>Not much happen above, but lets add rotate and draw a cube with CSS using translate3d</p>
+        <p>Not much happens above, but let's add rotate and draw a cube with CSS using translate3d</p>
         <div class="example6">
             <div class="flex">
                 <div>
@@ -360,12 +365,12 @@ transform: translateY(-1rem)`;
                 </div>
             </figure>
         </div>
-        <p>Here is example how to create cube with CSS: <a
+        <p>Here is an example how to create a cube with CSS: <a
                 href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms#setting_perspective">MDN:
             CSS Perspective</a></p>
     </div>
 </section>
-<section>
+<section class="medium">
     <div class="demo">
         <h2>CSS3 Examples</h2>
         <p class="center">Card demo</p>
@@ -384,6 +389,7 @@ transform: translateY(-1rem)`;
                 <button class="demo3" type="button">I'm a button</button>
             </div>
         </div>
+        <p>The post is written by human and you can comment it on the Mastodon</p>
     </div>
 </section>
 
@@ -420,6 +426,53 @@ transform: translateY(-1rem)`;
     border: 1px solid var(--accent);
     color: var(--text-light);
     height: 250px;
+  }
+
+  .toggle {
+    $toggle-bg-color: var(--accent);
+    $toggle-nub-color: var(--code);
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    label {
+      position: relative;
+      margin-left: 80px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] + label::before {
+      content: ' ';
+      display: block;
+      height: 18px;
+      width: 45px;
+      border: 1px solid $toggle-bg-color;
+      border-radius: 9px;
+      position: absolute;
+      top: 8px;
+      left: -65px;
+      background: $toggle-bg-color;
+    }
+
+    input[type="checkbox"] + label::after {
+      content: ' ';
+      display: block;
+      height: 30px;
+      width: 30px;
+      border: 1px solid $toggle-nub-color;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: -75px;
+      background: $toggle-nub-color;
+      transition: all 0.3s ease-in;
+    }
+
+    input[type="checkbox"]:checked + label::after {
+      left: -40px;
+      transition: all 0.3s ease-in;
+    }
   }
 
   .example1 {
@@ -798,14 +851,6 @@ transform: translateY(-1rem)`;
       }
     }
 
-    .panel3 div {
-      width: clamp(160px, 50%, 300px);
-      margin: 1rem auto 0;
-      padding: 2rem 2rem;
-      border-radius: 1rem;
-      background: white;
-    }
-
     .demo3 {
       display: block;
       margin: 0 auto;
@@ -831,50 +876,15 @@ transform: translateY(-1rem)`;
     }
   }
 
-  .toggle {
-    $toggle-bg-color: var(--accent);
-    $toggle-nub-color: var(--code);
+  .panel3 div {
+    margin: 1rem auto 0;
+  }
 
-    input[type="checkbox"] {
-      display: none;
-    }
-
-    label {
-      position: relative;
-      margin-left: 80px;
-      cursor: pointer;
-    }
-
-    input[type="checkbox"] + label::before {
-      content: ' ';
-      display: block;
-      height: 18px;
-      width: 45px;
-      border: 1px solid $toggle-bg-color;
-      border-radius: 9px;
-      position: absolute;
-      top: 8px;
-      left: -65px;
-      background: $toggle-bg-color;
-    }
-
-    input[type="checkbox"] + label::after {
-      content: ' ';
-      display: block;
-      height: 30px;
-      width: 30px;
-      border: 1px solid $toggle-nub-color;
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      left: -75px;
-      background: $toggle-nub-color;
-      transition: all 0.3s ease-in;
-    }
-
-    input[type="checkbox"]:checked + label::after {
-      left: -40px;
-      transition: all 0.3s ease-in;
-    }
+  [data-theme="dark"] .panel3 div {
+    width: clamp(160px, 50%, 300px);
+    margin: 1rem auto 0;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    background: white;
   }
 </style>
