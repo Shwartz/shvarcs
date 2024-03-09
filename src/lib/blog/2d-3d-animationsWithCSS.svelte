@@ -360,20 +360,30 @@ transform: translateY(-1rem)`;
                 </div>
             </figure>
         </div>
-        <p>Here is example how to create cube with CSS: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms#setting_perspective">MDN: CSS Perspective</a></p>
+        <p>Here is example how to create cube with CSS: <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms#setting_perspective">MDN:
+            CSS Perspective</a></p>
     </div>
 </section>
 <section>
     <div class="demo">
         <h2>CSS3 Examples</h2>
+        <p class="center">Card demo</p>
         <div class="panel1">
-            Panel demo
+            Card demo
         </div>
 
+        <p class="center">Book effect</p>
         <div class="panel2">
-            Some <br/>secret <br/> here
+            <span>Purple secret here</span>
         </div>
 
+        <div class="panel3">
+            <p class="center">Skeuomorphic Button</p>
+            <div>
+                <button class="demo3" type="button">I'm a button</button>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -670,7 +680,7 @@ transform: translateY(-1rem)`;
       position: absolute;
       width: 100px;
       height: 100px;
-      background-image: repeating-linear-gradient(0deg, rgba(70,70,70, 0.2) 0px, rgba(70,70,70, 0.2) 1px,transparent 1px, transparent 21px),repeating-linear-gradient(90deg, rgba(70,70,70, 0.2) 0px, rgba(70,70,70, 0.2) 1px,transparent 1px, transparent 21px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+      background-image: repeating-linear-gradient(0deg, rgba(70, 70, 70, 0.2) 0px, rgba(70, 70, 70, 0.2) 1px, transparent 1px, transparent 21px), repeating-linear-gradient(90deg, rgba(70, 70, 70, 0.2) 0px, rgba(70, 70, 70, 0.2) 1px, transparent 1px, transparent 21px), linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255));
       font-size: 3rem;
       color: var(--code);
       border: 1px solid purple;
@@ -679,6 +689,7 @@ transform: translateY(-1rem)`;
     .top {
       transform: rotateX(90deg) translateZ(50px);
     }
+
     .bottom {
       transform: rotateX(-90deg) translateZ(50px);
     }
@@ -686,6 +697,7 @@ transform: translateY(-1rem)`;
     .right {
       transform: rotateY(90deg) translateZ(50px);
     }
+
     .left {
       transform: rotateY(-90deg) translateZ(50px);
     }
@@ -693,12 +705,17 @@ transform: translateY(-1rem)`;
     .front {
       transform: rotateX(0deg) translateZ(50px);
     }
+
     .back {
       transform: rotateX(-180deg) translateZ(50px);
     }
   }
 
   .demo {
+    p {
+      margin-top: 2rem;
+    }
+
     .panel1 {
       display: flex;
       justify-content: center;
@@ -721,47 +738,95 @@ transform: translateY(-1rem)`;
 
     .panel2 {
       position: relative;
+      display: flex;
+      align-items: center;
       height: 300px;
       max-width: 400px;
-      margin: 2rem auto 0;
+      margin: 1rem auto 0;
       border-radius: 1rem;
       border: 2px solid var(--code);
       perspective: 500px;
-      background-color:silver;
+      background-color: silver;
       color: black;
-      background-image:
-              radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
-              radial-gradient(circle at 0    150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
-              radial-gradient(circle at 50%  100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
-              radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
-              radial-gradient(circle at 0    50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
+      background-image: radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+      radial-gradient(circle at 0 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+      radial-gradient(circle at 50% 100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
+      radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
+      radial-gradient(circle at 0 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
       background-size: 100px 50px;
-      font-size: 1.6rem;
+      background-position: 50%;
+
+      span {
+        position: relative;
+        display: block;
+        margin: 0;
+        width: 100px;
+        color: purple;
+        transform: translate(clamp(25%, 4vw, 50%), 0%) rotate(45deg);
+        line-height: 2rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: clamp(1rem, 4vw, 2rem);
+        z-index: -1;
+      }
 
 
       &:before {
-        content: "";
         position: absolute;
-        outline: 1px solid var(--code);
-        left: 50%;
-        border-radius: 0 1rem 1rem 0;
-        height: 100%;
+        content: "";
         width: 50%;
+        left: 50%;
+        height: 100%;
         transform-origin: top left;
         transform: rotateY(-180deg);
         transition: transform 1s;
-        background-color:silver;
-        background-image:
-                radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
-                radial-gradient(circle at 0    150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
-                radial-gradient(circle at 50%  100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
-                radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
-                radial-gradient(circle at 0    50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
+        border-radius: 0 1rem 1rem 0;
+        background-color: silver;
+        background-image: radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+        radial-gradient(circle at 0 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+        radial-gradient(circle at 50% 100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
+        radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
+        radial-gradient(circle at 0 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
         background-size: 100px 50px;
+        background-position: 50%;
+        outline: 1px solid var(--code);
       }
+
       &:hover:before,
       &:focus:before {
         transform: rotateY(0);
+      }
+    }
+
+    .panel3 div {
+      width: clamp(160px, 50%, 300px);
+      margin: 1rem auto 0;
+      padding: 2rem 2rem;
+      border-radius: 1rem;
+      background: white;
+    }
+
+    .demo3 {
+      display: block;
+      margin: 0 auto;
+      padding: 2ch 4ch;
+      border: 1px solid grey;
+      color: #282828;
+      transition: box-shadow 300ms;
+      border-radius: 2rem;
+      background-image: linear-gradient(to top, #d3d3d5 0%, #fff 80%, #f8f6f6 100%);
+      box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 0 #CECFD1;
+      font-size: 0.8rem;
+      cursor: pointer;
+
+      &:hover {
+        background-image: linear-gradient(to top, #d3d3d5 0%, #fff 80%, #f8f6f6 100%);
+        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+        filter: none;
+      }
+
+      &:active {
+        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 4px 3px #999, inset 0 0 20px #bbb;
       }
     }
   }
