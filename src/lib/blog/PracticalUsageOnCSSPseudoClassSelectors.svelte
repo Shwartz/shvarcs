@@ -173,7 +173,7 @@ a:not([href = "https://shvarcs.com"]) {
                 </label>
                 <p>Not a title</p>
                 <p>Paragraph with image</p>
-                <img src="https://placekitten.com/350/350" alt="Random kitten generator">
+                <img src="https://picsum.photos/id/29/350/350" alt="Mountain view with clouds and blue sky">
             </figure>
             <figure>
                 <label>
@@ -181,7 +181,7 @@ a:not([href = "https://shvarcs.com"]) {
                 </label>
                 <h3>Foo title</h3>
                 <p>Paragraph with image</p>
-                <img src="https://placekitten.com/350/350" alt="Random kitten generator">
+                <img src="https://picsum.photos/id/29/350/350" alt="Mountain view with clouds and blue sky">
             </figure>
         </div>
 

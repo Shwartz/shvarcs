@@ -43,11 +43,12 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=18.0.0"
+		"node": "18.x"
 	},
 	"dependencies": {
 		"@notionhq/client": "^2.2.13",
 		"@sveltejs/adapter-vercel": "^3.0.3",
+		"encoding": "^0.1.13",
 		"notion-utils": "^6.16.0"
 	}
 }
