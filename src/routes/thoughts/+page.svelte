@@ -21,6 +21,9 @@
         <div>
             <h1>Thoughts</h1>
             <p>
+                <a href="{base}/thoughts/build-error-on-vercel">SvelteKit build fails on Vercel and how to fix it | March, 2024</a>
+            </p>
+            <p>
                 <a href="{base}/thoughts/2d-3d-animations-with-css">2D and 3D animations with CSS | March, 2024</a>
             </p>
             <p>

@@ -3,6 +3,7 @@
   import HowToDealWithCss from "$lib/blog/HowToDealWithCss.svelte";
   import PracticalUsageOnCSSPseudoClassSelectors from "$lib/blog/PracticalUsageOnCSSPseudoClassSelectors.svelte";
   import TwoDThreeDdAnimationsWithCSS from "$lib/blog/2d-3d-animationsWithCSS.svelte";
+  import BuildErrorOnVercel from "$lib/blog/BuildErrorOnVercel.svelte"
 
   export let slug:string;
 </script>
@@ -15,6 +16,8 @@
     <PracticalUsageOnCSSPseudoClassSelectors/>
 {:else if slug === '2d-3d-animations-with-css'}
     <TwoDThreeDdAnimationsWithCSS/>
+{:else if slug === 'build-error-on-vercel'}
+    <BuildErrorOnVercel/>
 {:else}
     <p>Hmm, no articles for this slug</p>
 {/if}
