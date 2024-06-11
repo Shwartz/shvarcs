@@ -6,8 +6,6 @@
 transform: translate(10%, -50px),
 transform: translateX(2em),
 transform: translateY(-1rem)`;
-  /* Exercise 1 */
-  /* Exercise 4 */
   const source2 =
     `<div class="panel">
     <div class="face front">This is front</div>

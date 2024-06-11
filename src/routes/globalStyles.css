@@ -205,6 +205,11 @@ ul.list li {
     margin-left: 1rem;
     margin-bottom: 0.5rem;
 }
+ol {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    list-style: auto;
+}
 p, label {
     margin-top: 1rem;
     font-size: 1.2rem;
@@ -236,4 +241,8 @@ b {
 
 i {
     font-style: italic;
+}
+
+.codePen {
+    margin: 1rem 0;
 }
