@@ -383,7 +383,7 @@
 
     <HighLightWrap source={ex23} />
 
-    <h3>Final result</h3>
+    <h3 id="scrollFinalResult">Final result</h3>
     <p><a href="#scrollTop">Back to top</a></p>
 
     <p>Here is the final result. It took less than 200 lines of CSS, including colours and font styling.</p>
