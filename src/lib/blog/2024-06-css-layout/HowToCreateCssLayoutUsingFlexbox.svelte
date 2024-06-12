@@ -401,7 +401,7 @@
       or comments, please feel free to contact me on <a href="https://fosstodon.org/@shvarcs">Mastodon</a> or <a href="https://www.linkedin.com/in/shvarcs/">LinkedIn</a></p>
     <p>Happy Coding!</p>
 
-    <p>PS.<i> This article is written by human</i></p>
+    <p>PS.<i> This article is written by a human.</i></p>
   </div>
 </section>
 
