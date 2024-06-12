@@ -6,8 +6,6 @@
 transform: translate(10%, -50px),
 transform: translateX(2em),
 transform: translateY(-1rem)`;
-  /* Exercise 1 */
-  /* Exercise 4 */
   const source2 =
     `<div class="panel">
     <div class="face front">This is front</div>
@@ -389,7 +387,7 @@ transform: translateY(-1rem)`;
                 <button class="demo3" type="button">I'm a button</button>
             </div>
         </div>
-        <p>The post is written by human and you can comment it on the <a href="https://fosstodon.org/@shvarcs/112070128710363156">Mastodon</a></p>
+        <p>The post is written by a human and you can comment it on the <a href="https://fosstodon.org/@shvarcs/112070128710363156">Mastodon</a></p>
     </div>
 </section>
 

@@ -21,6 +21,9 @@
         <div>
             <h1>Thoughts</h1>
             <p>
+                <a href="{base}/thoughts/how-to-build-css-layout-using-flexbox">How to create CSS layout using Flexbox | June, 2024</a>
+            </p>
+            <p>
                 <a href="{base}/thoughts/build-error-on-vercel">SvelteKit build fails on Vercel and how to fix it | March, 2024</a>
             </p>
             <p>
