@@ -374,8 +374,8 @@
 
     <HighLightWrap source={ex21} />
 
-    <p>Let’s remove the 4px gap and make the image fill all containers, even if the container becomes a tool due to the
-      amount of text in one of the columns</p>
+    <p>Let’s remove the 4px gap and make the image fill the container's space completely. Adding more text in the next
+      column will push the image container, too, so to avoid the empty gap, we use <code>object-fit: cover</code>. </p>
 
     <HighLightWrap source={ex22} />
 
@@ -398,10 +398,11 @@
 
     <h3>Conclusion</h3>
     <p>Do you think I missed something or got something wrong? Do you have a better solution? If you have any questions
-      or comments, please feel free to contact me on <a href="https://fosstodon.org/@shvarcs">Mastodon</a> or <a href="https://www.linkedin.com/in/shvarcs/">LinkedIn</a></p>
+      or comments, please feel free to contact me on <a href="https://fosstodon.org/@shvarcs">Mastodon</a> or <a
+        href="https://www.linkedin.com/in/shvarcs/">LinkedIn</a></p>
     <p>Happy Coding!</p>
 
-    <p>PS.<i> This article is written by a human.</i></p>
+    <p>PS. <i>This article is written by a human.</i></p>
   </div>
 </section>
 
