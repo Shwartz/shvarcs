@@ -1,153 +1,85 @@
-<script>
-  import "./globalStyles.css";
-  import "./temp-style.css";
-  import {fade} from 'svelte/transition';
-  import {navigationIsDelayed} from "$lib/utils/NavigationIsDelayed.ts";
-  import {base} from "$app/paths";
-  import {page} from "$app/stores";
-  import ThemeSwitcher from "$lib/components/theme/ThemeSwitcher.svelte";
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { onNavigate } from '$app/navigation';
+	import { page } from '$app/stores';
+	import '@fontsource-variable/inter';
+	import '@fontsource/frank-ruhl-libre/700.css';
+	import Footer from '$lib/components/Footer.svelte';
+	import { setContext } from 'svelte';
+	import '../app.scss';
 
-  $:url = $page.url.pathname.split("/")[1];
+	let { children } = $props();
+
+	const GRID_STATE = 'gridState';
+	let initialGridState = true;
+	if (browser && localStorage.getItem(GRID_STATE) !== null) {
+		initialGridState = JSON.parse(localStorage.getItem(GRID_STATE) ?? 'false');
+	}
+
+	let isGridOn = $state(initialGridState);
+	const toggleGrid = () => {
+		isGridOn = !isGridOn;
+		localStorage.setItem(GRID_STATE, JSON.stringify(isGridOn));
+	};
+
+	const layoutActions = $state({
+		isGridOn: true,
+		toggleGrid
+	});
+
+	setContext('layout-actions', layoutActions);
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
-<div class='page'>
-    {#if $navigationIsDelayed}
-        <div class="loader" transition:fade={{duration:200}}></div>
-    {/if}
-    <nav class="section large">
-        <ul>
-            <li>
-                <a href="{base}/">Andris Švarcs</a>
-            </li>
-            <li>
-                <a class:active={url === 'thoughts'} href="{base}/thoughts">Thoughts</a>
-            </li>
-            <li>
-                <a class:active={url === 'news-archive'} href="{base}/news-archive">News Archive</a>
-            </li>
-            <li>
-                <ThemeSwitcher/>
-            </li>
-        </ul>
-    </nav>
-    <slot/>
-    <footer>
-        <div>
-            <p>&copy;2024 <a href="https://shvarcs.com">Andris Švarcs</a> | Get in touch: <a href="https://fosstodon.org/@shvarcs" target="_blank">Mastodon</a></p>
-        </div>
-    </footer>
+<svelte:head>
+	<title>{$page.data.title ?? 'fallback title'}</title>
+</svelte:head>
+
+<div class="page">
+	<div class="container">
+		<div class='gridLines' class:gridOff={!isGridOn}>
+			<!--<div class="content">-->
+				{@render children()}
+			<!--</div>-->
+			<Footer />
+		</div>
+	</div>
 </div>
 
-<style lang='scss'>
-  .page {
+<!-- svelte-ignore css_unused_selector -->
+<style lang="scss" global>
+  :global(body) {
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  :global(.frankTitle) {
+    font-family: "Frank Ruhl Libre", serif;
+  }
+
+  .gridLines {
     display: flex;
     flex-direction: column;
-    height: 100%;
-  }
-  nav {
-    --s: 40px;
-    position: relative;
-
-    &:before {
-      content: "";
-      position: absolute;
-      height: 0.4rem;
-      bottom: -0.4rem;
-      left: 0;
-      right: 0;
-
-      background: repeating-conic-gradient(var(--bg) 0 25%, var(--disabled) 0 50%) 0 0/var(--s) var(--s) round;
-      pointer-events: none;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      width: 100%;
-      margin: 1rem 0;
-
-      li {
-        display: flex;
-      }
-
-      li:first-child {
-        width: 100%;
-        margin-right: auto;
-      }
-
-      li:last-child {
-        margin-left: auto;
-      }
-
-      a.active {
-        text-decoration: underline;
-      }
-    }
   }
 
-  footer {
-    p {
-      margin: 1.5rem 0;
-    }
+  header {
+    border-bottom: 1px dotted var(--grid-color);
   }
 
-  @media only screen and (min-width: 800px) {
-    nav ul {
-      flex-wrap: nowrap;
-
-
-      li:first-child {
-        width: auto;
-      }
-
-      li:last-child {
-        margin-left: 1rem;
-      }
-    }
-  }
-
-  .loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: #4c432b;
+  .gridOff {
+    background-image: none;
 
     &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 4px;
-      width: 100%;
-      background: #ffb300;
-      transform: translate3d(-100%, 0, 0);
-      animation: 10s moveSlide forwards;
-    }
-  }
-
-  @keyframes moveSlide {
-    0% {
-      transform: translate3d(-100%, 0, 0);
-    }
-
-    30% {
-      transform: translate3d(-90%, 0, 0);
-    }
-
-    60% {
-      transform: translate3d(-50%, 0, 0);
-    }
-
-    80% {
-      transform: translate3d(-40%, 0, 0);
-    }
-
-    100% {
-      transform: translate3d(0%, 0, 0);
+      display: none;
     }
   }
 </style>
-

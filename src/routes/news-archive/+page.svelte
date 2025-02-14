@@ -1,137 +1,272 @@
 <script lang="ts">
-  import type {PageData} from './$types';
-  import {superForm} from "sveltekit-superforms/client";
-  /*import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';*/
-  import {searchSchema} from "$lib/forms/searchSchema";
-  import {Diamonds} from "svelte-loading-spinners";
+	// src/routes/news-archive/+page.svelte
+	import Header from '$lib/components/Header.svelte';
+	import { page } from '$app/stores';
+	import { base } from '$app/paths';
+	import ToggleListGrid from '$lib/components/ToggleListGrid.svelte';
+	import { onMount } from 'svelte';
+	import Tooltip from '$lib/components/Tooltip.svelte';
+	import { get } from 'svelte/store';
 
-  export let data: PageData;
+	const { news } = $page.data;
+	const newsCount = news.posts.length;
+	let checked = $state(false);
+	let compact = $state(false);
 
-  import {base} from '$app/paths';
-  // import Meta from "$lib/components/Meta.svelte";
+	console.log({ news });
 
-  const {form, errors, enhance, delayed, message} = superForm(data.form, {
-    validators: searchSchema,
-    resetForm: true,
-  });
-  const title = "Front-end News Archive";
-  const titleSearch = "Search News | Front-end News Archive";
-  const description = "Weekly news compilation from different sources";
-  const descriptionSearch = "Search News: ";
-  const searchTerm = form?.searchTerm;
-  const messageText = message?.text;
+	console.log('props: ', news.posts[0].fullItem.properties['Due Date'].date.start);
+
+	onMount(() => {
+		const savedState = localStorage.getItem('themeNewsListGrid');
+		checked = savedState === 'true';
+		compact = checked;
+		localStorage.setItem('themeNewsListGrid', checked.toString());
+	});
+
+	function toggleCompact() {
+		checked = !checked;
+		localStorage.setItem('themeNewsListGrid', checked.toString());
+		toggleView();
+	}
+
+	function toggleView() {
+		/* Fallback if no support for transition and can do something else */
+		if (!document.startViewTransition) {
+			compact = checked;
+			return;
+		}
+
+		document.startViewTransition(() => {
+			compact = checked; // this is how I can trigger transition
+		});
+	}
+
+	const colors = [
+		'var(--pastel-cream)',
+		'var(--pastel-yellow)',
+		'var(--pastel-orange)',
+		'var(--pastel-pink)',
+		'var(--pastel-rose)',
+		'var(--pastel-purple)',
+		'var(--pastel-blue)',
+		'var(--pastel-aqua)',
+		'var(--pastel-mint)',
+		'var(--pastel-lime)'
+	];
+
+	const getColor = (index: number) => {
+		return colors[index % 10];
+	}
 </script>
 
-<svelte:head>
-    {#if $message?.text}
-        <title>{titleSearch}</title>
-        <meta name="title" content="{titleSearch}"/>
-        <meta name="description" content="{descriptionSearch} {searchTerm}"/>
-        <meta property="og:title" content="{titleSearch}"/>
-        <meta property="og:description" content="{descriptionSearch} {messageText}"/>
-        <meta property="twitter:title" content="{titleSearch}"/>
-        <meta property="twitter:description" content="{descriptionSearch} {messageText}"/>
-    {:else}
-        <title>{title}</title>
-        <meta name="title" content="{title}"/>
-        <meta name="description" content="{description}"/>
-        <meta property="og:title" content="{title}"/>
-        <meta property="og:description" content="{description}"/>
-        <meta property="twitter:title" content="{title}"/>
-        <meta property="twitter:description" content="{description}"/>
-    {/if}
-    <meta name="robots" content="index,follow"/>
-</svelte:head>
+<div class="news">
+	<Header />
+	<h1 class="frankTitle">news</h1>
+	<p class="intro">To stay with the latest trends in the Front-end world, I skim the web, <a
+		href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and several
+		newsletters during the week.
+		Naturally, as a active <a href="https://www.notion.com/">Notion</a> user, I jot down whatever interests me. I found
+		it handy more than once to search for THAT
+		specific article(s) about a particular feature.<br />
+		Now, I'm transferring my archive to the web using <a href="https://svelte.dev/">SvelteKit</a> and Notion's API.</p>
 
-<section class="medium">
-    <div>
-        <h1>Front-end News Archive</h1>
-        <p>
-            To stay with the latest trends in the Front-end world, I skim the web, X (Twitter) and several newsletters
-            during the week. <br/>
-            Naturally, as a <a href="https://www.notion.so/">Notion</a> user, I jot down whatever interests me. I found
-            it
-            handy more than once to search for THAT specific article(s) about a particular feature.<br/>
-            Now, I'm transferring my archive to the web using <a href="https://kit.svelte.dev/">SvelteKit</a> and
-            Notion's
-            API.
-        </p>
+	<div class="headerTags">
+		<div>{newsCount} items</div>
+		<div>
+			<ToggleListGrid {checked} toggleCompact={toggleCompact} />
+		</div>
+	</div>
 
-        <!--<SuperDebug data={$form}/>-->
-        <form method='POST' use:enhance action='?/search'>
-            <input
-                    type='text'
-                    name='searchTerm'
-                    id='searchTerm'
-                    autocomplete='off'
-                    placeholder='Search for the post'
-                    bind:value={$form.searchTerm}
-            />
+	<ul class={checked ? `list` : `grid`}>
+		{#each news.posts as post, index}
+			<li>
+				<Tooltip color={getColor(index)}>
+					<a title="{post.title.substring(0, post.title.indexOf('|')).trim()}" href="{base}/news-archive/{post.slug}">
+						<h3>{post.title.substring(0, post.title.indexOf('|')).trim()}</h3>
+						<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
+						<p class="summary">{post.summary}</p>
+					</a>
+				</Tooltip>
+			</li>
+		{/each}
+	</ul>
 
-            <button type='submit'>Search</button>
-            {#if $delayed}
-                <Diamonds color="#ffb300"/>
-            {/if}
+</div>
 
-        </form>
-        {#if $errors.searchTerm && !$message}
-            <h6 class="warning">{$errors.searchTerm}</h6>
-        {/if}
+<!-- svelte-ignore css_unused_selector -->
+<style lang="scss">
+  .news {
+    flex-grow: 1;
+  }
 
-        {#if $message && $message?.searchResults?.length > 0}
-            <h6>{$message.text}</h6>
-            <a href="{base}/news-archive">Back to all posts</a>
-            <ul>
-                {#each $message.searchResults as post}
-                    <li>
-                        <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
-                        <div>{post.summary}</div>
-                    </li>
-                {/each}
-            </ul>
-        {/if}
+  .frankTitle {
+    font-size: 9rem;
+    color: var(--textLight);
+    line-height: normal;
+  }
 
-        {#if $message && $message?.searchResults?.length === 0}
-            <h3>Nothing came up</h3>
-            <a href="{base}/news-archive">Back to all posts</a>
-            <p>Currently this is very simplified search version. Try keywords like: "Astro, React, CSS" and similar</p>
-        {/if}
+  .intro {
+    width: 100%;
+  }
 
-        {#if !($message)}
-            <ul>
-                {#each data.page.posts as post}
-                    <li>
-                        <h5><a href='{base}/news-archive/{post.slug}'>{post.title}</a></h5>
-                        <div>{post.summary}</div>
-                    </li>
-                {/each}
-            </ul>
-        {/if}
-    </div>
-</section>
+  @media (min-width: 600px) {
+    .intro {
+      width: 75%;
+    }
+  }
 
-<style lang='scss'>
-  form {
+  @media (min-width: 1200px) {
+    .intro {
+      width: 50%;
+    }
+  }
+
+  .headerTags {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    padding: 4rem 0 1.5rem;
+    border-bottom: 1px dotted var(--grid-color);
+  }
 
-    button, input {
-      margin: 0;
+  /* Grid by default, mob size same for all */
+
+  .news {
+    ul, li {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul {
+      margin-top: 1.5rem;
+      border-top: 1px dotted var(--grid-color);
+
+			a {
+				transition: 0.3s;
+			}
+
+      &:hover a {
+        opacity: 0.5;
+      }
+    }
+
+    li {
+      padding-bottom: 2.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px dotted var(--grid-color);
+      border-bottom: 1px dotted var(--grid-color);
+
+      &:first-child {
+        border-top: none;
+        margin-top: 0;
+      }
+
+      &:hover a {
+        opacity: 1;
+      }
+    }
+
+    .date {
+      font-size: var(--step--1);
+    }
+
+    .summary {
+      margin-top: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: url('/src/assets/svg/cursor.svg') 16 16, auto;
+    }
+
+    a:hover {
+      cursor: url('/src/assets/svg/cursor.svg') 16 16, pointer;
+    }
+
+    @media (min-width: px-to-rem(600px)) {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      li {
+        border-top: none;
+        margin-top: 0;
+      }
+
+      h3 {
+        border-top: 1px dotted var(--grid-color);
+      }
+
+      li:nth-child(-n+2) h3 {
+        border-top: none;
+      }
+    }
+
+    @media (min-width: px-to-rem(1200px)) {
+      ul {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      li:nth-child(-n+4) h3 {
+        border-top: none;
+      }
+    }
+
+    ul.list {
+      @media (min-width: px-to-rem(600px)) {
+        grid-template-columns: none;
+        gap: 0;
+
+        a {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas:
+								"info summary"
+								"info summary";
+          gap: 1.5rem;
+        }
+
+        h3 {
+          grid-area: info;
+          align-self: start;
+          border: none;
+        }
+
+        .date {
+          grid-area: info;
+          align-self: start;
+          margin-top: 1.5rem;
+        }
+
+        .summary {
+          grid-area: summary;
+          margin-top: 0;
+        }
+      }
+
+      @media (min-width: px-to-rem(800px)) {
+        a {
+          gap: 1.5rem;
+          grid-template-columns: calc(34.26% - 1.5rem) auto;
+        }
+      }
+
+      @media (min-width: px-to-rem(1172px)) {
+        a {
+          gap: 1.5rem;
+          grid-template-columns: calc(25.6% - 1.5rem) auto;
+        }
+      }
     }
   }
 
-  ul {
-    margin-top: 2rem;
-
-    h5 {
-      margin-bottom: 0.5rem;
-    }
+  :global(.gridOff) .news :is(ul, li, .headerTags){
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
   }
 
-  li {
-    padding: 1.2rem 0;
-    border-bottom: 1px solid grey;
-  }
 </style>

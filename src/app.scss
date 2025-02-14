@@ -1,0 +1,178 @@
+@use 'styles/index.scss';
+
+body {
+  font-size: var(--ff-default-size);
+  font-family: var(--ff-family), serif;
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.gridLines {
+  --col-count: 2;
+  --gap: 1.5rem;
+  --line-width: 1px;
+  --col-width: calc((100% - (var(--gap) * (var(--col-count) - 1))) / var(--col-count));
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+
+  background-image: repeating-linear-gradient(
+                  to right,
+                  transparent var(--col-width),
+                  var(--grid-color) calc(var(--col-width) + var(--line-width)),
+                  transparent var(--col-width) calc(var(--col-width) + var(--gap)),
+                  var(--grid-color) calc(var(--col-width) + var(--gap)),
+                  transparent calc(var(--col-width) + var(--gap) + var(--line-width)),
+                  transparent calc(100% - (var(--col-width) + var(--gap)) * (var(--col-count) - 2)),
+  );
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    background: var(--grid-color);
+    opacity: 0.5;
+  }
+}
+
+h1 {
+  font-size: var(--step-4);
+  line-height: 3rem;
+  margin-top: 2rem;
+}
+
+p, ul, li {
+  margin-top: 1.5rem;
+  font-size: var(--step-0);
+  line-height: index.px-to-rem(32px);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.25rem;
+
+  &:hover, &:focus {
+    text-decoration-style: solid;
+  }
+}
+
+.visually-hidden {
+  display: none;
+}
+
+button > svg {
+  pointer-events: none;
+}
+
+button.clean {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .gridLines {
+    --col-count: 4;
+  }
+}
+
+@media (min-width: 800px) {
+  .container {
+    padding: 1rem 2rem;
+  }
+
+  .gridLines {
+    --col-count: 6;
+  }
+}
+
+@media (min-width: 1172px) {
+  .container {
+    padding: 1rem 4rem;
+  }
+
+  .gridLines {
+    --col-count: 8;
+  }
+}
+
+/* POSTS */
+.post {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  /* To remove styling if in the table */
+  code:not(table code) {
+    font-size: var(--step--2);
+    font-family: var(--ff-code), serif;
+    color: var(--code-color);
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    line-height: 1rem;
+    border-radius: 0.25rem;
+    background: #cccccc;
+  }
+
+  .codePen {
+    margin-top: 1rem;
+  }
+
+  img {
+
+  }
+
+  > div {
+    max-width: var(--post-width);
+    width: 100%;
+  }
+
+  > div.large {
+    max-width: var(--post-l-width);
+    width: 100%;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    font-size: var(--step-3);
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+
+  p img {
+    margin-inline: auto;
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--table-row-bg);
+  }
+}
+
+
+
