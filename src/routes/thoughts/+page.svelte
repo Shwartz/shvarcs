@@ -5,7 +5,6 @@
 	import Tag from '$lib/components/snippets/Tag.svelte';
 	import PostList from '$lib/blog/logic/PostList.svelte';
 	import { postsArr } from '$lib/blog/logic/postsConfig';
-	import Header from '$lib/components/Header.svelte';
 
 	let compact = $state(false);
 	let checked = $state(false);

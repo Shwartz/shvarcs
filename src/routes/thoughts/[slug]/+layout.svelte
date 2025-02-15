@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
 	import { tagState } from '$lib/stores/tagState.svelte';
 	import { type CategoryType, getFirstTagColour } from '$lib/utils/categoryColors';
 	import { browser } from '$app/environment';

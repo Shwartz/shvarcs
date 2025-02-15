@@ -1,6 +1,5 @@
 <script lang="ts">
 	// src/routes/news-archive/+page.svelte
-	import Header from '$lib/components/Header.svelte';
 	import { base } from '$app/paths';
 	import ToggleListGrid from '$lib/components/ToggleListGrid.svelte';
 	import { onMount } from 'svelte';

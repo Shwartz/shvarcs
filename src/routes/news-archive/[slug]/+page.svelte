@@ -1,11 +1,9 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-
 	const { data } = $props();
-	const {post} = data;
+	const { post } = data;
 </script>
 
-<div class="post">
+<section class="post">
 
 	{#if !post || !post?.content}
 		<p>Something went wrong, no posts</p>
@@ -23,4 +21,11 @@
 			<!-- Add more block type renderings as needed -->
 		{/each}
 	</div>
-</div>
+</section>
+
+<!-- svelte-ignore css_unused_selector -->
+<style lang="scss">
+  .news {
+    flex-grow: 1;
+  }
+</style>

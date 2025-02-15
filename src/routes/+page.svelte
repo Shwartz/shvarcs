@@ -5,7 +5,6 @@
 	import type { CategoryType } from '$lib/utils/categoryColors';
 	import { TrOutlineArrowNarrowRight } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
-	import Header from '$lib/components/Header.svelte';
 
 	let compact = $state(false);
 	let checked = $state(false);
