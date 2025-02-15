@@ -67,7 +67,7 @@
     "@fontsource-variable/inter": "^5.1.1",
     "@fontsource/frank-ruhl-libre": "^5.1.1",
     "@notionhq/client": "^2.2.15",
-    "@sveltejs/adapter-vercel": "^3.0.3",
+    "@sveltejs/adapter-vercel": "^4.0.0",
     "encoding": "^0.1.13",
     "expiry-map": "^2.0.0",
     "notion-utils": "^7.1.6",
