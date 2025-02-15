@@ -3,7 +3,7 @@ import { postsArr } from '$lib/blog/logic/postsConfig';
 
 export const load: PageLoad = ({ params }) => {
   const post = postsArr.find(p => p.url.includes(params.slug));
-  //console.log({ slug });
+  console.log({ slug });
   console.log({post});
   return {
     slug: params.slug,
