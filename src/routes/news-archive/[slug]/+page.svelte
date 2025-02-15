@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import { TrOutlineArrowBackUp } from 'svelte-icons-pack/tr';
+	import { Icon } from 'svelte-icons-pack';
+
 	const { data } = $props();
 	const { post } = data;
 </script>
@@ -6,26 +10,71 @@
 <section class="post">
 
 	{#if !post || !post?.content}
-		<p>Something went wrong, no posts</p>
-	{/if}
 
-	<h1>{post.title}</h1>
-	<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
-	<div class="content">
-		<!-- Render post content here -->
-		{#each post.content as block}
-			<!-- Render different block types -->
-			{#if block.type === 'paragraph'}
-				<p>{block.paragraph.rich_text[0]?.plain_text}</p>
-			{/if}
-			<!-- Add more block type renderings as needed -->
-		{/each}
-	</div>
+		<div>
+			<p>Something went wrong, no posts</p>
+		</div>
+
+	{:else}
+
+		<div>
+			<h1>{post.title.split('|')[0].trim().replace('#', 'Nr.')}</h1>
+			<div class="meta first">
+				<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
+				<a href="{base}/news-archive" class="back">
+					<Icon size="20" color="777777" src={TrOutlineArrowBackUp} />
+					<span>back</span>
+				</a>
+			</div>
+		</div>
+		<div class="content">
+			<!-- Render post content here -->
+			{#each post.content as block}
+				<!-- Render different block types -->
+				{#if block.type === 'paragraph'}
+					<p>{block.paragraph.rich_text[0]?.plain_text}</p>
+				{/if}
+				<!-- Add more block type renderings as needed -->
+			{/each}
+		</div>
+
+	{/if}
 </section>
 
 <!-- svelte-ignore css_unused_selector -->
 <style lang="scss">
   .news {
     flex-grow: 1;
+  }
+
+  h1 {
+    margin-top: 2rem;
+		padding: 2rem 0;
+  }
+
+  .meta {
+    display: flex;
+    max-width: var(--post-width);
+    align-items: center;
+    gap: 1rem;
+    margin-inline: auto;
+    padding: 1rem 0;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
+
+		p {
+			margin: 0;
+		}
+  }
+
+  .first {
+    justify-content: space-between;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
   }
 </style>

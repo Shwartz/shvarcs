@@ -86,10 +86,6 @@
     }
   }
 
-  .meta {
-    padding: 1rem 0;
-  }
-
   :global(.gridOff) :is(h1, .metaWrap) {
     border-bottom-color: rgba(0, 0, 0, 0);
   }
@@ -110,6 +106,7 @@
     align-items: center;
     gap: 1rem;
     margin-inline: auto;
+    padding: 1rem 0;
   }
 
   .first {
