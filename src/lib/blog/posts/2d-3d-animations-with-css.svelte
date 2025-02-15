@@ -123,7 +123,7 @@ transform: translateY(-1rem)`;
     <meta property="twitter:description" content="{description}"/>
     <meta name="robots" content="index,follow"/>
 </svelte:head>
-<!-- svelte-ignore css-unused-selector -->
+<!-- svelte-ignore css_unused_selector -->
 <section class="post">
     <div>
 

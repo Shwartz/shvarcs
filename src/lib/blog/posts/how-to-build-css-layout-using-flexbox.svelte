@@ -433,7 +433,7 @@
 	</div>
 </section>
 
-<!-- svelte-ignore css-unused-selector -->
+<!-- svelte-ignore css_unused_selector -->
 <style lang="scss">
   .color-palette {
     --min: 10ch;
