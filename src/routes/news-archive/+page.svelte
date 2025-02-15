@@ -6,8 +6,8 @@
 	import { onMount } from 'svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
 
-	const {data} = $props();
-	const {news} = data;
+	const { data } = $props();
+	const { news } = data;
 
 	const newsCount = news.posts.length;
 	let checked = $state(false);
@@ -57,11 +57,10 @@
 
 	const getColor = (index: number) => {
 		return colors[index % 10];
-	}
+	};
 </script>
 
 <div class="news">
-	<Header />
 	<h1 class="frankTitle">news</h1>
 	<p class="intro">To stay with the latest trends in the Front-end world, I skim the web, <a
 		href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and several
@@ -142,9 +141,9 @@
       margin-top: 1.5rem;
       border-top: 1px dotted var(--grid-color);
 
-			a {
-				transition: 0.3s;
-			}
+      a {
+        transition: 0.3s;
+      }
 
       &:hover a {
         opacity: 0.5;
@@ -263,7 +262,7 @@
     }
   }
 
-  :global(.gridOff) .news :is(ul, li, .headerTags){
+  :global(.gridOff) .news :is(ul, li, .headerTags) {
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
   }

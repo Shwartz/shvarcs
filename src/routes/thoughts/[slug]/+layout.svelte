@@ -20,7 +20,6 @@
 
 <div class="content">
 	<!-- Since using global class names for visual, need to add section.post for animations to work -->
-	<Header />
 	{#if browser}
 		{#if Visual && tagArr?.length > 0 && id}
 			<div style="background-color: {getFirstTagColour(tagArr)}">

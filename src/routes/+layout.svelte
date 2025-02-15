@@ -7,6 +7,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import { setContext } from 'svelte';
 	import '../app.scss';
+	import Header from '$lib/components/Header.svelte';
 
 	let { children } = $props();
 
@@ -48,6 +49,7 @@
 <div class="page">
 	<div class="container">
 		<div class='gridLines' class:gridOff={!isGridOn}>
+		<Header />
 			<!--<div class="content">-->
 				{@render children()}
 			<!--</div>-->

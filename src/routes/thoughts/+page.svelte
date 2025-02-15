@@ -54,7 +54,6 @@
 </script>
 
 <div class="posts">
-	<Header />
 	<h1 class="frankTitle">blog</h1>
 	<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur semper magna, quis
 		consequat orci commodo

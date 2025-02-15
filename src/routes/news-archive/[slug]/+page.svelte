@@ -6,7 +6,7 @@
 </script>
 
 <div class="post">
-	<Header />
+
 	{#if !post || !post?.content}
 		<p>Something went wrong, no posts</p>
 	{/if}
