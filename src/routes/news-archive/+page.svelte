@@ -1,21 +1,21 @@
 <script lang="ts">
 	// src/routes/news-archive/+page.svelte
 	import Header from '$lib/components/Header.svelte';
-	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import ToggleListGrid from '$lib/components/ToggleListGrid.svelte';
 	import { onMount } from 'svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
-	import { get } from 'svelte/store';
 
-	const { news } = $page.data;
+	const {data} = $props();
+	const {news} = data;
+
 	const newsCount = news.posts.length;
 	let checked = $state(false);
 	let compact = $state(false);
 
-	console.log({ news });
+	// console.log({ news });
 
-	console.log('props: ', news.posts[0].fullItem.properties['Due Date'].date.start);
+	// console.log('props: ', news.posts[0].fullItem.properties['Due Date'].date.start);
 
 	onMount(() => {
 		const savedState = localStorage.getItem('themeNewsListGrid');
