@@ -38,7 +38,7 @@
 		}
 
 		document.startViewTransition(() => {
-			compact = checked; // this is how I can trigger transition
+			compact = checked; // This is to trigger transition
 		});
 	}
 
@@ -91,7 +91,6 @@
 			</li>
 		{/each}
 	</ul>
-
 </div>
 
 <!-- svelte-ignore css_unused_selector -->
