@@ -13,7 +13,20 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({
 			runtime: 'nodejs20.x',
-		})
+		}),
+		/* Pre render static blog posts as they don't change frequently */
+		prerender: {
+			entries: [
+				'/thoughts',
+				'/thoughts/lifespan',
+				'/thoughts/how-to-build-css-layout-using-flexbox',
+				'/thoughts/build-error-on-vercel',
+				'/thoughts/2d-3d-animations-with-css',
+				'/thoughts/practical-usage-of-CSS-pseudo-selectors',
+				'/thoughts/how-to-deal-with-CSS',
+				'/thoughts/svelte-vs-reactjs',
+			]
+		},
 	}
 };
 

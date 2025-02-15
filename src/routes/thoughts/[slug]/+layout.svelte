@@ -46,7 +46,7 @@
 
 </div>
 
-<style lang="scss">
+<style lang="scss" global>
   .content {
     flex-grow: 1;
   }
