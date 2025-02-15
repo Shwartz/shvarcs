@@ -1,34 +1,22 @@
 <script lang="ts">
-	// import type { PageData } from './$types';
+	import type { PageData } from './$types';
 	import { tagState } from '$lib/stores/tagState.svelte';
 	import Tag from '$lib/components/snippets/Tag.svelte';
 	import { type CategoryType } from '$lib/utils/categoryColors';
 	import { TrOutlineArrowBackUp, TrOutlineCalendarMonth, TrOutlineClock, TrOutlineHeart } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
 	import { base } from '$app/paths';
-	import { page} from '$app/stores';
 
-	// let { data }: { data: PageData } = $props();
-	const { slug, postData: { id, Visual, readingTime, tags, title, publishedDate, likes } } = $page.data;
-	let PostContent = $state(null);
+	let { data }: { data: PageData } = $props();
+	let { postData: { id, Visual, readingTime, tags, title, publishedDate, likes }, PostContent } = data;
 
 	$effect(() => {
 		tagState.id = id;
 		tagState.tagArr = tags;
 		tagState.title = title;
 		tagState.Visual = Visual;
-		loadContent();
 	});
 
-	async function loadContent() {
-		try {
-			const content = await import(`$lib/blog/posts/${slug}.svelte`);
-			PostContent = content.default;
-		} catch (error) {
-			console.error(`Failed to load post for slug: ${slug}`, error);
-			// TODO: implement 404 page
-		}
-	}
 </script>
 <!-- All this is added to children() prop in the +layout.svelte -->
 {#if tags && readingTime && publishedDate}
@@ -68,7 +56,6 @@
 			</div>
 		</div>
 	</div>
-
 {/if}
 
 {#if PostContent}

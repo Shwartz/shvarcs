@@ -20,8 +20,8 @@
 
 <div class="content">
 	<!-- Since using global class names for visual, need to add section.post for animations to work -->
+	<Header />
 	{#if browser}
-		<Header />
 		{#if Visual && tagArr?.length > 0 && id}
 			<div style="background-color: {getFirstTagColour(tagArr)}">
 				<section class="visual postSnippet">
@@ -32,7 +32,18 @@
 			</div>
 		{/if}
 		{@render children()}
+	{:else}
+		<div style="background-color: {getFirstTagColour(tagArr)}">
+			<section class="visual postSnippet">
+				<div class="svgContainer" style="view-transition-name: visual-{id}">
+					 <!--No JS, no visuals-->
+				</div>
+			</section>
+		</div>
+		{@render children()}
 	{/if}
+
+
 </div>
 
 <style lang="scss">
@@ -49,7 +60,7 @@
 
       @media(max-width: px-to-rem(768px)) {
         aspect-ratio: 736/440;
-				height: auto;
+        height: auto;
       }
     }
   }

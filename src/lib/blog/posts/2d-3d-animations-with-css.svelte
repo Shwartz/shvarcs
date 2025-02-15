@@ -168,8 +168,6 @@ transform: translateY(-1rem)`;
     </div>
 </section>
 
-
-
 <style lang='scss'>
   input[type="range"] {
     cursor: pointer;
