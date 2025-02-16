@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import '@fontsource-variable/inter';
 	import '@fontsource/frank-ruhl-libre/700.css';
 	import Footer from '$lib/components/Footer.svelte';
 	import { setContext } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
 	import '../app.scss';
 	import Header from '$lib/components/Header.svelte';
 
@@ -40,18 +42,30 @@
 			});
 		});
 	});
+
+	let isDelayed = $state(false);
+	$effect(() => {
+		const unsubscribe = navigationIsDelayed.subscribe(value => {
+			isDelayed = value;
+		});
+
+		return unsubscribe;
+	});
 </script>
 
 <svelte:head>
-	<title>{$page.data.title ?? 'fallback title'}</title>
+	<title>{page.data.title ?? 'fallback title'}</title>
 </svelte:head>
 
 <div class="page">
 	<div class="container">
-		<div class='gridLines' class:gridOff={!isGridOn}>
-		<Header />
+		{#if isDelayed}
+			<div class="loader" transition:fade={{duration:200}}></div>
+		{/if}
+		<div class="gridLines" class:gridOff={!isGridOn}>
+			<Header />
 			<!--<div class="content">-->
-				{@render children()}
+			{@render children()}
 			<!--</div>-->
 			<Footer />
 		</div>
@@ -82,6 +96,49 @@
 
     &:after {
       display: none;
+    }
+  }
+
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #4c432b;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #ffb300;
+      transform: translate3d(-100%, 0, 0);
+      animation: 10s moveSlide forwards;
+    }
+  }
+
+  @keyframes moveSlide {
+    0% {
+      transform: translate3d(-100%, 0, 0);
+    }
+
+    30% {
+      transform: translate3d(-90%, 0, 0);
+    }
+
+    60% {
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    80% {
+      transform: translate3d(-40%, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0%, 0, 0);
     }
   }
 </style>
