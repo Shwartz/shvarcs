@@ -4,7 +4,7 @@
 
   import github from "svelte-highlight/styles/github";
   import monokai from "svelte-highlight/styles/monokai";
-  export let source;
+  const {source} = $props();
 </script>
 
 <div class="wrap">

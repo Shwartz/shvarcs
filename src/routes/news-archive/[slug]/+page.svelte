@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { TrOutlineArrowBackUp } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
+	import Block from '$lib/notionCMS/Block.svelte';
 
 	const { data } = $props();
 	const { post } = data;
@@ -10,7 +11,6 @@
 <section class="post">
 
 	{#if !post || !post?.content}
-
 		<div>
 			<p>Something went wrong, no posts</p>
 		</div>
@@ -29,27 +29,33 @@
 		</div>
 		<div class="content">
 			<!-- Render post content here -->
-			{#each post.content as block}
-				<!-- Render different block types -->
-				{#if block.type === 'paragraph'}
-					<p>{block.paragraph.rich_text[0]?.plain_text}</p>
-				{/if}
-				<!-- Add more block type renderings as needed -->
+			{#each post.content as block (block.id)}
+				<Block block={block} />
 			{/each}
 		</div>
-
 	{/if}
 </section>
 
 <!-- svelte-ignore css_unused_selector -->
 <style lang="scss">
-  .news {
+  .post :global {
     flex-grow: 1;
-  }
 
-  h1 {
-    margin-top: 2rem;
-		padding: 2rem 0;
+
+    h1 {
+      margin-top: 2rem;
+      padding: 2rem 0;
+    }
+
+    h2 {
+			margin-top: 3rem;
+      border-bottom: 1px solid var(--text);
+      font-size: var(--step-2);
+    }
+
+    h3 {
+			font-size: var(--step-1);
+    }
   }
 
   .meta {
@@ -62,9 +68,9 @@
     border-top: 1px solid var(--text);
     border-bottom: 1px solid var(--text);
 
-		p {
-			margin: 0;
-		}
+    p {
+      margin: 0;
+    }
   }
 
   .first {
