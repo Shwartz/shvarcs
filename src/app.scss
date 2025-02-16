@@ -1,5 +1,9 @@
 @use 'styles/index.scss';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--ff-default-size);
   font-family: var(--ff-family), serif;
