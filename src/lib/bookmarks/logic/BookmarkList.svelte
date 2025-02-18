@@ -79,6 +79,20 @@
     @media (min-width: 75rem) {
       grid-template-columns: repeat(4, 1fr);
     }
+
+		a {
+      text-decoration: none;
+      padding-bottom: 1px; /* Underline distance from the text */
+      background:
+              linear-gradient(to right, var(--text), #555, #fff) 100% 100% no-repeat,
+              linear-gradient(to right, #063587, #f4db3f, #f34a41) 0 100% no-repeat;
+      background-size: 100% 1px, 0 1px;
+      transition: background-size 400ms;
+
+      &:hover, &:focus {
+        background-size: 0 0.1rem, 100% 0.1rem;
+      }
+		}
 	}
 
 	.url {

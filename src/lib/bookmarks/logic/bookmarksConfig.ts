@@ -70,7 +70,7 @@ export const bookmarkArr = [
 		category: ['Tools'],
 		author: 'Lou Alcalá',
 		description: `Fine helper for inspecting JSON  tree. You can use it online or download a JavaScript file and use it locally. I also enjoy the smart way of using Estonia’s domain to make a nice name for this project. `,
-		url: 'https://css-tricks.com/'
+		url: 'https://jsontr.ee/'
 	},
 	{
 		id: '9',
