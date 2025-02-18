@@ -70,6 +70,7 @@
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 		gap: 1.5rem;
+		margin-bottom: 3rem;
 
     @media (min-width: 37.5rem) {
       grid-template-columns: repeat(2, 1fr);
@@ -87,6 +88,4 @@
 	.description {
 		margin-top: 1rem;
 	}
-
-
 </style>

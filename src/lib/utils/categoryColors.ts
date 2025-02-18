@@ -4,6 +4,7 @@ export const predefinedCategories = {
 	Tools: 'var(--pastel-rose)',
 	Design: 'var(--pastel-purple)',
 	Fonts: 'var(--pastel-cream)',
+	Development: 'var(--pastel-yellow)',
 	Random: 'var(--pastel-aqua)'
 } as const;
 
