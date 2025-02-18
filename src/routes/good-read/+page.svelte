@@ -40,7 +40,6 @@ import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
   }
 
 	.bookmarks {
-		outline: 1px solid orange;
 		margin-top: 4rem;
 	}
 </style>

@@ -15,7 +15,7 @@ export const bookmarkArr = [
 		date: '2025',
 		category: ['Fonts'],
 		description: `A handy tool to sort out fonts for your project in an easy way and export as CSS, SCSS, Tailwind or even as a JSON for WordPress.`,
-		url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/'
+		url: 'https://landin.gs/tools/type-scale-generator/'
 	},
 	{
 		id: '3',
@@ -30,7 +30,7 @@ export const bookmarkArr = [
 		title: 'Test 1',
 		date: '2025',
 		category: ['CSS'],
-		description: ``,
+		description: `test description 1`,
 		url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/'
 	},
 	{
@@ -38,7 +38,31 @@ export const bookmarkArr = [
 		title: 'Test 2',
 		date: '2025',
 		category: ['Fonts'],
-		description: ``,
+		description: `test description 2 a bit longer`,
 		url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/'
-	}
+	},
+	{
+		id: '6',
+		title: 'CSS Test 2',
+		date: '2025',
+		category: ['CSS'],
+		description: `test description 2 a bit longer`,
+		url: 'https://css-tricks.com/'
+	},
+	{
+		id: '7',
+		title: 'CSS Test 2',
+		date: '2025',
+		category: ['CSS'],
+		description: `test description 2 a bit longer`,
+		url: 'https://css-tricks.com/'
+	},
+	{
+		id: '8',
+		title: 'CSS Test 2',
+		date: '2025',
+		category: ['CSS'],
+		description: `test description 2 a bit longer`,
+		url: 'https://css-tricks.com/'
+	},
 ];
