@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { postsArr } from '$lib/blog/logic/postsConfig';
+	import { postsArr } from './postsConfig';
 	import { TrOutlineCalendarMonth, TrOutlineClock, TrOutlineHeart } from 'svelte-icons-pack/tr';
 	import Tag from '$lib/components/snippets/Tag.svelte';
 	import { Icon } from 'svelte-icons-pack';

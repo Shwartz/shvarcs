@@ -39,6 +39,12 @@
 		</header>
 		<main>
 			<article>
+				<h3>Friday Issue #129</h3>
+				<time datetime="2025-02-07">07/02/2025</time>
+				<p>How long is a second? A new fetch mocker, update from Svelte 5, good thoughts on CSS nesting and CSS design
+					mistakes. Updates on Tailwindcss 4 and good read about Electron</p>
+			</article>
+			<article>
 				<h3>Friday Issue #128</h3>
 				<time datetime="2025-01-24">24/01/2025</time>
 				<p>Loads of reading this week. Here is an Angular strategy for 2025, a checklist for tsconfig.json, Rising Stars
@@ -57,25 +63,12 @@
 				<p>The last newsletter of 2024 is loaded with great posts! TanStack, RockPack, ApexCharts, State of JS, a Svelte
 					advent calendar, CSS one-liners to save the day, and many more good reads.</p>
 			</article>
-			<article>
-				<h3>Friday Issue #125</h3>
-				<time datetime="2024-12-06">06/12/2024</time>
-				<p>React Router 7, Vite 6, and Astro 5 are the latest and greatest for the last two weeks. Also, the new
-					animation
-					library Motion and TanStack ditching adapters.</p>
-			</article>
 		</main>
 	</section>
 </div>
 
 <!-- svelte-ignore css_unused_selector -->
 <style lang="scss" global>
-	.blog {
-		div {
-			background: purple;
-		}
-	}
-
   .content {
     flex-grow: 1;
   }

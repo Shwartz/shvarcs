@@ -1,4 +1,5 @@
 <script lang="ts">
+import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
 </script>
 
 <div class="goodRead">
@@ -6,6 +7,9 @@
 	<p class="intro">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
 		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
 		laborum.</p>
+	<section class="bookmarks">
+		<BookmarkList />
+	</section>
 </div>
 
 <style lang="scss">
@@ -34,4 +38,9 @@
       width: 50%;
     }
   }
+
+	.bookmarks {
+		outline: 1px solid orange;
+		margin-top: 4rem;
+	}
 </style>

@@ -3,6 +3,7 @@ export const predefinedCategories = {
 	CSS: 'var(--pastel-orange)',
 	Tools: 'var(--pastel-rose)',
 	Design: 'var(--pastel-purple)',
+	Fonts: 'var(--pastel-cream)',
 	Random: 'var(--pastel-aqua)'
 } as const;
 
