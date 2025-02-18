@@ -65,6 +65,50 @@
 			</article>
 		</main>
 	</section>
+	<section class="bookmarks">
+		<header>
+			<h2>Good Read</h2>
+			<a href="{base}/good-read" aria-label="Read all bookmarks">Read all
+				<Icon size="24" color="var(--text)" src={TrOutlineArrowNarrowRight} />
+			</a>
+		</header>
+		<div>
+			<div class="book">
+				<h3>CSS Flexbox Guide</h3>
+				<p>
+					<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">css-tricks.com</a>
+				</p>
+				<p>I don’t even know how many times I come to this resource for help. One is for sure: the naming of the props
+					for
+					the Flexbox is pretty confusing. Luckily, it is super easy to find an answer in this post, which comes with
+					great visuals, too.</p>
+			</div>
+			<div class="book">
+				<h3>Type Scale Generator</h3>
+				<p>
+					<a href="https://landin.gs/tools/type-scale-generator/">landin.gs</a>
+				</p>
+				<p>A handy tool to sort out fonts for your project in an easy way and export as CSS, SCSS, Tailwind or even as a
+					JSON for WordPress.</p>
+			</div>
+			<div class="book">
+				<h3>GridStack</h3>
+				<p>
+					<a href="https://gridstackjs.com/">gridstackjs</a>
+				</p>
+				<p>Pure TypeScript library, no external dependencies and can work with any framework. Very easy to use and
+					create beautiful draggable, resizable, responsive layouts with few lines of code.</p>
+			</div>
+			<div class="book">
+				<h3>Component Party</h3>
+				<p>
+					<a href="https://github.com/matschik/component-party.dev">github.com</a>
+				</p>
+				<p>This is a place where you can quickly compare other libraries side by side. Really fun to see how skinny and
+					easy to read Svelte is. I know I am biased. 🙂</p>
+			</div>
+		</div>
+	</section>
 </div>
 
 <!-- svelte-ignore css_unused_selector -->
@@ -116,10 +160,6 @@
     }
   }
 
-  :global(.gridOff) header {
-    border-bottom-color: rgba(0, 0, 0, 0);
-  }
-
   .blog {
     border-top: 1px dotted var(--grid-color);
   }
@@ -129,6 +169,8 @@
   }
 
   .news {
+		margin-bottom: 4rem;
+
     main {
       display: grid;
       gap: 1.5rem;
@@ -162,5 +204,33 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+  }
+
+  .bookmarks {
+    border-top: 1px dotted var(--grid-color);
+
+		 > div {
+			 display: grid;
+			 grid-template-columns: repeat(1, 1fr);
+			 gap: 1.5rem;
+			 margin-top: 2rem;
+
+       @media (min-width: px-to-rem(600px)) {
+         grid-template-columns: repeat(2, 1fr);
+			 }
+		 }
+
+		h3 {
+			margin-bottom: 1rem;
+		}
+
+		p {
+			margin-top: 1rem;
+		}
+  }
+
+  :global(.gridOff) :is(header, .bookmarks) {
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
   }
 </style>
