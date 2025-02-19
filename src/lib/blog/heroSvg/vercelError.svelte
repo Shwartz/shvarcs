@@ -3,11 +3,16 @@
 </script>
 
 <div class="imgHero">
-	<FlexImg width="100%" className="test1" />
+	<FlexImg width="80%" className="test1" />
 </div>
 
 <!-- svelte-ignore css_unused_selector -->
 <style lang="scss">
+	.imgHero {
+		display: flex;
+		justify-content: center;
+	}
+
   .imgHero :global(.path1),
   .imgHero :global(.path2) {
     fill: #f2f2f2;

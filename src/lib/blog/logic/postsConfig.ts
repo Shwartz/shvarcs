@@ -1,6 +1,7 @@
 import FlexImg from '$lib/blog/heroSvg/ImgPost1.svelte';
 import VercelImg from '$lib/blog/heroSvg/vercelError.svelte';
 import AnimationImg from '$lib/blog/heroSvg/2d3dVisual.svelte';
+import Fallback from '$lib/blog/heroSvg/fallback.svelte';
 import { base } from '$app/paths';
 
 export const postsArr = [
@@ -13,7 +14,7 @@ export const postsArr = [
 		publishedDate: 'January, 2025',
 		readingTime: '1 min read',
 		likes: '0 likes',
-		Visual: FlexImg
+		Visual: Fallback
 	},
 	{
 		id: '6',
@@ -54,7 +55,7 @@ export const postsArr = [
 		publishedDate: 'February, 2024',
 		readingTime: '10 min read',
 		likes: '5 likes',
-		Visual: FlexImg
+		Visual: Fallback
 	}, {
 		id: '2',
 		url: `${base}/thoughts/how-to-deal-with-CSS`,
@@ -64,7 +65,7 @@ export const postsArr = [
 		publishedDate: 'May, 2023',
 		readingTime: '10 min read',
 		likes: '5 likes',
-		Visual: FlexImg
+		Visual: Fallback
 	},
 	{
 		id: '1',
@@ -75,7 +76,7 @@ export const postsArr = [
 		publishedDate: 'September, 2022',
 		readingTime: '18 min read',
 		likes: '112 likes',
-		Visual: FlexImg
+		Visual: Fallback
 	}
 ];
 
