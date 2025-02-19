@@ -75,6 +75,18 @@
 
     a {
       display: block;
+      color: var(--text-color);
+      text-decoration: none;
+      padding-bottom: 1px; /* Underline distance from the text */
+      background:
+              linear-gradient(to right, var(--pastel-purple), var(--pastel-orange), var(--pastel-orange)) 100% 100% no-repeat,
+              linear-gradient(to right, var(--pastel-purple), var(--pastel-pink), var(--pastel-purple)) 0 100% no-repeat;
+      background-size: 100% 2px, 0 2px;
+      transition: background-size 400ms;
+
+      &:hover, &:focus {
+        background-size: 0 2px, 100% 2px;
+      }
     }
 
 		.smallText {

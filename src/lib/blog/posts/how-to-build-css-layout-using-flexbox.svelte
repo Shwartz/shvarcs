@@ -48,7 +48,7 @@
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 
-<section class="post">
+<section class="post" id="scrollTop">
 	<div>
 		<p>So, you have your first mockup or design in your hands, but how do you translate it to HTML and CSS? Should you
 			rely on CSS frameworks like Bootstrap, TailwindCSS, or others? No matter your choice, it would benefit you to
