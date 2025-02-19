@@ -32,7 +32,7 @@
 				{/each}
 			</div>
 			<a href="{base}/thoughts" class="back">
-				<Icon size="20" color="777777" src={TrOutlineArrowBackUp} />
+				<Icon size="20" color="var(--text)" src={TrOutlineArrowBackUp} />
 				<span>back</span>
 			</a>
 		</div>

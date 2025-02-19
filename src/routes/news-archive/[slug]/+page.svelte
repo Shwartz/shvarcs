@@ -22,7 +22,7 @@
 			<div class="meta first">
 				<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
 				<a href="{base}/news-archive" class="back">
-					<Icon size="20" color="777777" src={TrOutlineArrowBackUp} />
+					<Icon size="20" color="var(--text)" src={TrOutlineArrowBackUp} />
 					<span>back</span>
 				</a>
 			</div>

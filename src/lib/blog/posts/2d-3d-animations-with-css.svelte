@@ -149,6 +149,25 @@ transform: translateY(-1rem)`;
         </div>
         <div>TEST: transform: translate({x1Perc}, {y1Perc});</div>
 
+        <div class="example1 codeExample">
+            <label class="horizontal" for="x1">
+                <span>x-axis</span>
+                <input orient="horizontal" bind:value={x1Val} name="x1" type="range" min="0" max="100" step="10"/>
+                <span class="value">{x1Perc}</span>
+            </label>
+            <div class="vertical">
+                <label for="y1">
+                    <span>y-axis</span>
+                    <input orient="vertical" bind:value={y1Val} name="y1" type="range" min="0" max="100" step="10"/>
+                    <span class="value vertical">{y1Perc}</span>
+                </label>
+                <figure style={ex1BgStyle} bind:clientWidth={ex1BoxWidth} bind:clientHeight={ex1BoxHeight}>
+                    <span style={ex1Style} id="circleEx1"></span>
+                </figure>
+            </div>
+
+        </div>
+
 
         <pre>
 <code>
