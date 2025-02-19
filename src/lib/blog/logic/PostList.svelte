@@ -173,6 +173,7 @@
     display: grid;
     align-items: start;
     gap: 1rem;
+		grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
 			'a'
 			'b'
@@ -252,7 +253,7 @@
     @media(min-width: 48rem) {
 			.content {
         grid-template-areas:
-			"b b"
+			"b a"
 			"c a"
 			"d d";
 			}
@@ -271,7 +272,7 @@
 
     h1 {
       font-size: 2.25rem;
-      line-height: 2.5rem;
+      line-height: 1.2;
       margin-top: 0;
     }
 

@@ -69,7 +69,7 @@
     margin-top: 2rem;
     padding: 2rem 0;
     border-bottom: 1px dotted var(--grid-color);
-    line-height: 3.5rem;
+    line-height: 1.2;
 
     span {
       display: flex;

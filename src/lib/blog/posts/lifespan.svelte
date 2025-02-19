@@ -127,7 +127,6 @@
 <style lang='scss'>
   p {
     max-width: 43.2rem;
-    line-height: 1.75rem;
     margin: 0 auto 1rem;
   }
 

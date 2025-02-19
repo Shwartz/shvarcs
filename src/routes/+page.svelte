@@ -126,7 +126,7 @@
 
   .hero p {
     font-size: px-to-rem(40px);
-    line-height: px-to-rem(56px);
+    line-height: 1.5;
     max-width: 960px;
     text-align: center;
     padding: 1rem;

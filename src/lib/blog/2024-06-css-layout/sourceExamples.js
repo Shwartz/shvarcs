@@ -66,7 +66,7 @@ h3 {
 
 p {
     margin-top: 1rem;
-    font-size: var(--step-0);;
+    font-size: var(--step-0);
     line-height: 1.6rem;
 }
 
