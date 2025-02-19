@@ -1,48 +1,19 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { bookmarkArr } from './bookmarksConfig';
-	import { getFirstTagColour } from '$lib/utils/categoryColors';
+	import type { Bookmark } from '$lib/types/types';
 	import { extractMainDomain } from '$lib/utils/regexHelpers';
 
-	interface Bookmark {
-		id: string;
-		title: string;
-		date: string;
-		category: Array<string>;
-		description: string;
-		url: string;
-	}
-
 	interface SortedBookmarks {
-		[category: string]: Bookmark[];
+		filteredBookmarks: Bookmark[];
+		selectedFilter: string |  null;
 	}
 
-	let sortedList = $state<SortedBookmarks>({});
-
-	onMount(() => {
-		sortedList = bookmarkArr.reduce<SortedBookmarks>((acc, bookmark) => {
-			bookmark.category.forEach(category => {
-				if (!acc[category]) {
-					acc[category] = [];
-				}
-				acc[category].push(bookmark);
-			});
-			return acc;
-		}, {});
-	});
-
-	/*
-	// Leaving this to remind on how to see the state
-	$effect(() => {
-		console.log($state.snapshot(sortedList));
-	});*/
+	const { filteredBookmarks, selectedFilter } : SortedBookmarks = $props();
 </script>
 
+<h1>{selectedFilter ? selectedFilter : 'All'}</h1>
 <div class="bookCollection">
-	{#each Object.entries(sortedList) as [category, bookmarks]}
-		<h2 style="background-color: {getFirstTagColour([category])}">{category}</h2>
 		<div class="book">
-		{#each bookmarks as bookmark}
+		{#each filteredBookmarks as bookmark}
 			<div>
 			<h3>{bookmark.title}</h3>
 			<p class="url">
@@ -54,23 +25,21 @@
 			<p class="description">{bookmark.description}</p>
 			</div>
 		{/each}
-		</div>
-	{/each}
+</div>
 </div>
 
 <style lang="scss">
-	.bookCollection {
-		h2 {
-			padding: 1rem;
-			margin-bottom: 1rem;
-			color: var(--black);
-		}
-	}
 	.book {
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 		gap: 1.5rem;
 		margin-bottom: 3rem;
+
+		> div {
+			padding-bottom: 2.5rem;
+      border-bottom: 1px dotted var(--grid-color);
+      border-top: 1px dotted var(--grid-color);
+		}
 
     @media (min-width: 37.5rem) {
       grid-template-columns: repeat(2, 1fr);
@@ -83,16 +52,33 @@
 		a {
       text-decoration: none;
       padding-bottom: 1px; /* Underline distance from the text */
+      color: var(--black);
       background:
-              linear-gradient(to right, var(--text), #555, #fff) 100% 100% no-repeat,
-              linear-gradient(to right, #063587, #f4db3f, #f34a41) 0 100% no-repeat;
-      background-size: 100% 1px, 0 1px;
+              linear-gradient(to right, var(--pastel-lime), var(--pastel-lime), var(--pastel-lime)) 100% 100% no-repeat,
+              linear-gradient(to right, var(--pastel-lime), var(--pastel-yellow), var(--pastel-lime)) 0 100% no-repeat;
+      background-size: 100% 100%, 0 100%;
       transition: background-size 400ms;
+      font-size: var(--step--1);
+      vertical-align: middle;
 
       &:hover, &:focus {
-        background-size: 0 0.1rem, 100% 0.1rem;
+        background-size: 0 100%, 100% 100%;
       }
 		}
+	}
+
+  :global(.gridOff) .book > div {
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+  }
+
+	h1 {
+		font-size: var(--step-4);
+		margin-bottom: 2rem;
+	}
+
+	h3 {
+		font-size: var(--step-1);
 	}
 
 	.url {

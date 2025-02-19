@@ -1,5 +1,26 @@
 <script lang="ts">
-import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
+	import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
+	import Tag from '$lib/components/snippets/Tag.svelte';
+	import { bookmarkArr } from '$lib/bookmarks/logic/bookmarksConfig';
+	import { type CategoryType } from '$lib/utils/categoryColors';
+	import type { Bookmark } from '$lib/types/types';
+
+	let selectedFilter = $state<CategoryType | null>(null);
+	const allTags = [...new Set(bookmarkArr.flatMap(post => post.tags))] as CategoryType[];
+	let filteredBookmarks = $state<Bookmark[]>([]);
+
+
+	function handleFilterClick(tag: CategoryType) {
+		selectedFilter = selectedFilter === tag ? null : tag;
+	}
+
+	$effect(() => {
+		if (selectedFilter) {
+			filteredBookmarks = bookmarkArr.filter(book => book.tags.includes(selectedFilter as string));
+		} else {
+			filteredBookmarks = bookmarkArr;
+		}
+	});
 </script>
 
 <div class="goodRead">
@@ -7,8 +28,25 @@ import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
 	<p class="intro">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
 		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
 		laborum.</p>
+
+	<div class="headerTags">
+		<div class="flex">
+			<div class="counter">{filteredBookmarks.length} {filteredBookmarks.length === 1 ? 'item' : 'items'}</div>
+			<div class="filter">
+				{#each allTags as tag}
+					<button
+						onclick={() => handleFilterClick(tag)}
+						class="btnTag"
+					>
+						<Tag active={selectedFilter === tag} blogCategory={tag} />
+					</button>
+				{/each}
+			</div>
+		</div>
+	</div>
+
 	<section class="bookmarks">
-		<BookmarkList />
+		<BookmarkList filteredBookmarks={filteredBookmarks} selectedFilter={selectedFilter} />
 	</section>
 </div>
 
@@ -27,6 +65,53 @@ import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
     width: 100%;
   }
 
+  .bookmarks {
+    margin-top: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px dotted var(--grid-color);
+  }
+
+  .headerTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    padding: 4rem 0 1.5rem;
+    border-bottom: 1px dotted var(--grid-color);
+  }
+
+  .flex {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .counter {
+    min-width: px-to-rem(68px);
+    text-align: left;
+  }
+
+  .btnTag {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .filter {
+    display: flex;
+    gap: 4px;
+  }
+
+  :global(.btnTag:hover > *) {
+    border: 1px solid var(--textLight);
+  }
+
+  :global(.gridOff) :is(.headerTags, .bookmarks) {
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+  }
+
   @media (min-width: 600px) {
     .intro {
       width: 75%;
@@ -38,8 +123,4 @@ import BookmarkList from '$lib/bookmarks/logic/BookmarkList.svelte';
       width: 50%;
     }
   }
-
-	.bookmarks {
-		margin-top: 4rem;
-	}
 </style>

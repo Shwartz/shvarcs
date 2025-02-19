@@ -99,6 +99,10 @@
 		h3, p {
 			line-height: 1.5;
 		}
+
+		h3 {
+			font-size: var(--step-1);
+		}
   }
 
   .frankTitle {

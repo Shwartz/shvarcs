@@ -74,7 +74,6 @@
     }
 
     a {
-      display: block;
       color: var(--text-color);
       text-decoration: none;
       padding-bottom: 1px; /* Underline distance from the text */
