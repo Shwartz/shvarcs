@@ -95,6 +95,10 @@
 <style lang="scss">
   .news {
     flex-grow: 1;
+
+		h3, p {
+			line-height: 1.5;
+		}
   }
 
   .frankTitle {
@@ -236,7 +240,7 @@
         .date {
           grid-area: info;
           align-self: start;
-          margin-top: 1.5rem;
+          margin-top: 2.2rem;
         }
 
         .summary {
