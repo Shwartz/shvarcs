@@ -26,6 +26,10 @@
     margin: 2rem 0;
     font-size: 0.8rem;
   }
+
+  .wrap :global(table) {
+      background: green;
+  }
 </style>
 
 <!--

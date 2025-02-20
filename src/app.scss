@@ -173,8 +173,16 @@ button.clean {
     margin-inline: auto;
   }
 
+  tbody, td {
+    background: var(--table-bg);
+  }
+
   tr:nth-child(even) {
     background-color: var(--table-row-bg);
+  }
+
+  tr:nth-child(even) td {
+    background:transparent;
   }
 
   a {
