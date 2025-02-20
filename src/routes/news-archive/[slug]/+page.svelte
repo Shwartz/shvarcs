@@ -83,5 +83,6 @@
     gap: 0.5rem;
     text-decoration: none;
 		background: none;
+		color: var(--text);
   }
 </style>
