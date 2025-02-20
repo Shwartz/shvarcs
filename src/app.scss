@@ -136,7 +136,7 @@ button.clean {
     color: var(--text);
     display: inline-block;
     padding: 0 0.5rem;
-    line-height: 1.4;
+    line-height: 1.5;
     border-radius: 0.25rem;
     background: var(--code-background);
     border: 1px solid var(--code-border-color);
@@ -183,6 +183,10 @@ button.clean {
 
   tr:nth-child(even) td {
     background:transparent;
+  }
+
+  table tr:last-child td {
+    padding-bottom: 0;
   }
 
   a {
