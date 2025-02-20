@@ -61,13 +61,10 @@
 
 <div class="news">
 	<h1 class="frankTitle">news</h1>
-	<p class="intro">To stay with the latest trends in the Front-end world, I skim the web, <a
-		href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and several
-		newsletters during the week.
-		Naturally, as a active <a href="https://www.notion.com/">Notion</a> user, I jot down whatever interests me. I found
-		it handy more than once to search for THAT
-		specific article(s) about a particular feature.<br />
-		Now, I'm transferring my archive to the web using <a href="https://svelte.dev/">SvelteKit</a> and Notion's API.</p>
+	<p class="intro">Welcome to my Front-end news archive. I curate this collection from across the web,
+		<a href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and various newsletters, capturing the
+		latest trends and useful articles. Originally a personal <a href="https://www.notion.com/">Notion</a> database, I'm
+		now sharing it here using <a href="https://svelte.dev/">SvelteKit</a></p>
 
 	<div class="headerTags">
 		<div>{newsCount} items</div>
@@ -76,19 +73,21 @@
 		</div>
 	</div>
 
-	<ul class={checked ? `list` : `grid`}>
-		{#each news.posts as post, index}
-			<li>
-				<Tooltip color={getColor(index)}>
-					<a title="{post.title.substring(0, post.title.indexOf('|')).trim()}" href="{base}/news-archive/{post.slug}">
-						<h3>{post.title.substring(0, post.title.indexOf('|')).trim()}</h3>
-						<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
-						<p class="summary">{post.summary}</p>
-					</a>
-				</Tooltip>
-			</li>
-		{/each}
-	</ul>
+	<div class="newsList">
+		<ul class={checked ? `list` : `grid`}>
+			{#each news.posts as post, index}
+				<li>
+					<Tooltip color={getColor(index)}>
+						<a title="{post.title.substring(0, post.title.indexOf('|')).trim()}" href="{base}/news-archive/{post.slug}">
+							<h3>{post.title.substring(0, post.title.indexOf('|')).trim()}</h3>
+							<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
+							<p class="summary">{post.summary}</p>
+						</a>
+					</Tooltip>
+				</li>
+			{/each}
+		</ul>
+	</div>
 </div>
 
 <!-- svelte-ignore css_unused_selector -->
@@ -96,13 +95,13 @@
   .news {
     flex-grow: 1;
 
-		h3, p {
-			line-height: 1.5;
-		}
+    h3, p {
+      line-height: 1.5;
+    }
 
-		h3 {
-			font-size: var(--step-1);
-		}
+    h3 {
+      font-size: var(--step-1);
+    }
   }
 
   .frankTitle {
@@ -138,7 +137,7 @@
 
   /* Grid by default, mob size same for all */
 
-  .news {
+  .newsList {
     ul, li {
       list-style: none;
       padding: 0;

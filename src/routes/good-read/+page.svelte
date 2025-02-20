@@ -25,9 +25,8 @@
 
 <div class="goodRead">
 	<h1 class="frankTitle">good read</h1>
-	<p class="intro">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-		laborum.</p>
+	<p class="intro">Good Read is just a fancy name for my bookmarks. It's where I stash valuable tools, go-to posts, and
+		other web development goodies I frequently revisit.</p>
 
 	<div class="headerTags">
 		<div class="flex">

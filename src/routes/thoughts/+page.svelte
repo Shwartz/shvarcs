@@ -54,9 +54,8 @@
 
 <div class="posts">
 	<h1 class="frankTitle">blog</h1>
-	<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur semper magna, quis
-		consequat orci commodo
-		nec. Vestibulum ante ipsum primis in faucibus orci luctus.</p>
+	<p class="intro">Usually, I'm too busy chatting with Rubber Duck and Perplexity, but when I have some free time, I
+		write down whatever is essential. Mostly front-end related, but it could be about my aquarium and The Fish.</p>
 	<div class="headerTags">
 		<div class="flex">
 			<div class="counter">{postCount} {postCount === 1 ? 'item' : 'items'}</div>

@@ -6,12 +6,13 @@
 	<div class="wrapper">
 		<div class="bio">
 			<h3>Andris Švarcs</h3>
-			<p>I have been working as a web developer for over 15 years. I call myself a Product-minded engineer. I worked in
-				small agencies and enterprise-level companies during my career. The products I built or worked on as a team
-				include domains like finance, tourism, health, dashboard web apps and more.</p>
-			<p>I like to understand products beyond the code. I like to ask lots of Why questions. Why this feature is
-				important? How will this improve the customer journey? Because of this interest, I also deep dive into design,
-				accessibility and SEO topics.</p>
+			<p>Somehow, I've survived over 15 years as a web developer without losing my interest in the craft. Quite the opposite, with so many great improvements in the Web standards, what was nearly impossible now is easy to make.</p>
+			<p>My career has been a wild ride through small agencies and big corporations, building everything from finance apps to health dashboards.
+			</p>
+			<p>I'm that annoying person who needs to understand products beyond just slinging code. I ask questions like 'Why is this feature important?' and 'How will this improve the customer journey?' – you know, the kind of questions that make project managers reach for the <s>pint</s> aspirin.
+				This curiosity has led me down the rabbit holes of design, accessibility, and SEO. Because apparently, making websites pretty, usable, and findable wasn't challenging enough on its own.
+			</p>
+			<p>P.S. If this bio sounds too polished, blame my evil AI twin. I'm still working on teaching it sarcasm.</p>
 			<p class="smallText">Copyright &copy; since 2021, <span>Andris Švarcs.</span> <span>All rights reserved.</span></p>
 		</div>
 		<div class="pages">
@@ -109,7 +110,7 @@
 
     @media (min-width: px-to-rem(1172px)) {
       grid-template-areas:
-		"pages links connect . bio bio bio .";
+		"pages links connect . bio bio bio bio";
       grid-template-columns: repeat(8, minmax(0, 1fr)); /* Equal-width columns */
     }
   }
