@@ -162,6 +162,10 @@
 
     .me {
       font-weight: bold;
+
+			&:hover {
+				text-decoration: none;
+			}
     }
   }
 
