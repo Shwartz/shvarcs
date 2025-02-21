@@ -5,6 +5,8 @@
 	import type { CategoryType } from '$lib/utils/categoryColors';
 	import { TrOutlineArrowNarrowRight } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
+	import Tooltip from '$lib/components/Tooltip.svelte';
+	import { getColor } from '$lib/components/snippets/getColor';
 
 	let compact = $state(false);
 	let checked = $state(false);
@@ -39,29 +41,50 @@
 		</header>
 		<main>
 			<article>
-				<h3>Friday Issue #129</h3>
-				<time datetime="2025-02-07">07/02/2025</time>
-				<p>How long is a second? A new fetch mocker, update from Svelte 5, good thoughts on CSS nesting and CSS design
-					mistakes. Updates on Tailwindcss 4 and good read about Electron</p>
+				<Tooltip color={getColor(1)}>
+					<a title="Friday Issue #130" href="{base}/friday-issue-130-21-02-2025-1985804e-702d-8073-bc7b-c93654393f3a">
+						<h3>Friday Issue #130</h3>
+						<time datetime="2025-02-21">21/02/2025</time>
+						<p>How to start a React project in 2025? Which RTE to choose from? Is NPM enough? There are loads of
+							questions this week. My favourites are AbortController and CSS functions.</p>
+					</a>
+				</Tooltip>
 			</article>
 			<article>
-				<h3>Friday Issue #128</h3>
-				<time datetime="2025-01-24">24/01/2025</time>
-				<p>Loads of reading this week. Here is an Angular strategy for 2025, a checklist for tsconfig.json, Rising Stars
-					2024, and Threlte 8,and that's only from JS updates, Accessibility, the ARIA tool, the latest WP saga and the
-					British summer simulator.</p>
+				<Tooltip color={getColor(3)}>
+					<a title="Friday Issue #129"
+						 href="{base}/news-archive/friday-issue-129-07-02-2025-1855804e-702d-801f-9158-fcbc20c15b8f">
+						<h3>Friday Issue #129</h3>
+						<time datetime="2025-02-07">07/02/2025</time>
+						<p>How long is a second? A new fetch mocker, update from Svelte 5, good thoughts on CSS nesting and CSS
+							design
+							mistakes. Updates on Tailwindcss 4 and good read about Electron</p>
+					</a>
+				</Tooltip>
 			</article>
 			<article>
-				<h3>Friday Issue #127</h3>
-				<time datetime="2025-01-10">10/01/2025</time>
-				<p>Epic programming principles, HTMX as jQuery, CSS text-box-trim and balanced text, new Front-end features,
-					Tailwind 4 and good read Perfection is the enemy post.</p>
+				<Tooltip color={getColor(6)}>
+					<a title="Friday Issue #128"
+						 href="{base}/news-archive/friday-issue-128-24-01-2024-9e7a8873-8b99-4a4a-a657-7b6479379fb1">
+						<h3>Friday Issue #128</h3>
+						<time datetime="2025-01-24">24/01/2025</time>
+						<p>
+							Loads of reading this week. Here is an Angular strategy for 2025, a checklist for tsconfig.json, Rising
+							Stars 2024, and Threlte 8,and that's only from JS updates, Accessibility, the ARIA tool, the latest WP
+							saga and the British summer simulator.</p>
+					</a>
+				</Tooltip>
 			</article>
 			<article>
-				<h3>Friday Issue #126</h3>
-				<time datetime="2024-12-20">20/12/2024</time>
-				<p>The last newsletter of 2024 is loaded with great posts! TanStack, RockPack, ApexCharts, State of JS, a Svelte
-					advent calendar, CSS one-liners to save the day, and many more good reads.</p>
+				<Tooltip color={getColor(8)}>
+					<a title="Friday Issue #127"
+						 href="{base}/news-archive/friday-issue-127-10-01-2025-1625804e-702d-80bb-a99b-d0d682b8e810">
+						<h3>Friday Issue #127</h3>
+						<time datetime="2025-01-10">10/01/2025</time>
+						<p>Epic programming principles, HTMX as jQuery, CSS text-box-trim and balanced text, new Front-end features,
+							Tailwind 4 and good read Perfection is the enemy post.</p>
+					</a>
+				</Tooltip>
 			</article>
 		</main>
 	</section>
@@ -169,7 +192,7 @@
   }
 
   .news {
-		margin-bottom: 4rem;
+    margin-bottom: 4rem;
 
     main {
       display: grid;
@@ -191,6 +214,15 @@
       margin-top: 1rem;
     }
 
+    a {
+      text-decoration: none;
+      cursor: url('/src/assets/svg/cursor.svg') 16 16, auto;
+    }
+
+    a:hover {
+      cursor: url('/src/assets/svg/cursor.svg') 16 16, pointer;
+    }
+
     @media (min-width: px-to-rem(600px)) {
 
       main {
@@ -209,34 +241,33 @@
   .bookmarks {
     border-top: 1px dotted var(--grid-color);
 
-		 > div {
-			 display: grid;
-			 grid-template-columns: repeat(1, 1fr);
-			 gap: 1.5rem;
-			 margin-top: 2rem;
+    > div {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
 
-       @media (min-width: px-to-rem(600px)) {
-         grid-template-columns: repeat(2, 1fr);
-			 }
-		 }
+      @media (min-width: px-to-rem(600px)) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-		h3 {
-			margin-bottom: 1rem;
-		}
+    h3 {
+      margin-bottom: 1rem;
+    }
 
-		p {
-			margin-top: 1rem;
-		}
+    p {
+      margin-top: 1rem;
+    }
   }
 
-	.book {
+  .book {
     a {
       padding: 2px;
       border-radius: 2px;
       color: var(--black);
-      background:
-              linear-gradient(to right, var(--pastel-lime), var(--pastel-lime), var(--pastel-lime)) 100% 100% no-repeat,
-              linear-gradient(to right, var(--pastel-lime), var(--pastel-yellow), var(--pastel-lime)) 0 100% no-repeat;
+      background: linear-gradient(to right, var(--pastel-lime), var(--pastel-lime), var(--pastel-lime)) 100% 100% no-repeat,
+      linear-gradient(to right, var(--pastel-lime), var(--pastel-yellow), var(--pastel-lime)) 0 100% no-repeat;
       background-size: 100% 100%, 0 100%;
       transition: background-size 400ms;
       font-size: var(--step--1);
@@ -246,7 +277,7 @@
         background-size: 0 100%, 100% 100%;
       }
     }
-	}
+  }
 
   :global(.gridOff) :is(header, .bookmarks) {
     border-top-color: rgba(0, 0, 0, 0);

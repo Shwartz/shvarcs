@@ -4,6 +4,7 @@
 	import ToggleListGrid from '$lib/components/ToggleListGrid.svelte';
 	import { onMount } from 'svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
+	import { getColor } from '$lib/components/snippets/getColor';
 
 	const { data } = $props();
 	const { news } = data;
@@ -40,23 +41,6 @@
 			compact = checked; // This is to trigger transition
 		});
 	}
-
-	const colors = [
-		'var(--pastel-cream)',
-		'var(--pastel-yellow)',
-		'var(--pastel-orange)',
-		'var(--pastel-pink)',
-		'var(--pastel-rose)',
-		'var(--pastel-purple)',
-		'var(--pastel-blue)',
-		'var(--pastel-aqua)',
-		'var(--pastel-mint)',
-		'var(--pastel-lime)'
-	];
-
-	const getColor = (index: number) => {
-		return colors[index % 10];
-	};
 </script>
 
 <div class="news">
