@@ -98,7 +98,7 @@
 		<div>
 			<div class="book">
 				<h3>CSS Flexbox Guide</h3>
-				<p>
+				<p class="url">
 					<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">css-tricks.com</a>
 				</p>
 				<p>I don’t even know how many times I come to this resource for help. One is for sure: the naming of the props
@@ -108,7 +108,7 @@
 			</div>
 			<div class="book">
 				<h3>Type Scale Generator</h3>
-				<p>
+				<p class="url">
 					<a href="https://landin.gs/tools/type-scale-generator/">landin.gs</a>
 				</p>
 				<p>A handy tool to sort out fonts for your project in an easy way and export as CSS, SCSS, Tailwind or even as a
@@ -116,7 +116,7 @@
 			</div>
 			<div class="book">
 				<h3>GridStack</h3>
-				<p>
+				<p class="url">
 					<a href="https://gridstackjs.com/">gridstackjs</a>
 				</p>
 				<p>Pure TypeScript library, no external dependencies and can work with any framework. Very easy to use and
@@ -124,7 +124,7 @@
 			</div>
 			<div class="book">
 				<h3>Component Party</h3>
-				<p>
+				<p class="url">
 					<a href="https://github.com/matschik/component-party.dev">github.com</a>
 				</p>
 				<p>This is a place where you can quickly compare other libraries side by side. Really fun to see how skinny and
@@ -202,7 +202,7 @@
 
     h3 {
       margin-top: 1.5rem;
-      font-size: px-to-rem(24px);
+      font-size: var(--step-1);
     }
 
     time {
@@ -252,8 +252,12 @@
       }
     }
 
+		.url {
+			margin: 0;
+		}
+
     h3 {
-      margin-bottom: 1rem;
+			font-size: var(--step-1);
     }
 
     p {
@@ -266,15 +270,12 @@
       padding: 2px;
       border-radius: 2px;
       color: var(--black);
-      background: linear-gradient(to right, var(--pastel-lime), var(--pastel-lime), var(--pastel-lime)) 100% 100% no-repeat,
-      linear-gradient(to right, var(--pastel-lime), var(--pastel-yellow), var(--pastel-lime)) 0 100% no-repeat;
-      background-size: 100% 100%, 0 100%;
-      transition: background-size 400ms;
+      background: var(--pastel-lime);
       font-size: var(--step--1);
       vertical-align: middle;
 
       &:hover, &:focus {
-        background-size: 0 100%, 100% 100%;
+        background: var(--pastel-lime-hover);
       }
     }
   }
