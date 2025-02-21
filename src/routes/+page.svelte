@@ -19,7 +19,7 @@
 
 <div class="content">
 	<section class="hero">
-		<p>Welcome to my digital sandbox: Where I break things so you don't have to</p>
+		<p>Welcome to my digital sandbox, where I break things so you don't have to</p>
 	</section>
 	<div class="blog">
 		<header>

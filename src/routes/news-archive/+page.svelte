@@ -64,7 +64,7 @@
 	<p class="intro">I curate this collection from across the web,
 		<a href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and various newsletters, capturing the
 		latest trends and useful articles. Originally a personal <a href="https://www.notion.com/">Notion</a> database, I'm
-		now sharing it here using <a href="https://svelte.dev/">SvelteKit</a></p>
+		now sharing it here using <a href="https://svelte.dev/">SvelteKit</a>.</p>
 
 	<div class="headerTags">
 		<div>{newsCount} items</div>
