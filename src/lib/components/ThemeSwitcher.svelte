@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { TrOutlineMoonStars, TrOutlineSun } from 'svelte-icons-pack/tr';
-	import { Icon } from 'svelte-icons-pack';
 	import theme from '$lib/stores/theme';
 	import { onMount } from 'svelte';
+	import Moon from '../../assets/svg/Moon.svelte';
+	import Sun from '../../assets/svg/Sun.svelte';
+
 
 	interface ThemeSwitcherProps {
 		isMenuOpen: boolean;
@@ -75,8 +76,8 @@
 	aria-label="Change theme"
 >
 		<span>
-			<Icon className="sun" size="21" color="var(--text)" src={TrOutlineSun} />
-			<Icon className="moon" size="21" color="var(--text)" src={TrOutlineMoonStars} />
+			<Sun />
+			<Moon />
 		</span>
 </button>
 

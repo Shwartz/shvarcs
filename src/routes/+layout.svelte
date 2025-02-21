@@ -2,12 +2,12 @@
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
-	import '@fontsource-variable/inter';
-	import '@fontsource/frank-ruhl-libre/700.css';
 	import Footer from '$lib/components/Footer.svelte';
 	import { setContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
+	import '@fontsource-variable/inter';
+	import '@fontsource/frank-ruhl-libre/700.css';
 	import '../app.scss';
 	import Header from '$lib/components/Header.svelte';
 
@@ -80,11 +80,6 @@
 
   :global(.frankTitle) {
     font-family: "Frank Ruhl Libre", serif;
-  }
-
-  .gridLines {
-    display: flex;
-    flex-direction: column;
   }
 
   header {
