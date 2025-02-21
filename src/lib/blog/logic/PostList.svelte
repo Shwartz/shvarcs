@@ -172,8 +172,10 @@
   .content {
     display: grid;
     align-items: start;
-    gap: 1rem;
-		grid-template-rows: auto auto 1fr auto;
+		align-content: start;
+		align-self: center;
+    gap: 1.5rem;
+		grid-template-rows: auto auto auto auto;
     grid-template-areas:
 			'a'
 			'b'
@@ -221,7 +223,6 @@
   }
 
   .tags {
-    margin-top: 1rem;
     display: flex;
     gap: 0.5rem;
   }
