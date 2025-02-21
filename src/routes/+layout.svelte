@@ -18,8 +18,8 @@
 	if (browser && localStorage.getItem(GRID_STATE) !== null) {
 		initialGridState = JSON.parse(localStorage.getItem(GRID_STATE) ?? 'false');
 	}
-
 	let isGridOn = $state(initialGridState);
+
 	const toggleGrid = () => {
 		isGridOn = !isGridOn;
 		localStorage.setItem(GRID_STATE, JSON.stringify(isGridOn));
@@ -63,10 +63,8 @@
 			<div class="loader" transition:fade={{duration:200}}></div>
 		{/if}
 		<div class="gridLines" class:gridOff={!isGridOn}>
-			<Header />
-			<!--<div class="content">-->
+			<Header isGridOn={isGridOn} toggleGrid={toggleGrid} />
 			{@render children()}
-			<!--</div>-->
 			<Footer />
 		</div>
 	</div>

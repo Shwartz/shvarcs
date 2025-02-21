@@ -1,22 +1,21 @@
 <script lang="ts">
-	import { onMount, getContext } from 'svelte';
+	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 	import { Icon } from 'svelte-icons-pack';
-	import { TrOutlineGrid3x3, TrOutlineMenu2, TrOutlineX } from 'svelte-icons-pack/tr';
+	import { TrOutlineMenu2, TrOutlineX } from 'svelte-icons-pack/tr';
 	import { debounce } from '$lib/utils/debounce.js';
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
-	import type { LayoutActions } from '$lib/types/layout-context';
+	import GridLines from '../../assets/svg/GridLines.svelte';
 
 	// Retrieve context from any parent layout, routes/+layout.svelte
-	const { toggleGrid, isGridOn } = getContext<LayoutActions>('layout-actions');
+	const {toggleGrid, isGridOn} = $props();
 	let isHamburgerOn = $state(false);
 	let isAnimated = $state(false);
 	let isDesktop = $state(false);
 	let windowWidth = $state(0);
 	let isTabbingAvailable = $derived(isDesktop ? true : isHamburgerOn);
-
 	const menuId = 'main-nav-menu';
 
 	const toggleHamburger = () => {
@@ -125,12 +124,11 @@
 				<button
 					type="button"
 					class={`clean ${isGridOn ? 'on' : ''}`}
+					class:isGridOn
 					onclick={toggleGrid}
 					tabindex={isTabbingAvailable ? 0 : -1}
 				>
-						<span>
-							<Icon size="14" color="var(--text)" src={TrOutlineGrid3x3} />
-						</span>
+					<GridLines {isGridOn} />
 				</button>
 				<ThemeSwitcher isMenuOpen={isTabbingAvailable} />
 			</div>
@@ -251,14 +249,6 @@
         border-radius: 4px;
         border: 1px solid var(--text);
         will-change: transform;
-      }
-
-      :global(svg) {
-        display: none;
-      }
-
-      &.on :global(svg) {
-        display: block;
       }
 
       > * {
