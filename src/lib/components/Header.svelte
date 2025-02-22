@@ -121,15 +121,20 @@
 			</nav>
 
 			<div class="settings">
-				<button
-					type="button"
-					class={`clean ${isGridOn ? 'on' : ''}`}
-					class:isGridOn
-					onclick={toggleGrid}
-					tabindex={isTabbingAvailable ? 0 : -1}
-				>
-					<GridLines {isGridOn} />
-				</button>
+				<div class="flex">
+					<button
+						type="button"
+						class={`clean ${isGridOn ? 'on' : ''}`}
+						class:isGridOn
+						onclick={toggleGrid}
+						tabindex={isTabbingAvailable ? 0 : -1}
+						title="Grid"
+					>
+						<GridLines {isGridOn} />
+					</button>
+					<span>Grid</span>
+					<span>{isGridOn ? 'on': 'off'}</span>
+				</div>
 				<ThemeSwitcher isMenuOpen={isTabbingAvailable} />
 			</div>
 		</div>
@@ -187,18 +192,15 @@
 
   /* HEADER MENU: MOBILE*/
   .headerWrap {
-    --navTop: 8.75rem;
+    --navTop: 13rem;
     position: relative;
 
     .menu {
       position: absolute;
       display: flex;
       flex-direction: column;
-      /*align-items: center;
-      justify-content: space-between;*/
       width: 100%;
-      padding: 0 0 0 1rem;
-      transform: translate3d(110%, var(--navTop), 0);
+      transform: translate3d(110%, 0, 0);
       transition: none;
       background: var(--background-color);
       border: 1px dotted var(--grid-color);
@@ -222,6 +224,9 @@
   nav {
     display: flex;
     flex-direction: column;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dotted var(--grid-color);
 
     a {
       display: block;
@@ -233,6 +238,19 @@
 
   .settings {
     display: flex;
+    flex-direction: column;
+    border-top: 1px dotted var(--grid-color);
+    padding: 1.5rem 0;
+
+		.flex {
+			display: flex;
+			align-items: center;
+
+			span:last-child {
+				margin-left: auto;
+				color: var(--grey-text);
+			}
+		}
 
     button {
       width: 44px;
@@ -277,17 +295,13 @@
     }
   }
 
-  /* HEADER MENU: > 500 | 31.25rem */
-  @media(min-width: 31.25rem) {
-    .headerWrap {
+  :global(.gridOff) :is(.menu, nav, .settings) {
+    border-color: rgba(0, 0, 0, 0);
 
-      .menu {
-
-      }
-
-
-    }
   }
+
+  /* HEADER MENU: > 500 | 31.25rem */
+  /*@media(min-width: 31.25rem) {}*/
 
   /* HEADER MENU: Full Size > 768 | 48rem */
   @media(min-width: 48rem) {
@@ -327,6 +341,19 @@
       nav {
         flex-direction: row;
         gap: 2rem;
+        padding: 0;
+        margin: 0;
+        border: none;
+      }
+
+      .settings {
+        flex-direction: row;
+        padding: 0;
+        border: none;
+
+				.flex span {
+					display: none;
+				}
       }
     }
 
