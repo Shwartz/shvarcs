@@ -1,6 +1,6 @@
 // lib/notion/index.ts
 import { NOTION_DATABASE_ID } from '$env/static/private';
-import { getDatabaseById, getPageById } from './api';
+import { getDatabaseById, getPageById, getRecentPosts } from './api';
 import pMemoize from 'p-memoize';
 import ExpiryMap from 'expiry-map';
 
@@ -70,4 +70,33 @@ export const getPost = pMemoize(
 		}
 	},
 	{ cache: cacheGetPost }
+);
+
+export const getLastPostsByNumber = pMemoize(
+	async (count: number = 4) => {
+		try {
+			const posts = await getRecentPosts(NOTION_DATABASE_ID, count);
+
+			if (posts && posts.length > 0) {
+				return {
+					posts: posts
+				};
+			} else {
+				return {
+					error: {
+						code: 400,
+						message: 'No posts found'
+					}
+				};
+			}
+		} catch (error) {
+			return {
+				error: {
+					code: 500,
+					message: `Can't retrieve recent posts: ${error}`
+				}
+			};
+		}
+	},
+	{ cache: new ExpiryMap(expireCacheTime) }
 );

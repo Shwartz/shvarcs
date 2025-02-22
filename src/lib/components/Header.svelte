@@ -90,9 +90,9 @@
 				aria-label={isHamburgerOn ? "Close menu" : "Open menu"}
 			>
 				{#if isHamburgerOn}
-					<Icon size="16" color="var(--text)" src={TrOutlineX} />
+					<Icon size="24" color="var(--text)" src={TrOutlineX} />
 				{:else}
-					<Icon size="16" color="var(--text)" src={TrOutlineMenu2} />
+					<Icon size="24" color="var(--text)" src={TrOutlineMenu2} />
 				{/if}
 			</button>
 		</div>

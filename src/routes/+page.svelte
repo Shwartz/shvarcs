@@ -8,6 +8,8 @@
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import { getColor } from '$lib/components/snippets/getColor';
 
+	const { data } = $props();
+	const { posts: { posts } } = data;
 	let compact = $state(false);
 	let checked = $state(false);
 	let selectedFilter = $state<CategoryType | null>(null);
@@ -40,52 +42,23 @@
 			</a>
 		</header>
 		<main>
-			<article>
-				<Tooltip color={getColor(1)}>
-					<a title="Friday Issue #130" href="{base}/friday-issue-130-21-02-2025-1985804e-702d-8073-bc7b-c93654393f3a">
-						<h3>Friday Issue #130</h3>
-						<time datetime="2025-02-21">21/02/2025</time>
-						<p>How to start a React project in 2025? Which RTE to choose from? Is NPM enough? There are loads of
-							questions this week. My favourites are AbortController and CSS functions.</p>
-					</a>
-				</Tooltip>
-			</article>
-			<article>
-				<Tooltip color={getColor(3)}>
-					<a title="Friday Issue #129"
-						 href="{base}/news-archive/friday-issue-129-07-02-2025-1855804e-702d-801f-9158-fcbc20c15b8f">
-						<h3>Friday Issue #129</h3>
-						<time datetime="2025-02-07">07/02/2025</time>
-						<p>How long is a second? A new fetch mocker, update from Svelte 5, good thoughts on CSS nesting and CSS
-							design
-							mistakes. Updates on Tailwindcss 4 and good read about Electron</p>
-					</a>
-				</Tooltip>
-			</article>
-			<article>
-				<Tooltip color={getColor(6)}>
-					<a title="Friday Issue #128"
-						 href="{base}/news-archive/friday-issue-128-24-01-2024-9e7a8873-8b99-4a4a-a657-7b6479379fb1">
-						<h3>Friday Issue #128</h3>
-						<time datetime="2025-01-24">24/01/2025</time>
-						<p>
-							Loads of reading this week. Here is an Angular strategy for 2025, a checklist for tsconfig.json, Rising
-							Stars 2024, and Threlte 8,and that's only from JS updates, Accessibility, the ARIA tool, the latest WP
-							saga and the British summer simulator.</p>
-					</a>
-				</Tooltip>
-			</article>
-			<article>
-				<Tooltip color={getColor(8)}>
-					<a title="Friday Issue #127"
-						 href="{base}/news-archive/friday-issue-127-10-01-2025-1625804e-702d-80bb-a99b-d0d682b8e810">
-						<h3>Friday Issue #127</h3>
-						<time datetime="2025-01-10">10/01/2025</time>
-						<p>Epic programming principles, HTMX as jQuery, CSS text-box-trim and balanced text, new Front-end features,
-							Tailwind 4 and good read Perfection is the enemy post.</p>
-					</a>
-				</Tooltip>
-			</article>
+			{#if posts}
+				{#each posts as post}
+					<article>
+						<Tooltip color={getColor(1)}>
+							<a href="{base}/news-archive/{post.slug}" title={post.title}>
+								<h3>{post.title}</h3>
+								<time datetime={post.fullItem.properties['Due Date'].date.start}>
+									{new Date(post.fullItem.properties['Due Date'].date.start).toLocaleDateString()}
+								</time>
+								<p>{post.summary}</p>
+							</a>
+						</Tooltip>
+					</article>
+				{/each}
+			{:else}
+				<p>No recent news available.</p>
+			{/if}
 		</main>
 	</section>
 	<section class="bookmarks">
@@ -252,12 +225,12 @@
       }
     }
 
-		.url {
-			margin: 0;
-		}
+    .url {
+      margin: 0;
+    }
 
     h3 {
-			font-size: var(--step-1);
+      font-size: var(--step-1);
     }
 
     p {
