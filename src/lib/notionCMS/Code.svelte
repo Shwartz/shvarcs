@@ -4,8 +4,6 @@
 
 	const { block } = $props<{ block: CodeBlockObjectResponse }>();
 
-	console.log({block});
-
 	function formatCode(richText: RichTextItemResponse[]) {
 		return richText.map(item => item.plain_text).join('').toString();
 	}

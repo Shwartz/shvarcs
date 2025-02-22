@@ -4,8 +4,6 @@
 	import Code from '$lib/notionCMS/Code.svelte';
 
 	const { block } = $props<{ block: BlockObjectResponse }>();
-	// console.log({block});
-
 </script>
 
 {#if block.type === 'paragraph'}

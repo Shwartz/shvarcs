@@ -41,7 +41,6 @@ export const getDatabaseById = async (ID: string) => {
 				};
 			});
 		}
-		console.log('1 posts[0] trim: ', posts[0]);
 
 		return posts;
 	} catch (error) {
