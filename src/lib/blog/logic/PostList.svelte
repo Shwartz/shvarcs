@@ -165,7 +165,6 @@
     justify-content: center;
     width: 100%;
     aspect-ratio: 13/8;
-    /*background: #f9e4b2;*/
   }
 
   .content {
@@ -180,7 +179,7 @@
 			'b'
 			'c'
 			'd';
-    padding: 1.5rem 0;
+    /*padding: 1.5rem 0;*/
 
     h1, p {
       margin: 0;
@@ -250,6 +249,7 @@
       flex-direction: row;
     }
 
+		/* 768 */
     @media(min-width: 48rem) {
 			.content {
         grid-template-areas:
