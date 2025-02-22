@@ -109,6 +109,7 @@
 		width: 100%;
 	}
 
+	/* 600px */
 	@media(min-width: 37.5rem) {
     .visualWrap {
       width: 74%;
@@ -116,6 +117,7 @@
     }
 	}
 
+	/* 768 */
 	@media(min-width: 48rem) {
 		.postSnippet {
 			flex-direction: row;

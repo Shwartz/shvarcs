@@ -106,9 +106,15 @@
   }
 
   .frankTitle {
-    font-size: 9rem;
-    color: var(--textLight);
+		margin-bottom: 1.5rem;
+    font-size: 5.75rem;
     line-height: normal;
+    color: var(--textLight);
+
+    /* 768 */
+    @media(min-width: 48rem) {
+      font-size: 9rem;
+    }
   }
 
   .intro {
