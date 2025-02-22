@@ -10,7 +10,7 @@
 	import GridLines from '../../assets/svg/GridLines.svelte';
 
 	// Retrieve context from any parent layout, routes/+layout.svelte
-	const {toggleGrid, isGridOn} = $props();
+	const { toggleGrid, isGridOn } = $props();
 	let isHamburgerOn = $state(false);
 	let isAnimated = $state(false);
 	let isDesktop = $state(false);
@@ -78,7 +78,7 @@
 </script>
 
 <header>
-	<div id="topHead" class='headerWrap' class:slideMenuIn={isHamburgerOn}>
+	<div id="topHead" class="headerWrap" class:slideMenuIn={isHamburgerOn}>
 		<a href="{base}/" class="me">Andris Švarcs</a>
 		<div class="hamburger">
 			<button
@@ -161,9 +161,9 @@
     .me {
       font-weight: bold;
 
-			&:hover {
-				text-decoration: none;
-			}
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
@@ -187,25 +187,26 @@
 
   /* HEADER MENU: MOBILE*/
   .headerWrap {
-    --navTop: 56px;
+    --navTop: 8.75rem;
     position: relative;
 
     .menu {
       position: absolute;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      /*align-items: center;
+      justify-content: space-between;*/
       width: 100%;
       padding: 0 0 0 1rem;
       transform: translate3d(110%, var(--navTop), 0);
       transition: none;
       background: var(--background-color);
-      box-shadow: 0 0 1px 0 var(--text);
+      border: 1px dotted var(--grid-color);
       visibility: hidden;
 
       &.isAnimated {
         visibility: visible;
-				z-index: 1;
+        z-index: 1;
       }
     }
 
@@ -225,6 +226,8 @@
     a {
       display: block;
       padding: 0.4rem 0;
+      font-size: var(--step-3);
+      font-weight: 600;
     }
   }
 
@@ -276,13 +279,13 @@
 
   /* HEADER MENU: > 500 | 31.25rem */
   @media(min-width: 31.25rem) {
-    .menu {
-      --navTop: 24px;
-    }
+    .headerWrap {
 
-    nav {
-      flex-direction: row;
-      gap: 2rem;
+      .menu {
+
+      }
+
+
     }
   }
 
@@ -301,6 +304,11 @@
         background: none;
         animation: none;
         box-shadow: none;
+
+        border: none;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
       }
 
       &.slideMenuIn .menu {
@@ -309,6 +317,16 @@
 
       &:not(.slideMenuIn) .menu {
         animation: none;
+      }
+
+      a {
+        font-size: var(--step--1);
+        font-weight: 400;
+      }
+
+      nav {
+        flex-direction: row;
+        gap: 2rem;
       }
     }
 
