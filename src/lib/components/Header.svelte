@@ -147,7 +147,6 @@
   .headerWrap {
     display: grid;
     align-items: center;
-    margin-bottom: 1.5rem;
     border-bottom: 1px dotted var(--grid-color);
     grid-template-areas:
 	"a c"

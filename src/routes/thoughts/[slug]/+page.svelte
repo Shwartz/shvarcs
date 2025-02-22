@@ -123,6 +123,13 @@
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: transform 200ms;
+
+    &:hover,
+		&:focus {
+      transform: translate3d(4px, 0, 0);
+    }
   }
 
   .icons {
