@@ -176,7 +176,8 @@
       cursor: url('/src/assets/svg/cursor.svg') 16 16, pointer;
     }
 
-    @media (min-width: px-to-rem(600px)) {
+		/* 600 */
+    @media (min-width: 37.5rem) {
       ul {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -208,9 +209,15 @@
     }
 
     ul.list {
-      @media (min-width: px-to-rem(600px)) {
+			/* 600 */
+      @media (min-width: 37.5rem) {
         grid-template-columns: none;
         gap: 0;
+
+				li:not(:first-child) {
+					border-top: 1px dotted var(--grid-color);
+					margin-top: 1.5rem;
+				}
 
         a {
           display: grid;
