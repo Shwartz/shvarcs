@@ -173,8 +173,17 @@
       grid-template-columns: 1fr;
     }
 
+		article {
+			border-top: 1px dotted var(--grid-color);
+			border-bottom: 1px dotted var(--grid-color);
+			padding-bottom: 1.5rem;
+
+			&:first-child {
+				margin-top: 1.5rem;
+			}
+		}
+
     h3 {
-      margin-top: 1.5rem;
       font-size: var(--step-1);
     }
 
@@ -201,6 +210,12 @@
       main {
         grid-template-columns: 1fr 1fr;
       }
+
+			article {
+				border-bottom: none;
+				margin-top: 1.5rem;
+				padding: 0;
+			}
     }
 
     @media (min-width: px-to-rem(1200px)) {
@@ -239,6 +254,10 @@
   }
 
   .book {
+		padding-bottom: 1.5rem;
+    border-top: 1px dotted var(--grid-color);
+    border-bottom: 1px dotted var(--grid-color);
+
     a {
       padding: 2px;
       border-radius: 2px;
@@ -253,7 +272,7 @@
     }
   }
 
-  :global(.gridOff) :is(header, .bookmarks) {
+  :global(.gridOff) :is(header, .bookmarks, article, .book) {
     border-color: rgba(0, 0, 0, 0);
   }
 </style>
