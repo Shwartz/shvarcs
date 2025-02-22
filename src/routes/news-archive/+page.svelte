@@ -13,10 +13,6 @@
 	let checked = $state(false);
 	let compact = $state(false);
 
-	// console.log({ news });
-
-	// console.log('props: ', news.posts[0].fullItem.properties['Due Date'].date.start);
-
 	onMount(() => {
 		const savedState = localStorage.getItem('themeNewsListGrid');
 		checked = savedState === 'true';
@@ -62,8 +58,8 @@
 			{#each news.posts as post, index}
 				<li>
 					<Tooltip color={getColor(index)}>
-						<a title="{post.title.substring(0, post.title.indexOf('|')).trim()}" href="{base}/news-archive/{post.slug}">
-							<h3>{post.title.substring(0, post.title.indexOf('|')).trim()}</h3>
+						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
+							<h3>{post.title}</h3>
 							<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
 							<p class="summary">{post.summary}</p>
 						</a>

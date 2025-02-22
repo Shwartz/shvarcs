@@ -41,9 +41,9 @@ export const getDatabaseById = async (ID: string) => {
 				};
 			});
 		}
+		console.log('1 posts[0] trim: ', posts[0]);
 
 		return posts;
-
 	} catch (error) {
 		return { error };
 	}
@@ -97,7 +97,7 @@ export const getRecentPosts = async (DB_ID: string, count: number) => {
 			posts = database.results.map((item: any) => {
 				return {
 					id: item.id,
-					title: item.properties.Name.title[0].plain_text,
+					title: item.properties.Name.title[0].plain_text.split('|')[0].trim().replace('#', 'Nr.'),
 					slug: createSlug(item.properties.Name.title[0].plain_text, item.id),
 					summary: item.properties.Summary.rich_text[0].plain_text,
 					fullItem: item

@@ -18,7 +18,7 @@
 	{:else}
 
 		<div>
-			<h1>{post.title.split('|')[0].trim().replace('#', 'Nr.')}</h1>
+			<h1>{post.title}</h1>
 			<div class="meta first">
 				<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
 				<a href="{base}/news-archive" class="back">
