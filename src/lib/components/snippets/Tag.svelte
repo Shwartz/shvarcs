@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { type CategoryType, getCategoryColor } from '$lib/utils/categoryColors';
+	import TickCircle from '../../../assets/svg/TickCircle.svelte';
 
-	export let blogCategory: CategoryType = 'JavaScript';
-	export let active: boolean = false;
+	interface TagProps {
+		blogCategory: CategoryType;
+		active: boolean;
+	}
+
+	const { blogCategory, active = false }: TagProps = $props();
 </script>
 
 <span
@@ -10,25 +15,31 @@
 	class:active={active}
 	style:background-color={getCategoryColor(blogCategory)}
 >
-  {blogCategory}
+	{#if active}
+		<TickCircle />
+	{/if}
+	{blogCategory}
 </span>
 
 <style>
     .tag {
-        display: inline-block;
+        display: flex;
+				gap: 4px;
+				align-items: center;
         padding: 0.25em 0.7em;
-        border-radius: 1em;
+        border-radius: 1rem;
         color: black;
-        font-size: 0.75rem;
-        border: 1px solid rgba(255, 255, 255, 0);
+        font-size: var(--step--2);
+        border: 1px solid var(--text);
         transition: 200ms box-shadow, 200ms border;
     }
 
     .active {
-        border: 1px solid var(--text);
+        padding: 0.25em 0.7em 0.25em 0.3em;
+
     }
 
-    :global(html[data-theme='dark'] .active) {
+    /*:global(html[data-theme='dark'] .active) {
         box-shadow: 1px 1px 3px var(--background-color) inset;
-    }
+    }*/
 </style>

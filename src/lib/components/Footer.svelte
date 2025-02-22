@@ -70,6 +70,10 @@
       margin-bottom: 1.5rem;
     }
 
+		.bio h3 {
+			font-size: var(--step-0);
+		}
+
     p {
       margin-top: 0.5rem;
     }
