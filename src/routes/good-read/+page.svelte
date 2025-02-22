@@ -107,8 +107,7 @@
   }
 
   :global(.gridOff) :is(.headerTags, .bookmarks) {
-    border-bottom-color: rgba(0, 0, 0, 0);
-    border-top-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
   }
 
   @media (min-width: 600px) {

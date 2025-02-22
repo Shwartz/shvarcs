@@ -87,7 +87,7 @@
   }
 
   :global(.gridOff) :is(h1, .metaWrap) {
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .second {
@@ -96,8 +96,7 @@
   }
 
   :global(.gridOff) .second {
-    border-top: 1px solid var(--text);
-    border-bottom: 1px solid var(--text);
+    border-color: var(--text);
   }
 
   .meta {

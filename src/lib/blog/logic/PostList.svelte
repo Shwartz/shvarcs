@@ -156,8 +156,7 @@
 
   /* Toggle background grid lines */
   :global(.gridOff) .postSnippet {
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .visual {

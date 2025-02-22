@@ -161,7 +161,7 @@
   }
 
   :global(.gridOff) .blog {
-    border-top-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .news {
@@ -254,7 +254,6 @@
   }
 
   :global(.gridOff) :is(header, .bookmarks) {
-    border-top-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
   }
 </style>
