@@ -132,15 +132,17 @@ button.clean {
 
   /* style code around the web apart of table as it is styled with table from the lib */
   code:not(table code) {
-    font-size: var(--step--1);
-    font-family: var(--ff-code), serif;
-    color: var(--text);
-    display: inline-block;
+    position: relative;
     padding: 0 0.5rem;
+    display: inline-block;
+    top: -1px;
+    color: var(--text);
     line-height: 1.5;
     border-radius: 0.25rem;
-    background: var(--code-background);
     border: 1px solid var(--code-border-color);
+    font-size: var(--step--1);
+    font-family: var(--ff-code), serif;
+    background: var(--code-background);
   }
 
   .codePen {
@@ -172,6 +174,10 @@ button.clean {
 
   p img {
     margin-inline: auto;
+  }
+
+  p:has(img) {
+    margin: 2rem 0;
   }
 
   tbody, td {

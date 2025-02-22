@@ -245,7 +245,7 @@ transform: translateY(-1rem)`;
 								 max="180" /> {x3RotateY} deg<br />
 				</div>
 				<div>
-					<button type="button" on:click={resetEx3}>Reset</button>
+					<button type="button" onclick={resetEx3}>Reset</button>
 				</div>
 			</div>
 			<figure>
@@ -350,7 +350,7 @@ transform: translateY(-1rem)`;
 								 max="180"/> deg: {x5deg}
 				</div>
 				<div>
-					<button type="button" on:click={resetEx6}>Reset</button>
+					<button type="button" onclick={resetEx6}>Reset</button>
 				</div>
 			</div>
 			<figure>

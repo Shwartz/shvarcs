@@ -6,6 +6,7 @@
 	import { TrOutlineArrowBackUp, TrOutlineCalendarMonth, TrOutlineClock, TrOutlineHeart } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
 	import { base } from '$app/paths';
+	import PostFooter from '$lib/components/PostFooter.svelte';
 
 	let { data }: { data: PageData } = $props();
 	let { postData: { id, Visual, readingTime, tags, title, publishedDate, likes }, PostContent } = data;
@@ -20,7 +21,7 @@
 </script>
 <!-- All this is added to children() prop in the +layout.svelte -->
 {#if tags && readingTime && publishedDate}
-	<h1 style="view-transition-name: title-{id}">
+	<h1 id="mainTitle" style="view-transition-name: title-{id}">
 		<span>{title}</span>
 	</h1>
 
@@ -59,10 +60,12 @@
 {/if}
 
 {#if PostContent}
-	<svelte:component this={PostContent} />
+	<PostContent/>
 {:else}
 	<p>Loading post content...</p>
 {/if}
+
+<PostFooter linkBack="thoughts" />
 
 <style lang="scss">
   h1 {

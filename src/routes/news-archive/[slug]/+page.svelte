@@ -3,6 +3,7 @@
 	import { TrOutlineArrowBackUp } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
 	import Block from '$lib/notionCMS/Block.svelte';
+	import PostFooter from '$lib/components/PostFooter.svelte';
 
 	const { data } = $props();
 	const { post } = data;
@@ -18,7 +19,7 @@
 	{:else}
 
 		<div>
-			<h1>{post.title}</h1>
+			<h1 id="mainTitle">{post.title}</h1>
 			<div class="meta first">
 				<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
 				<a href="{base}/news-archive" class="back">
@@ -34,6 +35,7 @@
 			{/each}
 		</div>
 	{/if}
+	<PostFooter linkBack="news-archive" />
 </section>
 
 <!-- svelte-ignore css_unused_selector -->
