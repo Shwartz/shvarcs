@@ -88,6 +88,12 @@
   .flex {
     display: flex;
     gap: 1rem;
+    flex-direction: column-reverse;
+
+    /* 768 */
+    @media(min-width: 48rem) {
+      flex-direction: row;
+    }
   }
 
   .counter {
@@ -105,6 +111,7 @@
 
   .filter {
     display: flex;
+		flex-wrap: wrap;
     gap: 4px;
   }
 
