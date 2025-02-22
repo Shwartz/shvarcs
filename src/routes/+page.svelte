@@ -121,7 +121,7 @@
   }
 
   .hero p {
-    font-size: px-to-rem(40px);
+    font-size: var(--step-3);
     line-height: 1.5;
     max-width: 960px;
     text-align: center;
