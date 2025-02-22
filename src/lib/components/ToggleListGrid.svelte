@@ -59,8 +59,11 @@
         color: var(--textLight);
     }
 
-    .theme-toggle:hover:has(input[type="checkbox"]) .grid,
-    .theme-toggle:hover:has(input[type="checkbox"]) .list {
-				color: var(--text);
+		.theme-toggle:has(input[type="checkbox"]) {
+        .grid:hover,
+        .list:hover {
+            color: var(--text);
+        }
 		}
+
 </style>

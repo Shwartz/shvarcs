@@ -60,10 +60,12 @@
         color: var(--textLight);
     }
 
-    .theme-toggle:hover:has(input[type="checkbox"]) .compact,
-    .theme-toggle:hover:has(input[type="checkbox"]) .comfortable {
-				color: var(--text);
-		}
+    .theme-toggle:has(input[type="checkbox"]) {
+        .compact:hover,
+        .comfortable:hover {
+            color: var(--text);
+        }
+    }
 
 
 </style>
