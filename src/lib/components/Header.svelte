@@ -200,7 +200,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      transform: translate3d(110%, 0, 0);
+      transform: translate3d(-110%, var(--navTop), 0);
       transition: none;
       background: var(--background-color);
       border: 1px dotted var(--grid-color);

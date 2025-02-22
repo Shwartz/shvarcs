@@ -26,6 +26,15 @@
 </div>
 
 <style>
+		div {
+        display: none;
+		}
+    /* 768 | 48rem */
+    @media(min-width: 48rem) {
+        div {
+            display: block;
+        }
+    }
     .magic {
         outline: 1px solid var(--text);
         border-radius: 2px;
