@@ -5,6 +5,8 @@
 	import { onMount } from 'svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import { getColor } from '$lib/components/snippets/getColor';
+	import { TrOutlineCalendarMonth } from 'svelte-icons-pack/tr';
+	import { Icon } from 'svelte-icons-pack';
 
 	const { data } = $props();
 	const { news } = data;
@@ -60,7 +62,10 @@
 					<Tooltip color={getColor(index)}>
 						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
 							<h3>{post.title}</h3>
-							<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
+							<p class="date">
+								<Icon size="16" color="777777" src={TrOutlineCalendarMonth} />
+								<span>{post.fullItem.properties['Due Date'].date.start}</span>
+							</p>
 							<p class="summary">{post.summary}</p>
 						</a>
 					</Tooltip>
@@ -160,7 +165,15 @@
     }
 
     .date {
+			display: flex;
+			align-items: center;
+			gap: 4px;
       font-size: var(--step--1);
+
+			:global(svg) {
+				position: relative;
+				top: -0.5px;
+			}
     }
 
     .summary {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { TrOutlineArrowBackUp } from 'svelte-icons-pack/tr';
+	import { TrOutlineArrowBackUp, TrOutlineCalendarMonth } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
 	import Block from '$lib/notionCMS/Block.svelte';
 	import PostFooter from '$lib/components/PostFooter.svelte';
@@ -21,7 +21,10 @@
 		<div>
 			<h1 id="mainTitle">{post.title}</h1>
 			<div class="meta first">
-				<p class="date">{post.fullItem.properties['Due Date'].date.start}</p>
+				<p class="date">
+					<Icon size="16" color="777777" src={TrOutlineCalendarMonth} />
+					<span>{post.fullItem.properties['Due Date'].date.start}</span>
+				</p>
 				<a href="{base}/news-archive" class="back">
 					<Icon size="20" color="var(--text)" src={TrOutlineArrowBackUp} />
 					<span>back</span>
@@ -60,6 +63,18 @@
     }
   }
 
+  .date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--step--1);
+
+    :global(svg) {
+      position: relative;
+      top: -0.5px;
+    }
+  }
+
   .meta {
     display: flex;
     max-width: var(--post-width);
@@ -67,7 +82,6 @@
     gap: 1rem;
     margin-inline: auto;
     padding: 1rem 0;
-    border-top: 1px solid var(--text);
     border-bottom: 1px solid var(--text);
 
     p {
