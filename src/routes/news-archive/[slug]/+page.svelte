@@ -22,7 +22,7 @@
 			<h1 id="mainTitle">{post.title}</h1>
 			<div class="meta first">
 				<p class="date">
-					<Icon size="16" color="777777" src={TrOutlineCalendarMonth} />
+					<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
 					<span>{post.fullItem.properties['Due Date'].date.start}</span>
 				</p>
 				<a href="{base}/news-archive" class="back">

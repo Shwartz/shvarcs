@@ -16,10 +16,10 @@
   --pastel-lime: #D6F1BB;
   --pastel-lime-hover: #e2f5cf;
 
-  --grid-color: #FF060033;
   --black: #222;
 
   /** theme light | toggle colours */
+  --grid-color: #FF060020;
   --background-color: #FFF;
   --text: #222;
   --textLight: rgba(34, 34, 34, 0.2);
@@ -51,6 +51,7 @@
   /** theme dark | toggle colours */
 html[data-theme='dark'] {
   color-scheme: dark;
+  --grid-color: #FF060030;
   --background-color: #222;
   --text: #FFF;
   --textLight: rgba(255, 255, 255, 0.4);

@@ -63,7 +63,7 @@
 						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
 							<h3>{post.title}</h3>
 							<p class="date">
-								<Icon size="16" color="777777" src={TrOutlineCalendarMonth} />
+								<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
 								<span>{post.fullItem.properties['Due Date'].date.start}</span>
 							</p>
 							<p class="summary">{post.summary}</p>

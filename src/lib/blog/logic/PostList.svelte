@@ -52,15 +52,15 @@
 					<div class="content" style="view-transition-name: content-{id}">
 						<div class="icons" style="view-transition-name: icons-{id}">
 							<div>
-								<Icon size="16" color="777777" src={TrOutlineCalendarMonth} />
+								<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
 								<span>{publishedDate}</span>
 							</div>
 							<div>
-								<Icon size="16" color="777777" src={TrOutlineClock} />
+								<Icon size="16" color="var(--text)" src={TrOutlineClock} />
 								<span>{readingTime}</span>
 							</div>
 							<div>
-								<Icon size="16" color="777777" src={TrOutlineHeart} />
+								<Icon size="16" color="var(--text)" src={TrOutlineHeart} />
 								<span>{likes}</span>
 							</div>
 						</div>
