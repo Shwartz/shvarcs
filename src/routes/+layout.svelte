@@ -1,109 +1,94 @@
-<script>
-  import "./globalStyles.css";
-  import "./temp-style.css";
-  import {fade} from 'svelte/transition';
-  import {navigationIsDelayed} from "$lib/utils/NavigationIsDelayed.ts";
-  import {base} from "$app/paths";
-  import {page} from "$app/stores";
-  import ThemeSwitcher from "$lib/components/theme/ThemeSwitcher.svelte";
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { onNavigate } from '$app/navigation';
+	import { page } from '$app/state';
+	import { setContext } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import '@fontsource-variable/inter';
+	import '@fontsource/frank-ruhl-libre/700.css';
+	import '../app.scss';
 
-  $:url = $page.url.pathname.split("/")[1];
+	let { children } = $props();
+
+	const GRID_STATE = 'gridState';
+	let initialGridState = true;
+	if (browser && localStorage.getItem(GRID_STATE) !== null) {
+		initialGridState = JSON.parse(localStorage.getItem(GRID_STATE) ?? 'false');
+	}
+	let isGridOn = $state(initialGridState);
+
+	const toggleGrid = () => {
+		isGridOn = !isGridOn;
+		localStorage.setItem(GRID_STATE, JSON.stringify(isGridOn));
+	};
+
+	const layoutActions = $state({
+		isGridOn: true,
+		toggleGrid
+	});
+
+	setContext('layout-actions', layoutActions);
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
+
+	let isDelayed = $state(false);
+	$effect(() => {
+		const unsubscribe = navigationIsDelayed.subscribe(value => {
+			isDelayed = value;
+		});
+
+		return unsubscribe;
+	});
 </script>
 
-<div class='page'>
-    {#if $navigationIsDelayed}
-        <div class="loader" transition:fade={{duration:200}}></div>
-    {/if}
-    <nav class="section large">
-        <ul>
-            <li>
-                <a href="{base}/">Andris Švarcs</a>
-            </li>
-            <li>
-                <a class:active={url === 'thoughts'} href="{base}/thoughts">Thoughts</a>
-            </li>
-            <li>
-                <a class:active={url === 'news-archive'} href="{base}/news-archive">News Archive</a>
-            </li>
-            <li>
-                <ThemeSwitcher/>
-            </li>
-        </ul>
-    </nav>
-    <slot/>
-    <footer>
-        <div>
-            <p>&copy;2024 <a href="https://shvarcs.com">Andris Švarcs</a> | Get in touch: <a href="https://fosstodon.org/@shvarcs" target="_blank">Mastodon</a></p>
-        </div>
-    </footer>
+<svelte:head>
+	<title>{page.data.title ?? 'fallback title'}</title>
+</svelte:head>
+
+<div class="page">
+	<div class="container">
+		{#if isDelayed}
+			<div class="loader" transition:fade={{duration:200}}></div>
+		{/if}
+		<div class="gridLines" class:gridOff={!isGridOn}>
+			<Header isGridOn={isGridOn} toggleGrid={toggleGrid} />
+			{@render children()}
+			<Footer />
+		</div>
+	</div>
 </div>
 
-<style lang='scss'>
-  .page {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  nav {
-    --s: 40px;
-    position: relative;
-
-    &:before {
-      content: "";
-      position: absolute;
-      height: 0.4rem;
-      bottom: -0.4rem;
-      left: 0;
-      right: 0;
-
-      background: repeating-conic-gradient(var(--bg) 0 25%, var(--disabled) 0 50%) 0 0/var(--s) var(--s) round;
-      pointer-events: none;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      width: 100%;
-      margin: 1rem 0;
-
-      li {
-        display: flex;
-      }
-
-      li:first-child {
-        width: 100%;
-        margin-right: auto;
-      }
-
-      li:last-child {
-        margin-left: auto;
-      }
-
-      a.active {
-        text-decoration: underline;
-      }
-    }
+<!-- svelte-ignore css_unused_selector -->
+<style lang="scss" global>
+  :global(body) {
+    font-family: "Inter Variable", sans-serif;
   }
 
-  footer {
-    p {
-      margin: 1.5rem 0;
-    }
+  :global(.frankTitle) {
+    font-family: "Frank Ruhl Libre", serif;
   }
 
-  @media only screen and (min-width: 800px) {
-    nav ul {
-      flex-wrap: nowrap;
+  header {
+    border-bottom: 1px dotted var(--grid-color);
+  }
 
+  .gridOff {
+    background-image: none;
 
-      li:first-child {
-        width: auto;
-      }
-
-      li:last-child {
-        margin-left: 1rem;
-      }
+    &:after {
+      display: none;
     }
   }
 
@@ -113,7 +98,8 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: #4c432b;
+    background: var(--pastel-orange);
+		z-index: 1;
 
     &:after {
       content: '';
@@ -122,7 +108,7 @@
       left: 0;
       height: 4px;
       width: 100%;
-      background: #ffb300;
+      background: var(--pastel-purple);
       transform: translate3d(-100%, 0, 0);
       animation: 10s moveSlide forwards;
     }
@@ -150,4 +136,3 @@
     }
   }
 </style>
-

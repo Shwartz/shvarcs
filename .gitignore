@@ -9,4 +9,8 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .idea
+/.idea
 /.vercel
+/dist
+/temp
+*.iml

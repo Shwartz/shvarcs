@@ -4,7 +4,7 @@
 
   import github from "svelte-highlight/styles/github";
   import monokai from "svelte-highlight/styles/monokai";
-  export let source;
+  const {source} = $props();
 </script>
 
 <div class="wrap">
@@ -25,6 +25,10 @@
   .wrap {
     margin: 2rem 0;
     font-size: 0.8rem;
+  }
+
+  .wrap :global(table) {
+      background: green;
   }
 </style>
 
