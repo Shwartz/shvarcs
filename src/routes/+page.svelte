@@ -261,13 +261,14 @@
     a {
       padding: 2px;
       border-radius: 2px;
-      color: var(--black);
-      background: var(--pastel-lime);
       font-size: var(--step--1);
       vertical-align: middle;
+      color: var(--link-color);
+      background: var(--link-bg);
+			transition: background-color 0.2s;
 
       &:hover, &:focus {
-        background: var(--pastel-lime-hover);
+        background-color: var(--link-bg-hover);
       }
     }
   }

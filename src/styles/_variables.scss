@@ -14,7 +14,10 @@
   --pastel-aqua: #B8DFE6;
   --pastel-mint: #D1E2CF;
   --pastel-lime: #D6F1BB;
-  --pastel-lime-hover: #e2f5cf;
+
+  --link-color: var(--text);
+  --link-bg: rgba(184, 223, 230, 1);
+  --link-bg-hover: rgba(184, 223, 230, 0.6);
 
   --black: #222;
 
@@ -28,8 +31,6 @@
   --code-background: #f5f5f5;
   --code-border-color: #e1e1e1;
   --grey-text: #ccc;
-
-
 
   --post-width: 40.125rem;
   --post-l-width: 64rem;
@@ -60,6 +61,10 @@ html[data-theme='dark'] {
   --code-background: #5d5d5d;
   --code-border-color: #b0b0b0;
   --grey-text: #5b5b5b;
+
+  --link-color: rgba(184, 223, 230, 1);
+  --link-bg: rgba(184, 223, 230, 0.3);
+  --link-bg-hover: rgba(184, 223, 230, 0.2);
 }
 
 

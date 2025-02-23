@@ -50,19 +50,17 @@
     }
 
 		a {
-      text-decoration: none;
+      text-decoration: underline;
       padding-bottom: 1px; /* Underline distance from the text */
-      color: var(--black);
-      background:
-              linear-gradient(to right, var(--pastel-lime), var(--pastel-lime), var(--pastel-lime)) 100% 100% no-repeat,
-              linear-gradient(to right, var(--pastel-lime), var(--pastel-yellow), var(--pastel-lime)) 0 100% no-repeat;
-      background-size: 100% 100%, 0 100%;
-      transition: background-size 400ms;
       font-size: var(--step--1);
       vertical-align: middle;
 
+      color: var(--link-color);
+      background: var(--link-bg);
+      transition: background-color 0.2s;
+
       &:hover, &:focus {
-        background-size: 0 100%, 100% 100%;
+        background-color: var(--link-bg-hover);
       }
 		}
 	}

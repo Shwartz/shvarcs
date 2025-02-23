@@ -105,7 +105,16 @@
 
 		&:hover,
     &:focus  {
-      transform: translate3d(4px,0,0);
+      transform: translate3d(-4px,0,0);
 		}
+  }
+
+  .back {
+    background: none;
+
+    &:hover,
+    &:focus {
+      background: none;
+    }
   }
 </style>

@@ -406,7 +406,6 @@
 		<HighLightWrap source={ex23} />
 
 		<h3 id="scrollFinalResult">Final result</h3>
-		<p><a href="#scrollTop">Back to top</a></p>
 
 		<p><a href="https://codepen.io/collection/zxQKQO?grid_type=list">CodePen list of examples</a></p>
 

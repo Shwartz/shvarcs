@@ -4,7 +4,7 @@
 	import { Icon } from 'svelte-icons-pack';
 	import ArrowUp from '../../assets/svg/ArrowUp.svelte';
 
-	const {linkBack} = $props();
+	const { linkBack } = $props();
 </script>
 
 <div class="postFooter">
@@ -22,7 +22,11 @@
   .postFooter {
     display: flex;
     justify-content: space-between;
-    margin-top: 4.5rem;
+    margin-top: 3rem;
+		padding-top: 1.5rem;
+    margin-inline: auto;
+    max-width: var(--post-width);
+		border-top: 1px solid var(--text);
   }
 
   .back {
@@ -39,19 +43,29 @@
     }
   }
 
-	.up {
-		display: flex;
-		gap: 0.5rem;
-		text-decoration: none;
+  .up {
+    display: flex;
+    gap: 0.5rem;
+    text-decoration: none;
 
-		:global(svg) {
-			transform: translate3d(0, 0, 0);
-			transition: transform 200ms;
-		}
+    :global(svg) {
+      transform: translate3d(0, 0, 0);
+      transition: transform 200ms;
+    }
 
-		&:hover :global(svg),
-		&:focus :global(svg) {
+    &:hover :global(svg),
+    &:focus :global(svg) {
       transform: translate3d(0, -4px, 0);
+    }
+  }
+
+	.back, .up {
+    color: var(--text);
+		background: none;
+
+		&:hover,
+		&:focus {
+			background: none;
 		}
 	}
 </style>
