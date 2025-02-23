@@ -23,7 +23,7 @@ export const postsArr = [
 		description: 'So, you have your first mockup or design in your hands, but how do you translate it to HTML and CSS? Should you rely on CSS frameworks like Bootstrap, TailwindCSS, or others?',
 		tags: ['CSS'],
 		publishedDate: 'June, 2024',
-		readingTime: '10 min read',
+		readingTime: '12 min read',
 		likes: '8 likes',
 		Visual: FlexImg
 	}, {
@@ -33,7 +33,7 @@ export const postsArr = [
 		description: 'Finding out about build errors',
 		tags: ['JavaScript'],
 		publishedDate: 'March, 2024',
-		readingTime: '10 min read',
+		readingTime: '2 min read',
 		likes: '5 likes',
 		Visual: VercelImg
 	}, {
@@ -43,7 +43,7 @@ export const postsArr = [
 		description: '2D and 3D animations provide developers with tools to manipulate an element on the screen, including position, size, perspective and rotation.',
 		tags: ['CSS'],
 		publishedDate: 'March, 2024',
-		readingTime: '10 min read',
+		readingTime: '6 min read',
 		likes: '5 likes',
 		Visual: AnimationImg
 	}, {
@@ -53,7 +53,7 @@ export const postsArr = [
 		description: 'A quick overview of is(), where(), has() and not() selectors',
 		tags: ['CSS'],
 		publishedDate: 'February, 2024',
-		readingTime: '10 min read',
+		readingTime: '5 min read',
 		likes: '5 likes',
 		Visual: Fallback
 	}, {
@@ -63,7 +63,7 @@ export const postsArr = [
 		description: 'The common pitfalls with CSS and different approaches to make sense of the project\'s design, front-end and maintenance.',
 		tags: ['CSS'],
 		publishedDate: 'May, 2023',
-		readingTime: '10 min read',
+		readingTime: '5 min read',
 		likes: '5 likes',
 		Visual: Fallback
 	},
@@ -74,7 +74,7 @@ export const postsArr = [
 		description: 'The Svelte vs React argument is straightforward when the project requirements are clearly defined.',
 		tags: ['JavaScript'],
 		publishedDate: 'September, 2022',
-		readingTime: '18 min read',
+		readingTime: '4 min read',
 		likes: '112 likes',
 		Visual: Fallback
 	}

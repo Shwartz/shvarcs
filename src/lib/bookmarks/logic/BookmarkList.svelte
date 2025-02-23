@@ -52,7 +52,7 @@
 		a {
       text-decoration: underline;
       padding-bottom: 1px; /* Underline distance from the text */
-      font-size: var(--step--1);
+      font-size: var(--step-0);
       vertical-align: middle;
 
       color: var(--link-color);

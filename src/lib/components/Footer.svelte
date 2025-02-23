@@ -23,9 +23,9 @@
 		</div>
 		<div class="links">
 			<h3>Links</h3>
+			<!--<p>link to be added</p>
 			<p>link to be added</p>
-			<p>link to be added</p>
-			<p>link to be added</p>
+			<p>link to be added</p>-->
 		</div>
 		<div class="connect">
 			<h3>Lets connect</h3>

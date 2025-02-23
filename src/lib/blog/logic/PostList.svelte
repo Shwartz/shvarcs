@@ -59,10 +59,10 @@
 								<Icon size="16" color="var(--text)" src={TrOutlineClock} />
 								<span>{readingTime}</span>
 							</div>
-							<div>
-								<Icon size="16" color="var(--text)" src={TrOutlineHeart} />
+							<!--<div>
+								<Icon size="16" color="var(&#45;&#45;text)" src={TrOutlineHeart} />
 								<span>{likes}</span>
-							</div>
+							</div>-->
 						</div>
 						<h1 class="title" style="view-transition-name: title-{id}">{title}</h1>
 						<p class="intro truncate">{description}</p>
