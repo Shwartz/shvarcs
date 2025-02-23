@@ -54,7 +54,7 @@
 
     h2 {
 			margin-top: 3rem;
-      border-bottom: 1px solid var(--text);
+      border-bottom: 1px solid var(--grey-text);
       font-size: var(--step-2);
     }
 

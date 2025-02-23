@@ -2,14 +2,14 @@
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
-	import Footer from '$lib/components/Footer.svelte';
 	import { setContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import '@fontsource-variable/inter';
 	import '@fontsource/frank-ruhl-libre/700.css';
 	import '../app.scss';
-	import Header from '$lib/components/Header.svelte';
 
 	let { children } = $props();
 
@@ -98,7 +98,8 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: #4c432b;
+    background: var(--pastel-orange);
+		z-index: 1;
 
     &:after {
       content: '';
@@ -107,7 +108,7 @@
       left: 0;
       height: 4px;
       width: 100%;
-      background: #ffb300;
+      background: var(--pastel-purple);
       transform: translate3d(-100%, 0, 0);
       animation: 10s moveSlide forwards;
     }
