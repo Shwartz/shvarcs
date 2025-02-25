@@ -31,6 +31,7 @@
   --code-background: #f5f5f5;
   --code-border-color: #e1e1e1;
   --grey-text: #ccc;
+  --orange: #756144;
 
   --post-width: 40.125rem;
   --post-l-width: 64rem;
@@ -61,6 +62,7 @@ html[data-theme='dark'] {
   --code-background: #5d5d5d;
   --code-border-color: #b0b0b0;
   --grey-text: #5b5b5b;
+  --orange: var(--pastel-orange);
 
   --link-color: rgba(184, 223, 230, 1);
   --link-bg: rgba(184, 223, 230, 0.3);
