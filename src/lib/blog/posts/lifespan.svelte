@@ -87,7 +87,6 @@
 		return result || '0 months';
 	}
 
-	// Assuming you have a Dot type defined
 	type Dot = {
 		id: number;
 		isLived: boolean;
