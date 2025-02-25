@@ -21,7 +21,21 @@
 			filteredBookmarks = bookmarkArr;
 		}
 	});
+
+	const title = 'Good Read | Bookmarks'
+	const description = 'Bookmarks from my goto pages about development, tools, howto and whatever I visit frequently'
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="title" content="{title}" />
+	<meta name="description" content="{description}" />
+	<meta property="og:title" content="{title}" />
+	<meta property="og:description" content="{description}" />
+	<meta property="twitter:title" content="{title}" />
+	<meta property="twitter:description" content="{description}" />
+	<meta name="robots" content="index,follow" />
+</svelte:head>
 
 <div class="goodRead">
 	<h1 class="frankTitle">good read</h1>

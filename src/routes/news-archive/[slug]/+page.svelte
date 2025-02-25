@@ -7,17 +7,28 @@
 
 	const { data } = $props();
 	const { post } = data;
+
+	const title = post?.title ? `News | ${post.title}` : 'News article';
+	const description = post?.summary ? post.summary : 'Weekly front-end post';
 </script>
 
-<section class="post">
+<svelte:head>
+	<title>{title}</title>
+	<meta name="title" content="{title}" />
+	<meta name="description" content="{description}" />
+	<meta property="og:title" content="{title}" />
+	<meta property="og:description" content="{description}" />
+	<meta property="twitter:title" content="{title}" />
+	<meta property="twitter:description" content="{description}" />
+	<meta name="robots" content="index,follow" />
+</svelte:head>
 
+<section class="post">
 	{#if !post || !post?.content}
 		<div>
 			<p>Something went wrong, no posts</p>
 		</div>
-
 	{:else}
-
 		<div>
 			<h1 id="mainTitle">{post.title}</h1>
 			<div class="meta first">
@@ -53,13 +64,13 @@
     }
 
     h2 {
-			margin-top: 3rem;
+      margin-top: 3rem;
       border-bottom: 1px solid var(--grey-text);
       font-size: var(--step-2);
     }
 
     h3 {
-			font-size: var(--step-1);
+      font-size: var(--step-1);
     }
   }
 
@@ -98,15 +109,15 @@
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-		background: none;
-		color: var(--text);
-		transform: translate3d(0,0,0);
-		transition: transform 200ms;
+    background: none;
+    color: var(--text);
+    transform: translate3d(0, 0, 0);
+    transition: transform 200ms;
 
-		&:hover,
-    &:focus  {
-      transform: translate3d(-4px,0,0);
-		}
+    &:hover,
+    &:focus {
+      transform: translate3d(-4px, 0, 0);
+    }
   }
 
   .back {

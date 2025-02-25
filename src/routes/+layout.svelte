@@ -53,10 +53,6 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{page.data.title ?? 'fallback title'}</title>
-</svelte:head>
-
 <div class="page">
 	<div class="container">
 		{#if isDelayed}
@@ -99,7 +95,7 @@
     right: 0;
     height: 4px;
     background: var(--pastel-orange);
-		z-index: 1;
+    z-index: 1;
 
     &:after {
       content: '';

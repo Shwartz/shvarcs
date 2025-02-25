@@ -82,49 +82,44 @@
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 
-<section class="medium">
-	<!--<div>
-		<time datetime="01-2025">January, 2025</time>
-	</div>-->
-</section>
 <section class="post">
 	<div>
-	<p>
-		Ever wondered how far you've come?
-		<br />
-		Enter your birthday and see for yourself in a sea of vibrant circles!
-		Each dot represents 1 month, and there are 960 dots (or 80 years)</p>
-	<div class="bDaySelect">
-		<label for="birthday">Enter your birthday</label>
-		<input
-			id="birthday"
-			name="birthday"
-			type="date"
-			value={birthday.toISOString().split('T')[0]}
-			oninput={handleDateChange}
-			max={new Date().toISOString().split('T')[0]}
-		/>
-	</div>
-	<main>
-		<div class="life">
-			{#each dots as dot}
-				<div
-					style="background-color: hsl({dot.id % 360}deg 30% 50%);"
-					class="dot"
-					class:lived={dot.isLived}
-					title={`Month ${dot.id + 1}`}
-				></div>
-			{/each}
+		<p>
+			Ever wondered how far you've come?
+			<br />
+			Enter your birthday and see for yourself in a sea of vibrant circles!
+			Each dot represents 1 month, and there are 960 dots (or 80 years)</p>
+		<div class="bDaySelect">
+			<label for="birthday">Enter your birthday</label>
+			<input
+				id="birthday"
+				name="birthday"
+				type="date"
+				value={birthday.toISOString().split('T')[0]}
+				oninput={handleDateChange}
+				max={new Date().toISOString().split('T')[0]}
+			/>
 		</div>
+		<main>
+			<div class="life">
+				{#each dots as dot}
+					<div
+						style="background-color: hsl({dot.id % 360}deg 30% 50%);"
+						class="dot"
+						class:lived={dot.isLived}
+						title={`Month ${dot.id + 1}`}
+					></div>
+				{/each}
+			</div>
 
-		<div class="info">
-			{Math.round((months - livedMonths) / months * 100)}% remaining
-		</div>
-	</main>
+			<div class="info">
+				{Math.round((months - livedMonths) / months * 100)}% remaining
+			</div>
+		</main>
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   p {
     max-width: 43.2rem;
     margin: 0 auto 1rem;
@@ -132,7 +127,7 @@
 
   .bDaySelect {
     text-align: center;
-		margin: 2rem 0 1rem;
+    margin: 2rem 0 1rem;
   }
 
   main {

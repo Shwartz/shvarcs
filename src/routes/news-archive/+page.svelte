@@ -39,7 +39,21 @@
 			compact = checked; // This is to trigger transition
 		});
 	}
+	const title = 'Front-End Findings: Curated News';
+	const description = 'Front-end news, trends, and valuable and interesting articles accumulated from newsletters and other sources.';
+
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="title" content="{title}" />
+	<meta name="description" content="{description}" />
+	<meta property="og:title" content="{title}" />
+	<meta property="og:description" content="{description}" />
+	<meta property="twitter:title" content="{title}" />
+	<meta property="twitter:description" content="{description}" />
+	<meta name="robots" content="index,follow" />
+</svelte:head>
 
 <div class="news">
 	<h1 class="frankTitle">news</h1>
