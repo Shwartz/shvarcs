@@ -147,7 +147,6 @@
   .postSnippet {
     gap: 1.5rem;
     margin-top: 1.5rem;
-    padding-bottom: 1.5rem;
     border-top: 1px dotted var(--grid-color);
     border-bottom: 1px dotted var(--grid-color);
 
