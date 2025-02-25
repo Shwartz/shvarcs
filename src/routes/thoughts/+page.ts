@@ -3,6 +3,6 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = () => {
 	return {
-		title: 'Blog Title'
+		title: 'Code & Curiosities | Blog'
 	};
 };
