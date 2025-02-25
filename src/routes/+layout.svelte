@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import { page } from '$app/state';
 	import { setContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
@@ -45,11 +44,9 @@
 
 	let isDelayed = $state(false);
 	$effect(() => {
-		const unsubscribe = navigationIsDelayed.subscribe(value => {
+		return navigationIsDelayed.subscribe(value => {
 			isDelayed = value;
 		});
-
-		return unsubscribe;
 	});
 </script>
 
