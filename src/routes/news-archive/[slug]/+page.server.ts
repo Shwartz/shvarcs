@@ -16,8 +16,6 @@ export async function load({ params }) {
 		throw error(500, 'Failed to fetch post content');
 	}
 
-	console.log({post})
-
 	const title = post?.title ? `News | ${post.title}` : 'News article';
 
 	return {
