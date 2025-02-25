@@ -7,6 +7,7 @@
 	import { Icon } from 'svelte-icons-pack';
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import { getColor } from '$lib/components/snippets/getColor';
+	import { page } from '$app/state';
 
 	const { data } = $props();
 	const { posts: { posts } } = data;
@@ -19,7 +20,21 @@
 		checked = savedState === 'true';
 		compact = checked;
 	});
+
+	const title = page?.data?.title ?? 'Frontend blog by Andris.';
+	const description = page?.data?.description ?? 'Stories about CSS, HTML, animation and all around Frontend.';
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="title" content="{title}" />
+	<meta name="description" content="{description}" />
+	<meta property="og:title" content="{title}" />
+	<meta property="og:description" content="{description}" />
+	<meta property="twitter:title" content="{title}" />
+	<meta property="twitter:description" content="{description}" />
+	<meta name="robots" content="index,follow" />
+</svelte:head>
 
 <div class="content">
 	<section class="hero">

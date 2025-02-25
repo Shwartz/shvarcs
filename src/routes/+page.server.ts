@@ -5,6 +5,7 @@ export const load = async () => {
 	// console.log('page.server.ts:', posts);
 	return {
 		title: 'Frontend stories By Andris',
+		description: 'Stories about CSS, HTML, animation and all around Frontend',
 		posts,
 	};
 };

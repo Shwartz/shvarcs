@@ -69,6 +69,39 @@
 		}
 	});
 
+	const convertToReadableDate = (num: number) => {
+		const years = Math.floor(num / 12);
+		const months = num % 12;
+
+		let result = '';
+
+		if (years > 0) {
+			result += `${years} year${years !== 1 ? 's' : ''}`;
+		}
+
+		if (months > 0) {
+			if (result.length > 0) result += ', ';
+			result += `${months} month${months !== 1 ? 's' : ''}`;
+		}
+
+		return result || '0 months';
+	}
+
+	type Dot = {
+		id: number;
+		isLived: boolean;
+	};
+
+	// Function to chunk the dots into decades
+	const chunkIntoDecades = (dots: Dot[]): Dot[][] => {
+		const decades: Dot[][] = [];
+		for (let i = 0; i < dots.length; i += 120) {
+			decades.push(dots.slice(i, i + 120));
+		}
+		return decades;
+	};
+
+	const decades = $derived(chunkIntoDecades(dots));
 </script>
 
 <svelte:head>
@@ -82,63 +115,66 @@
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 
-<section class="medium">
-	<!--<div>
-		<time datetime="01-2025">January, 2025</time>
-	</div>-->
-</section>
 <section class="post">
 	<div>
-	<p>
-		Ever wondered how far you've come?
-		<br />
-		Enter your birthday and see for yourself in a sea of vibrant circles!
-		Each dot represents 1 month, and there are 960 dots (or 80 years)</p>
-	<div class="bDaySelect">
-		<label for="birthday">Enter your birthday</label>
-		<input
-			id="birthday"
-			name="birthday"
-			type="date"
-			value={birthday.toISOString().split('T')[0]}
-			oninput={handleDateChange}
-			max={new Date().toISOString().split('T')[0]}
-		/>
-	</div>
-	<main>
-		<div class="life">
-			{#each dots as dot}
-				<div
-					style="background-color: hsl({dot.id % 360}deg 30% 50%);"
-					class="dot"
-					class:lived={dot.isLived}
-					title={`Month ${dot.id + 1}`}
-				></div>
-			{/each}
+		<p>
+			Ever wondered how far you've come?
+			<br />
+			Enter your birthday and see for yourself in a sea of vibrant circles!
+			Each dot represents 1 month, and there are 960 dots (or 80 years)</p>
+		<div class="bDaySelect">
+			<label for="birthday">Enter your birthday</label>
+			<input
+				id="birthday"
+				name="birthday"
+				type="date"
+				value={birthday.toISOString().split('T')[0]}
+				oninput={handleDateChange}
+				max={new Date().toISOString().split('T')[0]}
+			/>
 		</div>
-
-		<div class="info">
-			{Math.round((months - livedMonths) / months * 100)}% remaining
-		</div>
-	</main>
+		<main class="life-container">
+				{#each decades as decade, index}
+					<div class="life" title={`${index + 1}0 years`}>
+						{#each decade as dot}
+							<div
+								style="background-color: hsl({dot.id % 360}deg 30% 50%);"
+								class="dot"
+								class:lived={dot.isLived}
+								title={convertToReadableDate(dot.id + 1)}
+							></div>
+						{/each}
+					</div>
+				{/each}
+			<div class="info">
+				{Math.round((months - livedMonths) / months * 100)}% remaining
+			</div>
+		</main>
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
   p {
     max-width: 43.2rem;
     margin: 0 auto 1rem;
   }
 
   .bDaySelect {
-    text-align: center;
-		margin: 2rem 0 1rem;
+    display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
   }
 
-  main {
+  input {
+    padding: 0.5rem;
+  }
+
+  .life-container {
     border: 1px solid var(--text);
-    max-width: 24rem;
-    padding: 1rem;
+    max-width: 26rem;
+    padding: 1rem 2rem 1rem 1rem;
     margin: auto;
     background: var(--background-color);
 
@@ -146,7 +182,18 @@
       display: grid;
       grid-template-columns: repeat(24, 1fr);
       gap: 4px;
+			position: relative;
       margin-bottom: 1rem;
+
+			&::after {
+				content: attr(title);
+				position: absolute;
+				color: var(--orange);
+				font-size: var(--step--2);
+				right: -44px;
+				top: 28px;
+				transform: rotate(90deg);
+			}
     }
 
     .dot {
@@ -165,10 +212,5 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
-  }
-
-  input {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
   }
 </style>

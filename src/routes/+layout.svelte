@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onNavigate } from '$app/navigation';
-	import { page } from '$app/state';
 	import { setContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { navigationIsDelayed } from '$lib/utils/delayedNavigation';
@@ -45,17 +44,11 @@
 
 	let isDelayed = $state(false);
 	$effect(() => {
-		const unsubscribe = navigationIsDelayed.subscribe(value => {
+		return navigationIsDelayed.subscribe(value => {
 			isDelayed = value;
 		});
-
-		return unsubscribe;
 	});
 </script>
-
-<svelte:head>
-	<title>{page.data.title ?? 'fallback title'}</title>
-</svelte:head>
 
 <div class="page">
 	<div class="container">
@@ -99,7 +92,7 @@
     right: 0;
     height: 4px;
     background: var(--pastel-orange);
-		z-index: 1;
+    z-index: 1;
 
     &:after {
       content: '';
