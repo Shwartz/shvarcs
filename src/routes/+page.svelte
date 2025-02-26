@@ -8,9 +8,11 @@
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import { getColor } from '$lib/components/snippets/getColor';
 	import { page } from '$app/state';
+	import type { PostsData } from '$lib/types/types';
 
 	const { data } = $props();
-	const { posts: { posts } } = data;
+	const posts = $derived(data.posts as Promise<PostsData>);
+
 	let compact = $state(false);
 	let checked = $state(false);
 	let selectedFilter = $state<CategoryType | null>(null);
@@ -57,23 +59,29 @@
 			</a>
 		</header>
 		<main>
-			{#if posts}
-				{#each posts as post}
-					<article>
-						<Tooltip color={getColor(1)}>
-							<a href="{base}/news-archive/{post.slug}" title={post.title}>
-								<h3>{post.title}</h3>
-								<time datetime={post.fullItem.properties['Due Date'].date.start}>
-									{new Date(post.fullItem.properties['Due Date'].date.start).toLocaleDateString()}
-								</time>
-								<p>{post.summary}</p>
-							</a>
-						</Tooltip>
-					</article>
-				{/each}
-			{:else}
-				<p>No recent news available.</p>
-			{/if}
+			{#await posts}
+				<div class="loader">Loading posts...</div>
+			{:then postsData}
+				{#if Array.isArray(postsData)}
+					{#each postsData as post (post.id)}
+						<article>
+							<Tooltip color={getColor(1)}>
+								<a href="{base}/news-archive/{post.slug}" title={post.title}>
+									<h3>{post.title}</h3>
+									<time datetime={post.fullItem.properties['Due Date'].date.start}>
+										{new Date(post.fullItem.properties['Due Date'].date.start).toLocaleDateString()}
+									</time>
+									<p>{post.summary}</p>
+								</a>
+							</Tooltip>
+						</article>
+					{/each}
+				{:else}
+					<p>Error: {postsData.message}</p>
+				{/if}
+			{:catch error}
+				<p>Error loading posts: {error.message}</p>
+			{/await}
 		</main>
 	</section>
 	<section class="bookmarks">
