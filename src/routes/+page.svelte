@@ -62,8 +62,8 @@
 			{#await posts}
 				<div class="loader">Loading posts...</div>
 			{:then postsData}
-				{#if Array.isArray(postsData)}
-					{#each postsData as post (post.id)}
+				{#if Array.isArray(postsData.posts)}
+					{#each postsData.posts as post (post.id)}
 						<article>
 							<Tooltip color={getColor(1)}>
 								<a href="{base}/news-archive/{post.slug}" title={post.title}>
