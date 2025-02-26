@@ -1,4 +1,5 @@
 import { getLastPostsByNumber } from '$lib/notion';
+import type { PostsData } from '$lib/types/types';
 
 export const load = async () => {
 	// const posts = await getLastPostsByNumber(4);
@@ -6,6 +7,6 @@ export const load = async () => {
 	return {
 		title: 'Frontend stories By Andris',
 		description: 'Stories about CSS, HTML, animation and all around Frontend',
-		posts: getLastPostsByNumber(4),
+		posts: getLastPostsByNumber(4) as Promise<PostsData>,
 	};
 };

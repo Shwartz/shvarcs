@@ -7,3 +7,27 @@ export interface Bookmark {
 	url: string;
 	author?: string;
 }
+
+export interface Post {
+	id: number;
+	title: string;
+	slug: string;
+	summary: string;
+	fullItem: {
+		properties: {
+			'Due Date': {
+				date: {
+					start: string;
+				};
+			};
+		};
+	};
+}
+
+export interface ErrorResponse {
+	code: number;
+	message: string;
+	error?: unknown;
+}
+
+export type PostsData = Post[] | ErrorResponse;
