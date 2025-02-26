@@ -85,7 +85,7 @@
 		}
 
 		return result || '0 months';
-	}
+	};
 
 	type Dot = {
 		id: number;
@@ -134,18 +134,18 @@
 			/>
 		</div>
 		<main class="life-container">
-				{#each decades as decade, index}
-					<div class="life" title={`${index + 1}0 years`}>
-						{#each decade as dot}
-							<div
-								style="background-color: hsl({dot.id % 360}deg 30% 50%);"
-								class="dot"
-								class:lived={dot.isLived}
-								title={convertToReadableDate(dot.id + 1)}
-							></div>
-						{/each}
-					</div>
-				{/each}
+			{#each decades as decade, index}
+				<div class="life" title={`${index + 1}0 years`}>
+					{#each decade as dot}
+						<div
+							style="background-color: hsl({dot.id % 360}deg 30% 50%);"
+							class="dot"
+							class:lived={dot.isLived}
+							title={convertToReadableDate(dot.id + 1)}
+						></div>
+					{/each}
+				</div>
+			{/each}
 			<div class="info">
 				{Math.round((months - livedMonths) / months * 100)}% remaining
 			</div>
@@ -161,10 +161,10 @@
 
   .bDaySelect {
     display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 1rem;
-		margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   input {
@@ -172,9 +172,9 @@
   }
 
   .life-container {
-    border: 1px solid var(--text);
+    border: 1px solid var(--orange);
     max-width: 26rem;
-    padding: 1rem 2rem 1rem 1rem;
+    padding: 1rem;
     margin: auto;
     background: var(--background-color);
 
@@ -182,18 +182,20 @@
       display: grid;
       grid-template-columns: repeat(24, 1fr);
       gap: 4px;
-			position: relative;
+      position: relative;
       margin-bottom: 1rem;
 
-			&::after {
-				content: attr(title);
-				position: absolute;
-				color: var(--orange);
-				font-size: var(--step--2);
-				right: -44px;
-				top: 28px;
-				transform: rotate(90deg);
-			}
+      &::after {
+        display: none;
+        content: attr(title);
+        position: absolute;
+        color: var(--orange);
+        font-size: clamp(0.1813rem, calc(0.1813rem + ((7vw - 3px) * 0.4147)), 0.7813rem);
+        right: -44px;
+        /* 16 - 28 */
+        top: clamp(16px, -6px + 7vw, 28px);
+        transform: rotate(90deg);
+      }
     }
 
     .dot {
@@ -211,6 +213,14 @@
       text-align: center;
       font-size: 0.9rem;
       opacity: 0.8;
+    }
+
+    @media(min-width: 300px) {
+      padding: 1rem 2rem 1rem 1rem;
+
+      .life::after {
+        display: block;
+      }
     }
   }
 </style>
