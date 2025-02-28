@@ -1,12 +1,12 @@
 <script>
 	import mockup from '$lib/images/p5-CSS-Layout-mockup.jpg';
-	import HighLightWrap from '$lib/components/HighLightWrap.svelte';
-	import { CodePen } from 'sveltekit-embed';
-
 	import mockupDivided from '$lib/images/p5-CSS-Layout-mockup-divided.jpg';
 	import purHTMLex from '$lib/images/p5-html-without-css.jpg';
-	import nav from '$lib/images/p5-nav.png';
 	import fourCols from '$lib/images/p5-four-cols.jpg';
+	import nav from '$lib/images/p5-nav.png';
+
+	import HighLightWrap from '$lib/components/HighLightWrap.svelte';
+	import { CodePen } from 'sveltekit-embed';
 	import {
 		ex1,
 		ex2,
@@ -32,6 +32,7 @@
 		ex22,
 		ex23
 	} from '$lib/blog/2024-06-css-layout/sourceExamples.js';
+	import Image from '$lib/utils/Image.svelte';
 
 	const title = 'How to create CSS Layout using Flexbox | Post';
 	const description = 'Explaining advanced layout techniques with step-by-step simple examples using CSS Flexbox';
@@ -47,6 +48,21 @@
 	<meta property="twitter:description" content="{description}" />
 	<meta name="robots" content="index,follow" />
 </svelte:head>
+
+<section class="post">
+	<div>
+	<hr>
+	<!--<img src="https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA/59a12aaf-56a7-4a2f-ae91-3f7a71ad6600/public" alt="public">
+	<img src="https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA/59a12aaf-56a7-4a2f-ae91-3f7a71ad6600/320w" alt="320">
+	<img src="https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA/59a12aaf-56a7-4a2f-ae91-3f7a71ad6600/640w" alt="640">
+	<img src="https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA/59a12aaf-56a7-4a2f-ae91-3f7a71ad6600/768w" alt="768">-->
+
+
+	<Image imgId='2145f679-4d9d-44ff-deda-f2a665f26800' alt="my alt tag" />
+	<Image imgId='59a12aaf-56a7-4a2f-ae91-3f7a71ad6600' alt="my alt tag" />
+	<hr>
+	</div>
+</section>
 
 <section class="post" id="scrollTop">
 	<div>

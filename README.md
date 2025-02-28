@@ -36,3 +36,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Defined sizes for images
+320 x 180  
+640 x 360  
+768 x 432  
+1024 x 576  
+1280 x 720  
+1920 x 1080  
+2560 x 1440  
