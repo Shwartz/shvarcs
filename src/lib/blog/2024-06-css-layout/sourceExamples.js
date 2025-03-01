@@ -24,56 +24,69 @@ export const ex1 =
 </html>`;
 
 export const ex2 =
-  `:root {
-    /* FONTS */
-    /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-    --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vi, 0.8rem);
-    --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vi, 1rem);
-    --step-0: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
-    --step-1: clamp(1.35rem, 1.2761rem + 0.3696vi, 1.5625rem);
-    --step-2: clamp(1.62rem, 1.5041rem + 0.5793vi, 1.9531rem);
-    --step-3: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
-    --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
-    --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
-    /* COLORS */
-    --colorRaisinBlack: rgb(30, 30, 36);
-    --colorPennRed: rgb(146, 20, 12);
-    --colorFloralWhite: rgb(255, 248, 240);
-    --colorFloralWhite50: rgba(255, 248, 240, 0.5);
-    --colorSunset: rgb(255, 207, 153);
-    --colorSpaceCadet: rgb(17, 29, 74);
-    --colorSpaceCadetLight: rgb(61, 76, 135);
+`
+:root {
+/* FONTS */
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vi, 0.8rem);
+  --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vi, 1rem);
+  --step-0: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
+  --step-1: clamp(1.35rem, 1.2761rem + 0.3696vi, 1.5625rem);
+  --step-2: clamp(1.62rem, 1.5041rem + 0.5793vi, 1.9531rem);
+  --step-3: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
+  --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
+  --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
+  /* COLORS */
+  --eggshell: #F0EBD5;
+  --sunset: #FFD79F;
+  --burgundy: #8f172e;
+  --text: #222;
+  --white: #fff;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    background: var(--colorFloralWhite);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: var(--eggshell);
+  color: var(--text);
 }
 
 h1 {
-    font-size: var(--step-5);
+  font-size: var(--step-5);
 }
 
 h2 {
-    font-size: var(--step-4);
+  font-size: var(--step-4);
 }
 
 h3 {
-    font-size: var(--step-3);
+  font-size: var(--step-3);
 }
 
 p {
-    margin-top: 1rem;
-    font-size: var(--step-0);
-    line-height: 1.6rem;
+  margin-top: 1rem;
+  font-size: var(--step-0);;
+  line-height: 1.6rem;
 }
 
 a {
-    color: var(--colorSpaceCadetLight);
-    transition: color 0.3s;
-}`;
+  transition: color 0.3s;
+  text-decoration: none;
+  color: var(--text);
+}
+
+a:hover, a:focus {
+  color: var(--burgundy);
+  text-decoration: underline;
+}
+`;
+
+
 
 export const ex3 = `<nav>
     <div>
@@ -109,17 +122,17 @@ nav a:last-child {
 
 export const ex6 = `/** HERO */
 .hero {
-    display: flex;
-    padding: 2rem;
-    color: var(--colorFloralWhite);
-    background: linear-gradient(130deg, var(--colorPennRed) 0%, var(--colorRaisinBlack) 50%, var(--colorSpaceCadet) 100%);
+  display: flex;
+  padding: 2rem;
+  color: var(--eggshell);
+  background: linear-gradient(130deg, var(--text) 0%, var(--burgundy) 120%);
 }
 
 .hero p {
-    max-width: 600px;
-    font-size: var(--step-1);
-    line-height: 1.9rem;
-    font-weight: 200;
+  max-width: 600px;
+  font-size: var(--step-1);
+  line-height: 1.9rem;
+  font-weight: 200;
 }`;
 
 export const ex7 = `<section class="hero">
@@ -140,25 +153,24 @@ export const ex8 = `<footer>
 
 export const ex9 = `/** FOOTER */
 footer {
-    margin-top: auto;
-    padding: 0 2rem;
-    background: var(--colorSpaceCadet);
-    color: var(--colorFloralWhite);
+  margin-top: auto;
+  padding: 0 2rem;
+  background: var(--sunset);
+  border-top: 1px solid var(--burgundy);
 }
 
 footer > div {
-    display: flex;
-    gap: 1rem;
-    padding: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 0;
 }
 
 footer a {
-    color: var(--colorFloralWhite);
-    font-size: var(--step-0);
+  font-size: var(--step-0);
 }
 
 footer span {
-    margin-left: auto;
+  margin-left: auto;
 }`;
 
 export const ex10 = `body {
@@ -258,19 +270,20 @@ export const ex17 = `<section class="cols-4">
     </div>
 </section>`;
 
-export const ex18 = `.cols-4 {
-    padding: 2rem;
-    background: var(--colorSpaceCadet);
-    color: var(--colorFloralWhite);
+export const ex18 = `
+.cols-4 {
+  padding: 2rem;
+  background: var(--burgundy);
 }
 
 .cols-4 > div {
-    --min: 28ch;
-    --gap: 1rem;
-    display: grid;
-    grid-gap: var(--gap);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
-}  `;
+  --min: 28ch;
+  --gap: 1rem;
+  display: grid;
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+}
+`;
 
 export const ex19 = `.cols-4 p {
     font-size: var(--step--1);
@@ -280,7 +293,7 @@ export const ex19 = `.cols-4 p {
 }`;
 
 export const ex20 = `.cols-4 > div > div {
-    box-shadow: var(--colorFloralWhite50) 0 0 5px 0;
+    box-shadow: var(--sunset) 0 0 5px 0;
     border-radius: 0.5rem;
     overflow: hidden;
 }`;
@@ -295,16 +308,3 @@ export const ex22 = `.cols-4 img {
     height: 100%;
     width: 100%
 }`;
-
-export const ex23 = `nav a {
-    text-decoration: none;
-}
-
-a:hover, a:focus {
-    color: var(--colorPennRed);
-    text-decoration: underline;
-}`;
-
-export const ex24 = ``;
-
-

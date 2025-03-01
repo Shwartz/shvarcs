@@ -1,12 +1,6 @@
 <script>
-	import mockup from '$lib/images/p5-CSS-Layout-mockup.jpg';
 	import HighLightWrap from '$lib/components/HighLightWrap.svelte';
 	import { CodePen } from 'sveltekit-embed';
-
-	import mockupDivided from '$lib/images/p5-CSS-Layout-mockup-divided.jpg';
-	import purHTMLex from '$lib/images/p5-html-without-css.jpg';
-	import nav from '$lib/images/p5-nav.png';
-	import fourCols from '$lib/images/p5-four-cols.jpg';
 	import {
 		ex1,
 		ex2,
@@ -30,8 +24,8 @@
 		ex20,
 		ex21,
 		ex22,
-		ex23
 	} from '$lib/blog/2024-06-css-layout/sourceExamples.js';
+	import Image from '$lib/utils/Image.svelte';
 
 	const title = 'How to create CSS Layout using Flexbox | Post';
 	const description = 'Explaining advanced layout techniques with step-by-step simple examples using CSS Flexbox';
@@ -61,9 +55,9 @@
 	</div>
 	<div>
 		<p id="scrollMockupImg">
-			<img
-				src={mockup}
-				alt="Example of simple home page mockup with Navigation, Hero section, two and four column section and a footer">
+			<Image
+				imgId="59a12aaf-56a7-4a2f-ae91-3f7a71ad6600"
+				alt="Example of simple home page mockup with Navigation, Hero section, two and four column section and a footer" />
 		</p>
 	</div>
 	<div>
@@ -81,33 +75,31 @@
 			nicely collapse into one column.</p>
 		<p>I made visual adjustments to see each section.</p>
 		<p>
-			<img src={mockupDivided} alt="Website Homepage mockup divided by sections">
+			<Image
+				imgId="b5a36628-eda5-41ce-3bbf-9caf40cf6100"
+				alt="Website Homepage mockup divided by logical sections like nav, hero, two cols, four cols and footer" />
 		</p>
 		<p>Let’s add some colours we can use for our design. I use this colour palette: <a
-			href="https://coolors.co/1e1e24-92140c-fff8f0-ffcf99-111d4a">coolors.co</a>
+			href="https://coolors.co/222222-8f172e-f0ebd5-ffd79f">coolors.co</a>
 		</p>
 	</div>
 	<div class="large">
 		<div class="color-palette">
-			<div class="raisin-black">
-				<span>1E1E24</span>
-				<span>Raisin Black</span>
+			<div class="eerie-black">
+				<span>#222222</span>
+				<span>Eerie Black</span>
 			</div>
-			<div class="penn-red">
-				<span>92140C</span>
-				<span>Penn red</span>
+			<div class="burgundy">
+				<span>#8F172E</span>
+				<span>Burgundy</span>
 			</div>
-			<div class="floral-white">
-				<span>FFF8F0</span>
-				<span>Floral white</span>
+			<div class="eggshell">
+				<span>#F0EBD5</span>
+				<span>Eggshell</span>
 			</div>
 			<div class="sunset">
-				<span>FFCF99</span>
+				<span>#FFD79F</span>
 				<span>Sunset</span>
-			</div>
-			<div class="space-cadet">
-				<span>111D4A</span>
-				<span>Space cadet</span>
 			</div>
 		</div>
 	</div>
@@ -120,8 +112,10 @@
 		<HighLightWrap source={ex1} />
 
 		<p class="imgWrap">
-			<img src={purHTMLex}
-					 alt="HTML example without CSS added">
+			<Image
+				imgId="72ada5ed-1e82-4f50-807a-09aadaf5d100"
+				alt="HTML example without CSS added"
+				className="w50" />
 			<span>We use the following tags: <code>nav</code>, <code>section</code> and <code>footer</code> to highlight their
       semantic purpose.<br />
       As you see, even though we didn’t add any CSS, the code above produces HTML with added style. The Browser has its own CSS stylesheet, the "User-Agent-Stylesheet.” This is why Title tags have different sizes and links have a default colour.</span>
@@ -131,7 +125,10 @@
 		<h3>CSS Reset</h3>
 		<p>To remove inconsistencies and differences in rendering between browsers, we can use CSS Reset.</p>
 		<p>In the CodePen examples, I used built-in CSS Reset. However, there are plenty you can find. For example, <a
-			href="https://github.com/elad2412/the-new-css-reset">The new CSS reset</a>.</p>
+			href="https://github.com/elad2412/the-new-css-reset">The new CSS reset</a>.
+			I suggest taking a look at Josh's <a href="https://www.joshwcomeau.com/css/custom-css-reset/">CSS reset</a>. He
+			explains each line and adds text wrap balance, which is a great
+			CSS addition.</p>
 		<p>What does it do? Well, each browser has its own stylesheet for title sizes, list styling, body margins and
 			paddings and many other things. Basically, reset.css zeroes all those values between browsers and makes all
 			elements look the same. So, you can start your styling with a blank canvas.</p>
@@ -196,7 +193,11 @@
 		<p>Let’s figure out what is needed for Navigation. We have a max-width for navigation; we want it in the middle of
 			the screen, and all but the last item should be on the left side.</p>
 
-		<p><img src={nav} alt="Nav example with max width and the last item on the right"></p>
+		<p>
+			<Image
+				imgId="8c47e2c1-a869-41c5-c160-ffdb64e9c400"
+				alt="Nav example with max width and the last item on the right" />
+		</p>
 		<HighLightWrap source="{ex3}" />
 
 		<p>So, we have the <code>&lt;nav/&gt;</code> tag as a wrap and the first <code>&lt;div/&gt;</code> tag as the
@@ -388,9 +389,14 @@
 
 		<p>This is the result. It's not good. The text is very close to the edge of the container. If we add padding for the
 			text, we will push the image away, too. We want the images to be full height and width. Also, there is this silly
-			4px gap for the last image. Let's fix all this nonsense!</p>
+			4px gap for the last image.
+			<br>Let's fix all this nonsense!</p>
 
-		<p><img src={fourCols} alt="screenshot of four columns layout showing empty spaces, missing paddings"></p>
+		<p>
+			<Image
+				imgId="0431d151-295e-4e88-4303-602429cf5200"
+				alt="Screenshot of four columns layout showing empty spaces, missing paddings" />
+		</p>
 
 		<p>Let’s add 1rem padding for the container, but only if there is no image.</p>
 
@@ -401,9 +407,15 @@
 
 		<HighLightWrap source={ex22} />
 
-		<p>The last thing I want to add is underline for all but Navigation links.</p>
+		<p>After these changes, we will have something like this:</p>
 
-		<HighLightWrap source={ex23} />
+		<p>
+			<Image
+				imgId="ab7cfb53-f2b9-41e9-2471-415fb5ef9000"
+				alt="Screenshot of four columns layout with fixed issues" />
+		</p>
+
+		<p>The last thing I want to add is underline for all but Navigation links.</p>
 
 		<h3 id="scrollFinalResult">Final result</h3>
 
@@ -454,29 +466,24 @@
       height: 8rem;
     }
 
-    .raisin-black {
-      background: #1E1E24;
+    .eerie-black {
+      background: var(--text);
       color: white;
     }
 
-    .penn-red {
-      background: #92140C;
+    .burgundy {
+      background: var(--pastel-purple);
       color: white;
     }
 
-    .floral-white {
-      background: #FFF8F0;
+    .eggshell {
+      background: var(--pastel-cream);
       color: black;
     }
 
     .sunset {
-      background: #FFCF99;
+      background: var(--pastel-orange);
       color: black;
-    }
-
-    .space-cadet {
-      background: #111D4A;
-      color: white;
     }
   }
 
