@@ -467,7 +467,7 @@
     }
 
     .eerie-black {
-      background: var(--text);
+      background: var(--black);
       color: white;
     }
 
