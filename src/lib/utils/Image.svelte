@@ -5,9 +5,10 @@
 		imgId: string;
 		alt: string;
 		imgType?: 'post' | undefined;
+		className?: string;
 	}
 
-	const { imgId, imgType, alt }: ImageProps = $props();
+	const { imgId, imgType, className, alt }: ImageProps = $props();
 
 	const url = 'https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA';
 </script>
@@ -24,6 +25,7 @@
 		 (min-width: 700px) calc(100vw - 64px),
 		 calc(100vw - 32px)"
 		 alt="{alt}"
+		 class="{className}"
 		 loading="lazy">
 	{:else}
 	<!--Fallback image-->
@@ -35,8 +37,9 @@
 		 			{url}/{imgId}/1920w 1920w,
 		 			{url}/{imgId}/2560w 2560w"
 			 sizes="(min-width: 1000px) 1024px,
-		 (min-width: 700px) calc(100vw - 64px),
-		 calc(100vw - 32px)"
+		 		(min-width: 700px) calc(100vw - 64px),
+		 		calc(100vw - 32px)"
 			 alt="{alt}"
+			 class="{className}"
 			 loading="lazy">
 	{/if}

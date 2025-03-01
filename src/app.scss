@@ -154,6 +154,14 @@ button.clean {
 
   }
 
+  .w50 {
+    width: 100%;
+
+    @media(min-width: 37.5rem) {
+      width: 50%;
+    }
+  }
+
   > div {
     max-width: var(--post-width);
     width: 100%;
@@ -179,6 +187,7 @@ button.clean {
 
   p:has(img) {
     margin: 2rem 0;
+    gap: 1.5rem;
   }
 
   tbody, td {
