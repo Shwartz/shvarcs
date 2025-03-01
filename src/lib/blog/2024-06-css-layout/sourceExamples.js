@@ -293,7 +293,7 @@ export const ex19 = `.cols-4 p {
 }`;
 
 export const ex20 = `.cols-4 > div > div {
-    box-shadow: var(--colorFloralWhite50) 0 0 5px 0;
+    box-shadow: var(--sunset) 0 0 5px 0;
     border-radius: 0.5rem;
     overflow: hidden;
 }`;
