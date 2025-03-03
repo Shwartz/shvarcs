@@ -5,7 +5,7 @@ import { NOTION_TOKEN } from '$env/static/private';
 
 export const notionClient: Client = new Client({ auth: NOTION_TOKEN });
 
-export const getDatabaseById = async (ID: string) => {
+export const getDatabaseById = async (ID: string, startCursor?: string, pageSize: number = 20) => {
 	try {
 		let posts;
 
@@ -26,7 +26,9 @@ export const getDatabaseById = async (ID: string) => {
 					property: 'Due Date',
 					direction: 'descending'
 				}
-			]
+			],
+			start_cursor: startCursor,
+			page_size: pageSize,
 		});
 		//console.log('After Request happened - Database: ', database.results.length);
 
@@ -42,7 +44,11 @@ export const getDatabaseById = async (ID: string) => {
 			});
 		}
 
-		return posts;
+		return {
+			posts,
+			nextCursor: database.next_cursor,
+			hasMore: database.has_more,
+		};
 	} catch (error) {
 		return { error };
 	}
@@ -89,8 +95,6 @@ export const getRecentPosts = async (DB_ID: string, count: number) => {
 			],
 			page_size: count
 		});
-
-		//console.log('database: ', database.results[0].properties.Name.title[0].plain_text);
 
 		if (database.results.length > 0) {
 			posts = database.results.map((item: any) => {

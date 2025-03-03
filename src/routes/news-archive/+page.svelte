@@ -7,13 +7,45 @@
 	import { getColor } from '$lib/components/snippets/getColor';
 	import { TrOutlineCalendarMonth } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
+	import { deserialize } from '$app/forms';
+	import PostFooter from '$lib/components/PostFooter.svelte';
 
 	const { data } = $props();
-	const { news } = data;
+	const newsState = $state({
+		posts: data.news.posts,
+		nextCursor: data.news.nextCursor,
+		hasMore: data.news.hasMore
+	});
 
-	const newsCount = news.posts.length;
+	let isLoading = $state(false);
 	let checked = $state(false);
 	let compact = $state(false);
+
+	async function loadMorePosts() {
+		if (newsState.nextCursor && !isLoading) {
+			isLoading = true;
+			const form = new FormData();
+			form.append('cursor', newsState.nextCursor);
+
+			try {
+				const response = await fetch(`${base}/news-archive?/loadMore`, {
+					method: 'POST',
+					body: form
+				});
+				const rawData = await response.text();
+				const newData = deserialize(rawData);
+				const { posts, nextCursor, hasMore } = newData.data;
+
+				newsState.posts = [...newsState.posts, ...posts];
+				newsState.nextCursor = nextCursor;
+				newsState.hasMore = hasMore;
+			} catch (error) {
+				console.error('Failed to load more posts: ', error);
+			} finally {
+				isLoading = false;
+			}
+		}
+	}
 
 	onMount(() => {
 		const savedState = localStorage.getItem('themeNewsListGrid');
@@ -39,6 +71,7 @@
 			compact = checked; // This is to trigger transition
 		});
 	}
+
 	const title = 'Front-End Findings: Curated News';
 	const description = 'Front-end news, trends, and valuable and interesting articles accumulated from newsletters and other sources.';
 
@@ -56,14 +89,14 @@
 </svelte:head>
 
 <div class="news">
-	<h1 class="frankTitle">news</h1>
+	<h1 id="mainTitle" class="frankTitle">news</h1>
 	<p class="intro">I curate this bi-weekly collection from across the web,
 		<a href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and various newsletters, capturing the
 		latest trends and useful articles. Originally a personal <a href="https://www.notion.com/">Notion</a> database, I'm
 		now sharing it here using <a href="https://svelte.dev/">SvelteKit</a>.</p>
 
 	<div class="headerTags">
-		<div>{newsCount} items</div>
+		<div>{newsState?.posts?.length || '0'} items</div>
 		<div>
 			<ToggleListGrid {checked} toggleCompact={toggleCompact} />
 		</div>
@@ -71,14 +104,14 @@
 
 	<div class="newsList">
 		<ul class={checked ? `list` : `grid`}>
-			{#each news.posts as post, index}
+			{#each newsState.posts as post, index}
 				<li>
 					<Tooltip color={getColor(index)}>
 						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
 							<h3>{post.title}</h3>
 							<p class="date">
 								<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
-								<span>{post.fullItem.properties['Due Date'].date.start}</span>
+								<span>{post.dueDate}</span>
 							</p>
 							<p class="summary">{post.summary}</p>
 						</a>
@@ -86,6 +119,14 @@
 				</li>
 			{/each}
 		</ul>
+		{#if newsState.hasMore}
+			<div class="loadMore">
+				<button title="Load more articles" class="btnTag" onclick={loadMorePosts} disabled={isLoading}>
+					<span class="tag">Load More</span>
+				</button>
+			</div>
+		{/if}
+		<PostFooter linkBack="news-archive" />
 	</div>
 </div>
 
@@ -179,15 +220,15 @@
     }
 
     .date {
-			display: flex;
-			align-items: center;
-			gap: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       font-size: var(--step--1);
 
-			:global(svg) {
-				position: relative;
-				top: -0.5px;
-			}
+      :global(svg) {
+        position: relative;
+        top: -0.5px;
+      }
     }
 
     .summary {
@@ -203,7 +244,7 @@
       cursor: url('/src/assets/svg/cursor.svg') 16 16, pointer;
     }
 
-		/* 600 */
+    /* 600 */
     @media (min-width: 37.5rem) {
       ul {
         display: grid;
@@ -236,15 +277,15 @@
     }
 
     ul.list {
-			/* 600 */
+      /* 600 */
       @media (min-width: 37.5rem) {
         grid-template-columns: none;
         gap: 0;
 
-				li:not(:first-child) {
-					border-top: 1px dotted var(--grid-color);
-					margin-top: 1.5rem;
-				}
+        li:not(:first-child) {
+          border-top: 1px dotted var(--grid-color);
+          margin-top: 1.5rem;
+        }
 
         a {
           display: grid;
@@ -286,6 +327,41 @@
           grid-template-columns: calc(25.6% - 1.5rem) auto;
         }
       }
+    }
+  }
+
+	.loadMore {
+		display: flex;
+		justify-content: center;
+		padding-top: 2rem;
+	}
+
+  .btnTag {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    &:disabled .tag {
+      color: var(--black50);
+    }
+  }
+
+  .tag {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0.25em 0.7em;
+    border-radius: 1rem;
+    color: var(--black);
+    font-size: var(--step--2);
+    border: 1px solid var(--text);
+    transition: 200ms box-shadow, 200ms border;
+    background-color: var(--pastel-lime);
+
+    &:hover {
+      border: 1px solid var(--textLight);
     }
   }
 

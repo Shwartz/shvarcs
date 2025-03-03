@@ -8,8 +8,9 @@
 	const { data } = $props();
 	const { post } = data;
 
-	const title = post?.title ? `News | ${post.title}` : 'News article';
-	const description = post?.summary ? post.summary : 'Weekly front-end post';
+	const title = post?.title;
+	const description = post?.summary;
+	const dueDate = post?.dueDate;
 </script>
 
 <svelte:head>
@@ -34,7 +35,7 @@
 			<div class="meta first">
 				<p class="date">
 					<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
-					<span>{post.fullItem.properties['Due Date'].date.start}</span>
+					<span>{dueDate}</span>
 				</p>
 				<a href="{base}/news-archive" class="back">
 					<Icon size="20" color="var(--text)" src={TrOutlineArrowBackUp} />

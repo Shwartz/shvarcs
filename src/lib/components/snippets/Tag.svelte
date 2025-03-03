@@ -36,7 +36,6 @@
 
     .active {
         padding: 0.25em 0.7em 0.25em 0.3em;
-
     }
 
     /*:global(html[data-theme='dark'] .active) {
