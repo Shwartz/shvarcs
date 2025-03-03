@@ -1,6 +1,6 @@
 // lib/notion/index.ts
 import { NOTION_DATABASE_ID } from '$env/static/private';
-import { getDatabaseById, getPageById, getRecentPosts } from './api';
+import { getDatabaseById, getPageById, getRecentPosts, notionClient } from './api';
 import pMemoize from 'p-memoize';
 import ExpiryMap from 'expiry-map';
 
@@ -14,7 +14,7 @@ export const getAllPosts = pMemoize(
 		try {
 			const posts = await getDatabaseById(NOTION_DATABASE_ID);
 
-			if (posts && posts?.length > 0) {
+			if (posts && Array.isArray(posts) && posts?.length > 0) {
 				// console.log('getAllPosts: ', posts.length);
 				return {
 					posts: posts.map((post) => ({
@@ -42,15 +42,59 @@ export const getAllPosts = pMemoize(
 	{ cache: cacheAllPosts }
 );
 
+export const getPaginatedPosts = pMemoize(
+	async (startCursor?: string, pageSize: number = 20) => {
+		try {
+			const result = await getDatabaseById(NOTION_DATABASE_ID, startCursor, pageSize);
+
+			if (result.posts) {
+				const posts = result.posts.map((post) => ({
+					id: post.id,
+					title: post.title,
+					slug: post.slug,
+					summary: post.summary,
+					dueDate: post.fullItem.properties['Due Date'].date.start,
+				}));
+
+				// console.log('INDEX --> posts --> ', posts);
+
+				return {
+					posts: posts,
+					nextCursor: result.nextCursor,
+					hasMore: result.hasMore
+				};
+			} else {
+				return {
+					error: {
+						code: 400,
+						message: 'Error fetching posts'
+					}
+				};
+			}
+		} catch (error) {
+			return {
+				error: {
+					code: 500,
+					message: "Can't connect to DB"
+				}
+			};
+		}
+	},
+	{ cache: new ExpiryMap(expireCacheTime) }
+);
+
 export const getPost = pMemoize(
 	async (id: string) => {
 		try {
-			const res = await getPageById(id);
+			const [pageContent, pageProperties] = await Promise.all([
+				getPageById(id),
+				notionClient.pages.retrieve({ page_id: id })
+			]);
 
-			if (res.block.results.length > 0) {
-				// console.log('getPost: ', res.block.results.length);
+			if (pageContent.block.results.length > 0) {
 				return {
-					resBlock: res.block
+					content: pageContent.block,
+					properties: pageProperties.properties
 				};
 			} else {
 				return {

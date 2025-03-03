@@ -7,13 +7,38 @@
 	import { getColor } from '$lib/components/snippets/getColor';
 	import { TrOutlineCalendarMonth } from 'svelte-icons-pack/tr';
 	import { Icon } from 'svelte-icons-pack';
+	import { deserialize } from '$app/forms';
 
 	const { data } = $props();
-	const { news } = data;
+	const newsState = $state({
+		posts: data.news.posts,
+		nextCursor: data.news.nextCursor,
+		hasMore: data.news.hasMore
+	});
 
-	const newsCount = news.posts.length;
 	let checked = $state(false);
 	let compact = $state(false);
+
+	async function loadMorePosts() {
+		if (newsState.nextCursor) {
+			const form = new FormData();
+			form.append('cursor', newsState.nextCursor);
+
+			const response = await fetch(`${base}/news-archive?/loadMore`, {
+				method: 'POST',
+				body: form
+			});
+			const rawData = await response.text();
+			const newData = deserialize(rawData);
+			const {posts, nextCursor, hasMore} = newData.data;
+
+			debugger
+
+			newsState.posts = [...newsState.posts, ...posts];
+			newsState.nextCursor = nextCursor;
+			newsState.hasMore = hasMore;
+		}
+	}
 
 	onMount(() => {
 		const savedState = localStorage.getItem('themeNewsListGrid');
@@ -63,7 +88,7 @@
 		now sharing it here using <a href="https://svelte.dev/">SvelteKit</a>.</p>
 
 	<div class="headerTags">
-		<div>{newsCount} items</div>
+		<div>{newsState?.posts?.length || '0'} items</div>
 		<div>
 			<ToggleListGrid {checked} toggleCompact={toggleCompact} />
 		</div>
@@ -71,14 +96,14 @@
 
 	<div class="newsList">
 		<ul class={checked ? `list` : `grid`}>
-			{#each news.posts as post, index}
+			{#each newsState.posts as post, index}
 				<li>
 					<Tooltip color={getColor(index)}>
 						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
 							<h3>{post.title}</h3>
 							<p class="date">
 								<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
-								<span>{post.fullItem.properties['Due Date'].date.start}</span>
+								<span>{post.dueDate}</span>
 							</p>
 							<p class="summary">{post.summary}</p>
 						</a>
@@ -86,6 +111,9 @@
 				</li>
 			{/each}
 		</ul>
+		{#if newsState.hasMore}
+			<button onclick={loadMorePosts}>Load More</button>
+		{/if}
 	</div>
 </div>
 

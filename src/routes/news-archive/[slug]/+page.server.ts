@@ -1,28 +1,27 @@
 import { error } from '@sveltejs/kit';
-import { getAllPosts, getPost } from '$lib/notion';
+import { getPost } from '$lib/notion';
+import { extractNotionPostId } from '$lib/utils/snippets';
 
 export async function load({ params }) {
 	const { slug } = params;
-	const { posts } = await getAllPosts();
-	const post = posts?.find(p => p.slug === slug);
+	const postId = extractNotionPostId(slug);
 
-	if (!post) {
-		throw error(404, 'Post not found');
-	}
+	const postData = await getPost(postId);
 
-	const postContent = await getPost(post.id);
-
-	if (postContent.error) {
+	if (postData.error) {
 		throw error(500, 'Failed to fetch post content');
 	}
 
-	const title = post?.title ? `News | ${post.title}` : 'News article';
+	const title = postData.properties.Name.title[0].plain_text.split('|')[0].trim().replace('#', 'Nr.') || 'Friday Issue';
+	const summary = postData.properties.Summary.rich_text[0].plain_text || 'Weekly front-end post';
+	const dueDate = postData.properties['Due Date'].date.start || '';
 
 	return {
-		title: title,
 		post: {
-			...post,
-			content: postContent?.resBlock?.results
+			content: postData?.content?.results,
+			title,
+			summary,
+			dueDate,
 		}
 	};
 }
