@@ -2,6 +2,7 @@ import FlexImg from '$lib/blog/heroSvg/ImgPost1.svelte';
 import VercelImg from '$lib/blog/heroSvg/vercelError.svelte';
 import AnimationImg from '$lib/blog/heroSvg/2d3dVisual.svelte';
 import Fallback from '$lib/blog/heroSvg/fallback.svelte';
+import LifeSpan from '$lib/blog/heroSvg/lifeSpanVisual.svelte';
 import { base } from '$app/paths';
 
 export const postsArr = [
@@ -9,12 +10,12 @@ export const postsArr = [
 		id: '7',
 		url: `${base}/thoughts/lifespan`,
 		title: 'Lifespan',
-		description: 'How far you have come? Each dot represents one month on average 80 years lifespan',
+		description: 'Visualise your life\'s journey in months. This tiny app shows you a shocking perspective on your time in this world. It might just make you rethink how you spend those precious moments.',
 		tags: ['Random'],
 		publishedDate: 'January, 2025',
 		readingTime: '1 min read',
 		likes: '0 likes',
-		Visual: Fallback
+		Visual: LifeSpan
 	},
 	{
 		id: '6',
