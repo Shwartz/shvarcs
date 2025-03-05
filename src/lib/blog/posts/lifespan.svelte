@@ -5,7 +5,7 @@
 	import { createImgUrl } from '$lib/utils/snippets';
 
 	const title = 'Lifespan | Post';
-	const description = 'Visual representation of life based on average 80 years';
+	const description = "Visualise your life's journey in months. This tiny app shows you a shocking perspective on your time in this world.";
 
 	const years = 80;
 	const months = years * 12;
