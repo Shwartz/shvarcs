@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { pushState } from '$app/navigation';
+	import { createImgUrl } from '$lib/utils/snippets';
 
 	const title = 'Lifespan | Post';
 	const description = 'Visual representation of life based on average 80 years';
@@ -112,6 +113,10 @@
 	<meta property="og:description" content="{description}" />
 	<meta property="twitter:title" content="{title}" />
 	<meta property="twitter:description" content="{description}" />
+	<meta property="og:type" content="article">
+	<meta property="og:image" itemprop="image" content="{createImgUrl('9b1fb70c-d376-4c62-554a-05513a0a0100', '1024w')}">
+	<meta property="og:image:width" content="994">
+	<meta property="og:image:height" content="576">
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 

@@ -120,34 +120,34 @@
   }
 
   .hours {
-    background: white;
-    height: 20%;
-    left: 48.75%;
     position: absolute;
-    top: 30%;
-    transform-origin: 50% 100%;
+    height: 20%;
     width: 2.5%;
+    top: 30%;
+    left: 48.75%;
+    transform-origin: 50% 100%;
+    background: var(--pastel-cream);
   }
 
   .minutes {
-    background: white;
-    height: 40%;
-    left: 49%;
     position: absolute;
-    top: 10%;
-    transform-origin: 50% 100%;
+    height: 40%;
     width: 2%;
+    top: 10%;
+    left: 49%;
+    transform-origin: 50% 100%;
+    background: var(--pastel-cream);
   }
 
   .seconds {
-    background: var(--pastel-pink);
-    height: 45%;
-    left: 49.5%;
     position: absolute;
-    top: 14%;
-    transform-origin: 50% 80%;
+    height: 45%;
     width: 1%;
+    top: 14%;
+    left: 49.5%;
     z-index: 8;
+    transform-origin: 50% 80%;
+    background: var(--pastel-pink);
   }
 
   .hours-container {
