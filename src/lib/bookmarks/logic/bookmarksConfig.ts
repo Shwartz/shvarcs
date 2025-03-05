@@ -62,7 +62,7 @@ export const bookmarkArr = [
 		tags: ['Tools'],
 		description: `This is a place where you can quickly compare other libraries side by side. Really fun to see how skinny and easy to read Svelte is. I know I am biased. 🙂`,
 		author: '',
-		url: 'https://github.com/matschik/component-party.dev',
+		url: 'https://github.com/matschik/component-party.dev'
 	},
 	{
 		id: '8',
@@ -97,7 +97,7 @@ export const bookmarkArr = [
 		date: '2025',
 		tags: ['Tools'],
 		author: 'Addy Osmani',
-		description: `When you need to compress and convert multiple images and multiple formats, such as AVIF, JPEG, JPEG XL, PNG and WebP. The best part is that images are transformed on the client side (your browser), which is excellent for privacy. Also, some analytics may be used for development purposes. `,
+		description: `When you need to compress and convert multiple images and multiple formats, such as AVIF, JPEG, JPEG XL, PNG and WebP. The best part is that images are transformed on the client side (your browser), which is excellent for privacy. Also, some analytics may be used for development purposes.`,
 		url: 'https://squish.addy.ie/'
 	},
 	{
@@ -106,7 +106,16 @@ export const bookmarkArr = [
 		date: '2024',
 		tags: ['Tools'],
 		author: '',
-		description: `Similar to Squish, you do all the same but for one image at a time. However, you can install this web app on your machine. `,
+		description: `Similar to Squish, you do all the same but for one image at a time. However, you can install this web app on your machine.`,
 		url: 'https://squoosh.app/'
 	},
+	{
+		id: '12',
+		title: 'Nu Html Checker',
+		date: '2025',
+		tags: ['Tools'],
+		author: 'w3.org',
+		description: `This tool is an ongoing experiment in better HTML checking, and its behavior remains subject to change`,
+		url: 'https://validator.w3.org/nu/'
+	}
 ];
