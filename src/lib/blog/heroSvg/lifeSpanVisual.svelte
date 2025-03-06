@@ -9,7 +9,6 @@
 		minutesAngle: (minutes * 6) + (seconds / 10),
 		hoursAngle: (hours % 12 * 30) + (minutes / 2),
 	}
-	console.log(time);
 </script>
 
 <div class="lifeSpan-container">

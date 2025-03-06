@@ -4,6 +4,7 @@
 	import { Icon } from 'svelte-icons-pack';
 	import Block from '$lib/notionCMS/Block.svelte';
 	import PostFooter from '$lib/components/PostFooter.svelte';
+	import { createImgUrl } from '$lib/utils/snippets';
 
 	const { data } = $props();
 	const { post } = data;
@@ -21,6 +22,10 @@
 	<meta property="og:description" content="{description}" />
 	<meta property="twitter:title" content="{title}" />
 	<meta property="twitter:description" content="{description}" />
+	<meta property="og:type" content="article">
+	<meta property="og:image" itemprop="image" content="{createImgUrl('6264affc-9b6f-4e52-c8be-ffef4d2f0100', '1024w')}">
+	<meta property="og:image:width" content="1024">
+	<meta property="og:image:height" content="497">
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 
