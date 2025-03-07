@@ -122,7 +122,12 @@
 		{#if newsState.hasMore}
 			<div class="loadMore">
 				<button title="Load more articles" class="btnTag" onclick={loadMorePosts} disabled={isLoading}>
-					<span class="tag">Load More</span>
+					<span class="tag">
+						Load More
+						{#if isLoading}
+							<span class="loader"></span>
+						{/if}
+					</span>
 				</button>
 			</div>
 		{/if}
@@ -330,11 +335,11 @@
     }
   }
 
-	.loadMore {
-		display: flex;
-		justify-content: center;
-		padding-top: 2rem;
-	}
+  .loadMore {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+  }
 
   .btnTag {
     border: none;
@@ -352,6 +357,7 @@
     display: flex;
     gap: 4px;
     align-items: center;
+    margin: 0 2rem 0;
     padding: 0.25em 0.7em;
     border-radius: 1rem;
     color: var(--black);
@@ -364,6 +370,30 @@
       border: 1px solid var(--textLight);
     }
   }
+
+  .loader {
+    --width: 6px;
+    --distance: 10px;
+    width: var(--width);
+    margin: 0 0.5rem 0 0.7rem;
+    aspect-ratio: 1;
+    background: var(--black50);
+    border-radius: 50%;
+    animation: loadingAnim 1s infinite linear alternate;
+  }
+
+  @keyframes loadingAnim {
+    0% {
+      box-shadow: var(--width) 0 var(--black50), calc(var(--distance) * -1) 0 var(--black50)
+    }
+    50% {
+      box-shadow: var(--width) 0 var(--black50), calc(var(--width) * -1) 0 var(--black50)
+    }
+    100% {
+      box-shadow: var(--distance) 0 var(--black50), calc(var(--width) * -1) 0 var(--black50)
+    }
+  }
+
 
   :global(.gridOff) .news :is(ul, li, .headerTags) {
     border-color: rgba(0, 0, 0, 0);
