@@ -1,8 +1,10 @@
+import type { CategoryType } from '$lib/utils/categoryColors';
+
 export interface Bookmark {
 	id: string;
 	title: string;
 	date: string;
-	tags: Array<string>;
+	tags: CategoryType[];
 	description: string;
 	url: string;
 	author?: string;

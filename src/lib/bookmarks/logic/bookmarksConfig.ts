@@ -1,4 +1,6 @@
-export const bookmarkArr = [
+import type { Bookmark } from '$lib/types/types';
+
+export const bookmarkArr: Bookmark[] = [
 	{
 		id: '1',
 		title: 'CSS Flexbox Guide',
@@ -92,7 +94,7 @@ export const bookmarkArr = [
 		url: 'https://excalidraw.com/'
 	},
 	{
-		id: '10',
+		id: '11',
 		title: 'Squish',
 		date: '2025',
 		tags: ['Tools'],
@@ -101,7 +103,7 @@ export const bookmarkArr = [
 		url: 'https://squish.addy.ie/'
 	},
 	{
-		id: '11',
+		id: '12',
 		title: 'Squoosh',
 		date: '2024',
 		tags: ['Tools'],
@@ -110,7 +112,7 @@ export const bookmarkArr = [
 		url: 'https://squoosh.app/'
 	},
 	{
-		id: '12',
+		id: '13',
 		title: 'Nu Html Checker',
 		date: '2025',
 		tags: ['Tools'],
