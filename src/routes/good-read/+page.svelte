@@ -15,10 +15,11 @@
 	}
 
 	$effect(() => {
+		const reverseBookmarks = [...bookmarkArr].reverse();
 		if (selectedFilter) {
-			filteredBookmarks = bookmarkArr.filter(book => book.tags.includes(selectedFilter as string));
+			filteredBookmarks = reverseBookmarks.filter(book => book.tags.includes(selectedFilter as CategoryType));
 		} else {
-			filteredBookmarks = bookmarkArr;
+			filteredBookmarks = reverseBookmarks;
 		}
 	});
 

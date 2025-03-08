@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Bookmark } from '$lib/types/types';
 	import { extractMainDomain } from '$lib/utils/regexHelpers';
+	import { getCategoryColor } from '$lib/utils/categoryColors.js';
 
 	interface SortedBookmarks {
 		filteredBookmarks: Bookmark[];
@@ -18,6 +19,7 @@
 			<h3>{bookmark.title}</h3>
 			<p class="url">
 				<a
+					style="background: {getCategoryColor(bookmark.tags[0])}"
 					title="{bookmark.url}"
 					href="{bookmark.url}">{extractMainDomain(bookmark.url)}
 				</a>
