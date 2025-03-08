@@ -19,6 +19,7 @@
 			<h3>{bookmark.title}</h3>
 			<p class="url">
 				<a
+					class="link"
 					style="background: {getCategoryColor(bookmark.tags[0])}"
 					title="{bookmark.url}"
 					href="{bookmark.url}">{extractMainDomain(bookmark.url)}
@@ -57,12 +58,12 @@
       font-size: var(--step-0);
       vertical-align: middle;
 
-      color: var(--link-color);
+      color: var(--black80);
       background: var(--link-bg);
       transition: background-color 0.2s;
 
       &:hover, &:focus {
-        background-color: var(--link-bg-hover);
+        background-image: var(--link-bg-hover);
       }
 		}
 	}
