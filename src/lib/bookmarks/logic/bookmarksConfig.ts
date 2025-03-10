@@ -119,5 +119,14 @@ export const bookmarkArr: Bookmark[] = [
 		author: 'w3.org',
 		description: `This tool is an ongoing experiment in better HTML checking, and its behavior remains subject to change`,
 		url: 'https://validator.w3.org/nu/'
+	},
+	{
+		id: '14',
+		title: 'Relative Colours',
+		date: '2025',
+		tags: ['CSS'],
+		author: 'Ahmad Shadeed',
+		description: `Not only does Ahmad explains how to use CSS Relative Colours, but he also shows real world examples. One of those examples triggered my own understanding how to use those colours in this very page for links. `,
+		url: 'https://ishadeed.com/article/css-relative-colors/'
 	}
 ];

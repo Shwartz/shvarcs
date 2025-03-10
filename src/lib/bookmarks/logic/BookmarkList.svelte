@@ -20,7 +20,7 @@
 			<p class="url">
 				<a
 					class="link"
-					style="background: {getCategoryColor(bookmark.tags[0])}"
+					style="--link-color: {getCategoryColor(bookmark.tags[0])}"
 					title="{bookmark.url}"
 					href="{bookmark.url}">{extractMainDomain(bookmark.url)}
 				</a>
@@ -52,21 +52,30 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-		a {
+		.link {
       text-decoration: underline;
       padding-bottom: 1px; /* Underline distance from the text */
       font-size: var(--step-0);
       vertical-align: middle;
-
-      color: var(--black80);
-      background: var(--link-bg);
       transition: background-color 0.2s;
 
+      background: rgb(from var(--link-color) r g b / 0.6);
+      color: oklch(from var(--link-color) calc(l - 0.4) c calc(h - 0));
+
       &:hover, &:focus {
-        background-image: var(--link-bg-hover);
+        background: rgb(from var(--link-color) r g b / 0.3);
       }
 		}
 	}
+
+  :global([data-theme="dark"]) .link {
+    background: rgb(from var(--link-color) r g b / 0.3);
+    color: oklch(from var(--link-color) calc(l + 0.2) c calc(h - 0));
+
+    &:hover, &:focus {
+      background: rgb(from var(--link-color) r g b / 0.2);
+    }
+  }
 
   :global(.gridOff) .book > div {
     border-color: rgba(0, 0, 0, 0);
