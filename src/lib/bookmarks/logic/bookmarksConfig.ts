@@ -90,7 +90,7 @@ export const bookmarkArr: Bookmark[] = [
 		date: '2024',
 		tags: ['Tools'],
 		author: '',
-		description: `Excalidraw is an open-source online tool for creating digital drawings and visualisations. It allows you to create various shapes and lines and freehand drawings. The tool also offers export options and collaborative capabilities. It can visualise ideas and concepts and create simple wireframes and prototypes.`,
+		description: `Excalidraw is an open-source online tool for creating digital drawings and visualisations.`,
 		url: 'https://excalidraw.com/'
 	},
 	{
@@ -126,7 +126,16 @@ export const bookmarkArr: Bookmark[] = [
 		date: '2025',
 		tags: ['CSS'],
 		author: 'Ahmad Shadeed',
-		description: `Not only does Ahmad explains how to use CSS Relative Colours, but he also shows real world examples. One of those examples triggered my own understanding how to use those colours in this very page for links. `,
+		description: `Not only does Ahmad explains how to use CSS Relative Colours, but he also shows real world examples. One of those examples triggered my own understanding how to use those colours in this very page for links.`,
 		url: 'https://ishadeed.com/article/css-relative-colors/'
+	},
+	{
+		id: '15',
+		title: 'Chalkboard for code',
+		date: '2025',
+		tags: ['Tools'],
+		author: 'chalk.ist',
+		description: `This tool transforms your code into a beautiful image. There are plenty of customisation choices and an easy-to-use interface.`,
+		url: 'https://chalk.ist/'
 	}
 ];
