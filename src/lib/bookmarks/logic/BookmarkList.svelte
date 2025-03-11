@@ -60,7 +60,7 @@
       transition: background-color 0.2s;
 
       background: rgb(from var(--link-color) r g b / 0.6);
-      color: oklch(from var(--link-color) calc(l - 0.4) c calc(h - 0));
+      color: oklch(from var(--link-color) calc(l - 0.4) c h);
 
       &:hover, &:focus {
         background: rgb(from var(--link-color) r g b / 0.3);
@@ -70,7 +70,7 @@
 
   :global([data-theme="dark"]) .link {
     background: rgb(from var(--link-color) r g b / 0.3);
-    color: oklch(from var(--link-color) calc(l + 0.2) c calc(h - 0));
+    color: oklch(from var(--link-color) calc(l + 0.2) c h);
 
     &:hover, &:focus {
       background: rgb(from var(--link-color) r g b / 0.2);
