@@ -59,21 +59,21 @@
       vertical-align: middle;
       transition: background-color 0.2s;
 
-      background: rgb(from var(--link-color) r g b / 0.6);
+      background: oklch(from var(--link-color) l c h / 0.6);
       color: oklch(from var(--link-color) calc(l - 0.4) c h);
 
       &:hover, &:focus {
-        background: rgb(from var(--link-color) r g b / 0.3);
+        background: oklch(from var(--link-color) l c h / 0.2);
       }
 		}
 	}
 
   :global([data-theme="dark"]) .link {
-    background: rgb(from var(--link-color) r g b / 0.3);
+    background: oklch(from var(--link-color) l c h / 0.3);
     color: oklch(from var(--link-color) calc(l + 0.2) c h);
 
     &:hover, &:focus {
-      background: rgb(from var(--link-color) r g b / 0.2);
+      background: oklch(from var(--link-color) l c h / 0.2);
     }
   }
 
