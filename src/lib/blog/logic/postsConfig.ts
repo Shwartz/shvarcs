@@ -7,6 +7,17 @@ import { base } from '$app/paths';
 
 export const postsArr = [
 	{
+		id: '8',
+		url: `${base}/thoughts/colour-conundrum`,
+		title: 'Colour Conundrum',
+		description: 'post about colours',
+		tags: ['CSS'],
+		publishedDate: 'March, 2025',
+		readingTime: '10 min read',
+		likes: '0 likes',
+		Visual: Fallback
+	},
+	{
 		id: '7',
 		url: `${base}/thoughts/lifespan`,
 		title: 'Lifespan',

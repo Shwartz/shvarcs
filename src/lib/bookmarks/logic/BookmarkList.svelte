@@ -71,10 +71,6 @@
   :global([data-theme="dark"]) .link {
     background: oklch(from var(--link-color) l c h / 0.3);
     color: oklch(from var(--link-color) calc(l + 0.2) c h);
-
-    &:hover, &:focus {
-      background: oklch(from var(--link-color) l c h / 0.2);
-    }
   }
 
   :global(.gridOff) .book > div {

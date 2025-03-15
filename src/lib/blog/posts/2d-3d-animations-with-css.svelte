@@ -393,7 +393,6 @@ transform: translateY(-1rem)`;
 	</div>
 </section>
 
-
 <style lang="scss">
 	h2 {
 		font-size: var(--step-3);
