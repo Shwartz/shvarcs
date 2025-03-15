@@ -80,12 +80,12 @@ a {
 	<div>
 		<p>Do you ever wonder why there are so many ways to declare the colours?</p>
 
-		<p>Some (long) while ago, I was reading posts about new colours, you know, those HSL(), OKLCH, HWB, LAB, and LCH.
+		<p>Some (long) while ago, I was reading posts about new colours, you know, those HSL, OKLCH, HWB, LAB, and LCH.
 			Also, there is the Color() function as well as Relative colours.</p>
 
 		<p>That made me think - why? Why do we need all those different ways to declare the colour? For the last 15 years, I
-			have happily used RGB, RGBA, hex, or even by names like purple or orange. I have never had any issues. Why all the
-			fuss?</p>
+			have happily used RGB, RGBA, hex, or even by names like purple, orange or <code>#bada55</code>. I have never had
+			any issues. Why all the fuss?</p>
 
 		<p>Until that one day, I finally realised.</p>
 
@@ -249,6 +249,9 @@ a {
 			keep both colours similar to each other. How would you do it with RGB() or hex colours? You would need to declare
 			every background and every prime colour for the text, right? I'm too lazy to do that, so here is how I would do it
 			with oklch().</p>
+
+		<p>In the example below, I assign only one colour to the <code>—-figure-main</code> and reuse it in both examples.
+		</p>
 	</div>
 
 	<div>
@@ -259,30 +262,42 @@ a {
 					<span class="value">{xHue}</span>
 					<span>Hue</span>
 				</label>
-				<div class="vertical">
-					<figure style="background: oklch(90% 0.084 {xHue})">
-						<p style="color: oklch(45% 0.084 {xHue})">Always prominent text against background</p>
+				<div class="vertical" style="--figure-main: oklch(0.9 0.084 {xHue})">
+					<figure style="background: oklch(from var(--figure-main) l c h)">
+						<p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)">Always prominent text against
+							background</p>
 					</figure>
-					<p style="font-size: var(--step--1); text-align: left; margin-top: 1rem;">Here it is the same but with reverse colours.</p>
-					<figure style="background: oklch(45% 0.084 {xHue})">
-						<p style="color: oklch(90% 0.084 {xHue})">Always prominent text against background</p>
+					<p style="font-size: var(--step--1); text-align: left; margin-top: 1rem;">Here it is the same but with reverse
+						colours.</p>
+					<figure style="background: oklch(from var(--figure-main) calc(l - 0.4) c h)">
+						<p style="color: oklch(from var(--figure-main) l c h)">Always prominent text against background</p>
 					</figure>
 				</div>
 			</div>
 		</div>
 		<pre class="fullWidth">
 <code>
-&#123;
-  background: oklch(90% 0.15 {xHue});
-  color: oklch(45% 0.15 {xHue});
-&#125;
-	&nbsp;
+&lt;div style="--figure-main: oklch(0.9 0.084 {xHue})"&gt;
+  &lt;figure style="background: oklch(from var(--figure-main) l c h)"&gt;
+    &lt;p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)"&gt;Text&lt;/p&gt;
+  &lt;/figure&gt;
+
+  &lt;figure style="background: oklch(from var(--figure-main) calc(l - 0.4) c h)"&gt;
+    &lt;p style="color: oklch(from var(--figure-main) l c h)"&gt;Text&lt;/p&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
 </code>
 </pre>
 	</div>
 	<div>
-		<p>Also, it is so more logical to use and think about colours in terms of oklch. As you see from example above, all
-			the values are the same apart of the lightness. </p>
+		<p>Here you have it! Finally, it clicked for me, and I can see fantastic opportunities to use OKLCH for design
+			systems and reuse one colour for dark/light themes with reversed lightning. I'm also pretty sure I only scratched
+			the surface of all the possibilities.</p>
+
+		<p>Let me know your thoughts on BlueSky or Mastodon.</p>
+
+		<p style="font-size: var(--step--1)">P.S. This post was written by a human, and no AI was harmed in the process.</p>
 	</div>
 </section>
 
@@ -339,7 +354,7 @@ a {
       display: flex;
       justify-content: center;
       align-items: center;
-			padding: 1rem;
+      padding: 1rem;
     }
 
     p {
