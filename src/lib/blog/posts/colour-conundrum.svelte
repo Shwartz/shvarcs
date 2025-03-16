@@ -6,7 +6,7 @@
 	import { base } from '$app/paths';
 
 	const title = 'Colour Conundrum | Post';
-	const description = 'Colour exploration';
+	const description = 'What is that fancy colour OKLCH, and what is the benefit of using it on the web? Is it better than RGB() or hex colours? In this post, I show a real-life example of how OKLCH can simplify colour usage. ';
 
 	let xLightness = $state(90);
 	let xChroma = $state(0.084);
@@ -70,7 +70,7 @@ a {
 	<meta property="twitter:title" content="{title}" />
 	<meta property="twitter:description" content="{description}" />
 	<meta property="og:type" content="article">
-	<meta property="og:image" itemprop="image" content="{createImgUrl('9b1fb70c-d376-4c62-554a-05513a0a0100', '1024w')}">
+	<meta property="og:image" itemprop="image" content="{createImgUrl('173963da-a755-4da7-1b1a-940c69a1a300', '1024w')}">
 	<meta property="og:image:width" content="994">
 	<meta property="og:image:height" content="576">
 	<meta name="robots" content="index,follow" />
@@ -89,9 +89,30 @@ a {
 
 		<p>Until that one day, I finally realised.</p>
 
+		<h2>What is OKLCH</h2>
+
+		<p>Just a quick recap before we dive in.</p>
+
+		<p>OKCLH is designed to map colours in a way
+			that aligns with how humans perceive them. Also, the values are much easier to play with than remembering hex or
+			RGB(). </p>
+
+		<p>
+			L - Lightness (0% - 100%)<br>
+			C - Chroma (Saturation) (0 - 0.37)<br>
+			H - Hue (0 - 360)<br>
+			a - optional opacity (0 - 1 or 0 - 100%)<br>
+		</p>
+
+		<p>It is worth mentioning that if you set two colours by using OKLCH with good accessibility value, then by changing
+			Hue values, you will keep the same good accessibility ratio. That one benefit is already a fantastic win! </p>
+
+		<p>You can play with those <a href="#example-1">values</a> down the post and see how that accessibility works.</p>
+
 		<h2>Component with colourful link</h2>
 
-		<p>I had a simple component or widget, if you like, with a Title, Description and Link. Something like this:</p>
+		<p>Anyway, back to the problem. I had a simple component or widget, if you like, with a Title, Description and Link.
+			Something like this:</p>
 
 		<div id="ex-1" class="ex-1">
 			<h3>Component title</h3>
@@ -122,7 +143,7 @@ a {
 		<ul>
 			<li>Link background colour</li>
 			<li>Link background hover colour</li>
-			<li>Link text colour, which should be strong against the background but keep the same colour</li>
+			<li>Link text colour, which should be strong against the background but keep the same hue.</li>
 		</ul>
 
 		<p>Oh, did I mention that I also need something for a light/dark theme? That means I need six colours from one
@@ -160,7 +181,7 @@ a {
 			<a href="https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl">OKLCH in CSS</a> and that's when I
 			realised I want to rewrite all the colours in my blog to use <code>OKLCH</code> (someday).</p>
 
-		<p>Anyway, back to the problem above. Once I realise the power of <code>OKLCH</code> and <code>relative
+		<p>Once I realise the power of <code>OKLCH</code> and <code>relative
 			colours</code>, the answer is simple.</p>
 
 		<p>I can take one colour and create multiple colours in turn. Actually, I can take any colour and reuse that colour
@@ -208,7 +229,7 @@ a {
 			yourself.</p>
 	</div>
 	<div>
-		<div class="example-1">
+		<div id="example-1" class="example-1">
 			<div class="config">
 				<label class="horizontal" for="lightness">
 					<input orient="horizontal" bind:value={xLightness} name="lightness" type="range" min="0" max="100" step="1" />
@@ -293,9 +314,15 @@ a {
 </pre>
 	</div>
 	<div>
+		<p>Notice that the only thing I change is one parameter - <code>hue</code>.<br> The rest is calculated in CSS automatically while
+			keeping the colour ratio.</p>
+
 		<p>Here you have it! Finally, it clicked for me, and I can see fantastic opportunities to use OKLCH for design
-			systems and reuse one colour for dark/light themes with reversed lightning. I'm also pretty sure I only scratched
-			the surface of all the possibilities.</p>
+			systems and reuse one colour for dark/light themes with reversed lightning.<br>
+			Also, since OKLCH works with how humans perceive colours, you can build better colour contrast designs and improve
+			accessibility with ease.</p>
+
+		<p>I bet I only scratched the surface of all the possibilities.</p>
 
 		<p>Let me know your thoughts on BlueSky or Mastodon.</p>
 
@@ -309,10 +336,10 @@ a {
     margin-top: 2rem;
   }
 
-	.large {
-		display: flex;
-		justify-content: center;
-	}
+  .large {
+    display: flex;
+    justify-content: center;
+  }
 
   pre {
     margin-top: 1rem;
