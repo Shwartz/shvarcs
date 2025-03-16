@@ -43,9 +43,15 @@ a {
 }
 `;
 
-	const source3 = `.link {
-  transition: background-color 0.2s;
+	const source31 = `<!-- HTML part -->
+<div>
+  <h3>Title</h3>
+  <p>Description</p>
+  <a style="--link-color: var(--pastel-orange)" href="#">link here</a>
+</div>`;
 
+	const source32 = `/** CSS part */
+.link {
   background: oklch(from var(--link-color) l c h / 0.6);
   color: oklch(from var(--link-color) calc(l - 0.4) c h);
 
@@ -87,9 +93,9 @@ a {
 			have happily used RGB, RGBA, hex, or even by names like purple, orange or <code>#bada55</code>. I have never had
 			any issues. Why all the fuss?</p>
 
-		<p>Until that one day, I finally realised.</p>
+		<p>Until one day when I finally realised that.</p>
 
-		<h2>What is OKLCH</h2>
+		<h2>What is OKLCH?</h2>
 
 		<p>Just a quick recap before we dive in.</p>
 
@@ -143,7 +149,7 @@ a {
 		<ul>
 			<li>Link background colour</li>
 			<li>Link background hover colour</li>
-			<li>Link text colour, which should be strong against the background but keep the same hue.</li>
+			<li>Link text colour, should be strong against the background but keep the same hue.</li>
 		</ul>
 
 		<p>Oh, did I mention that I also need something for a light/dark theme? That means I need six colours from one
@@ -153,7 +159,7 @@ a {
 
 		<div id="ex-2" class="ex-2">
 			<h3>Component | light theme</h3>
-			<p>This widget uses Tools category colours for link</p>
+			<p>This component uses Tools category colours for link</p>
 			<p>
 				<a href="#ex-2">Light version link for Tools category</a>
 			</p>
@@ -161,7 +167,7 @@ a {
 
 		<div id="ex-3" class="ex-3">
 			<h3>Component | dark theme</h3>
-			<p>This widget uses Tools category colours for link</p>
+			<p>This component uses Tools category colours for link</p>
 			<p>
 				<a href="#ex-3">Dark version link for Tools category</a>
 			</p>
@@ -178,10 +184,10 @@ a {
 		<p>While I was tinkering with the problem (well, actually randomly browsing blueSky) I stumbled upon Ahmad Shadeed's
 			post on relative colours: <a href="https://ishadeed.com/article/css-relative-colors/">CSS relative colors</a>.<br>
 			This, in turn, led me to the post from Evil Martians:
-			<a href="https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl">OKLCH in CSS</a> and that's when I
-			realised I want to rewrite all the colours in my blog to use <code>OKLCH</code> (someday).</p>
+			<a href="https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl">OKLCH in CSS</a>, and that's when I
+			realised I wanted to rewrite all the colours in my blog to use <code>OKLCH</code> (someday).</p>
 
-		<p>Once I realise the power of <code>OKLCH</code> and <code>relative
+		<p>Once I realised the power of <code>OKLCH</code> and <code>relative
 			colours</code>, the answer is simple.</p>
 
 		<p>I can take one colour and create multiple colours in turn. Actually, I can take any colour and reuse that colour
@@ -196,26 +202,28 @@ a {
 
 		<p>Now, the magical part in CSS:</p>
 
-		<HighLightWrap source={source3} />
+		<HighLightWrap source={source31} />
+
+		<HighLightWrap source={source32} />
 
 		<p>If you freak out when looking at this code, that's normal. But let's go step by step. Honestly, it is all very
 			simple.</p>
 
-		<p>Let's look at line 4: <code>background: oklch(from var(--link-color) l c h / 0.6);</code></p>
+		<p>Let's look at line 3: <code>background: oklch(from var(--link-color) l c h / 0.6);</code></p>
 
 		<p>I assign background colour and use relative colour <code>oklch</code></p>
 
-		<p>I created that colour from <code>var(--link-color)</code> which I assigned for the element. Remember this line:
+		<p>I created that colour from <code>var(--link-color)</code> which I assigned to the element. Remember this line:
 			<br>
 			<code>&lt;a style="--link-color: var(--pastel-orange)"&gt;link here&lt;/a&gt;</code><br>
 			so, I assign <code>var(--pastel-orange</code> to <code>--link-color</code> and use it in <code>oklch</code>.
 		</p>
 
-		<p>The <code>oklch</code> has three values Lightness, Chroma, Hue and the last value (0.6) is opacity. Basically, I
+		<p>The <code>oklch</code> has three values Lightness, Chroma, Hue, and the last value (0.6) is opacity. Basically, I
 			take
 			<code>--link-color</code> and pass it in relative color in the same way but with opacity 0.6. That's it.</p>
 
-		<p>For line 5<br> <code>color: oklch(from var(--link-color) calc(l - 0.4) c h);</code>, <br>I change the lightness.
+		<p>For line 4<br> <code>color: oklch(from var(--link-color) calc(l - 0.4) c h);</code>, <br>I change the lightness.
 		</p>
 
 		<p>The value range for the lightness is from 0 to 0.37. When I create OKLCH, it simply assigns all values to the
@@ -265,7 +273,7 @@ a {
 <section class="post">
 	<div>
 		<h2>Practicalities</h2>
-		<p>Ok, you maybe still not convince, but let me you give another example.</p>
+		<p>Ok, you may be still not convinced, but let me give another example.</p>
 		<p>Imagine you have text and a background. You want the text to always be easy to read against the background and
 			keep both colours similar to each other. How would you do it with RGB() or hex colours? You would need to declare
 			every background and every prime colour for the text, right? I'm too lazy to do that, so here is how I would do it
@@ -285,13 +293,13 @@ a {
 				</label>
 				<div class="vertical" style="--figure-main: oklch(0.9 0.084 {xHue})">
 					<figure style="background: oklch(from var(--figure-main) l c h)">
-						<p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)">Always prominent text against
+						<p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)">Always prominent text against a
 							background</p>
 					</figure>
 					<p style="font-size: var(--step--1); text-align: left; margin-top: 1rem;">Here it is the same but with reverse
 						colours.</p>
 					<figure style="background: oklch(from var(--figure-main) calc(l - 0.4) c h)">
-						<p style="color: oklch(from var(--figure-main) l c h)">Always prominent text against background</p>
+						<p style="color: oklch(from var(--figure-main) l c h)">Always prominent text against a background</p>
 					</figure>
 				</div>
 			</div>
@@ -314,7 +322,8 @@ a {
 </pre>
 	</div>
 	<div>
-		<p>Notice that the only thing I change is one parameter - <code>hue</code>.<br> The rest is calculated in CSS automatically while
+		<p>Notice that the only thing I change is one parameter - <code>hue</code>.<br> The rest is calculated in CSS
+			automatically while
 			keeping the colour ratio.</p>
 
 		<p>Here you have it! Finally, it clicked for me, and I can see fantastic opportunities to use OKLCH for design
