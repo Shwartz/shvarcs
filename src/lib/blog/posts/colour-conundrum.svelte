@@ -6,7 +6,7 @@
 	import { base } from '$app/paths';
 
 	const title = 'Colour Conundrum | Post';
-	const description = 'What is that fancy colour OKLCH, and what is the benefit of using it on the web? Is it better than RGB() or hex colours? In this post, I show a real-life example of how OKLCH can simplify colour usage. ';
+	const description = 'What is that fancy colour OKLCH, and what is the benefit of using it on the web? Is it better than RGB() or hex colours? In this post, I show a real-life example of how OKLCH can simplify colour usage.';
 
 	let xLightness = $state(90);
 	let xChroma = $state(0.084);

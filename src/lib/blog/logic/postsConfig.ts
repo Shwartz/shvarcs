@@ -11,7 +11,7 @@ export const postsArr = [
 		id: '8',
 		url: `${base}/thoughts/colour-conundrum`,
 		title: 'Colour Conundrum',
-		description: 'post about colours',
+		description: 'What is that fancy colour OKLCH, and what is the benefit of using it on the web? Is it better than RGB() or hex colours? In this post, I show a real-life example of how OKLCH can simplify colour usage.',
 		tags: ['CSS'],
 		publishedDate: 'March, 2025',
 		readingTime: '10 min read',
