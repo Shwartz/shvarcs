@@ -3,9 +3,21 @@ import VercelImg from '$lib/blog/heroSvg/vercelError.svelte';
 import AnimationImg from '$lib/blog/heroSvg/2d3dVisual.svelte';
 import Fallback from '$lib/blog/heroSvg/fallback.svelte';
 import LifeSpan from '$lib/blog/heroSvg/lifeSpanVisual.svelte';
+import Oklch from '$lib/blog/heroSvg/oklch.svelte';
 import { base } from '$app/paths';
 
 export const postsArr = [
+	{
+		id: '8',
+		url: `${base}/thoughts/colour-conundrum`,
+		title: 'Colour Conundrum',
+		description: 'What is that fancy colour OKLCH, and what is the benefit of using it on the web? Is it better than RGB() or hex colours? In this post, I show a real-life example of how OKLCH can simplify colour usage.',
+		tags: ['CSS'],
+		publishedDate: 'March, 2025',
+		readingTime: '8 min read',
+		likes: '0 likes',
+		Visual: Oklch
+	},
 	{
 		id: '7',
 		url: `${base}/thoughts/lifespan`,

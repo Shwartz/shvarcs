@@ -143,7 +143,7 @@
 				<div class="life" title={`${index + 1}0 years`}>
 					{#each decade as dot}
 						<div
-							style="background-color: hsl({dot.id % 360}deg 30% 50%);"
+							style="background-color: hsl({dot.id % 360}deg {dot.id > 639 ? '40%' : dot.id < 320 ? '30%' : '35%'} 50%);"
 							class="dot"
 							class:lived={dot.isLived}
 							title={convertToReadableDate(dot.id + 1)}
