@@ -3,6 +3,7 @@ import VercelImg from '$lib/blog/heroSvg/vercelError.svelte';
 import AnimationImg from '$lib/blog/heroSvg/2d3dVisual.svelte';
 import Fallback from '$lib/blog/heroSvg/fallback.svelte';
 import LifeSpan from '$lib/blog/heroSvg/lifeSpanVisual.svelte';
+import Oklch from '$lib/blog/heroSvg/oklch.svelte';
 import { base } from '$app/paths';
 
 export const postsArr = [
@@ -15,7 +16,7 @@ export const postsArr = [
 		publishedDate: 'March, 2025',
 		readingTime: '10 min read',
 		likes: '0 likes',
-		Visual: Fallback
+		Visual: Oklch
 	},
 	{
 		id: '7',

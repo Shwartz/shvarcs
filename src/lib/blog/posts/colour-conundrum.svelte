@@ -97,7 +97,7 @@ a {
 			<h3>Component title</h3>
 			<p>Lovely description for the component </p>
 			<p>
-				<a href="#ex-1">This link could be improved</a>
+				<a href="#ex-1">The colour and background of the link could be improved.</a>
 			</p>
 		</div>
 
