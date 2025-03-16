@@ -101,8 +101,8 @@ a {
 			</p>
 		</div>
 
-		<p>There is not much there, but those simple snippets are many and assigned to categories, and categories have
-			defined colour schema.</p>
+		<p>There is not much there, but those simple snippets are many and assigned to categories, which have defined colour
+			schemas, exactly like those backgrounds on the buttons below.</p>
 
 		<div class="buttonList">
 			<Tag blogCategory="CSS" active={false} />
@@ -275,6 +275,8 @@ a {
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="large">
 		<pre class="fullWidth">
 <code>
 &lt;div style="--figure-main: oklch(0.9 0.084 {xHue})"&gt;
@@ -307,6 +309,11 @@ a {
     margin-top: 2rem;
   }
 
+	.large {
+		display: flex;
+		justify-content: center;
+	}
+
   pre {
     margin-top: 1rem;
   }
@@ -331,10 +338,25 @@ a {
   }
 
   [class*="ex-"] {
+    --example-bg: oklch(from var(--grid-color) calc(l - 0.3) c h / 0.7);
+    position: relative;
     margin: 1rem 0;
     padding: 1rem;
-    box-shadow: 0 0 1px 1px var(--grid-color);
+    box-shadow: 0 0 1px 1px oklch(from var(--example-bg) l c h / 0.2);
     background: var(--background-color);
+    overflow: hidden;
+
+    &:before {
+      content: 'Example';
+      position: absolute;
+      right: -44px;
+      top: 22px;
+      transform: rotate(45deg);
+      padding: 0.2rem 3rem;
+      background: var(--example-bg);
+      font-size: var(--step--1);
+      color: var(--clr-white);
+    }
 
     h3 {
       margin: 0;
