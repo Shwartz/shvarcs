@@ -268,7 +268,7 @@ a {
 				</div>
 			</div>
 		</div>
-		<pre class="fullWidth">
+		<pre>
 <code>
 &#123;
   background: oklch({xLightness}% {xChroma} {xHue});
