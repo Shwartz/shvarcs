@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { createImgUrl } from '$lib/utils/snippets';
 	import HighLightWrap from '$lib/components/HighLightWrap.svelte';
 	import Tag from '$lib/components/snippets/Tag.svelte';
@@ -11,11 +10,6 @@
 	let xLightness = $state(90);
 	let xChroma = $state(0.084);
 	let xHue = $state(75);
-
-
-	onMount(() => {
-
-	});
 
 	const source1 = `--pastel-orange: #FFD79F;
 --pastel-cream: #F0EBD5;
@@ -65,6 +59,21 @@ a {
   background: oklch(from var(--link-color) l c h / 0.3);
   color: oklch(from var(--link-color) calc(l + 0.2) c h);
 }`;
+
+	function getSource() {
+		return `<div style="--figure-main: oklch(0.9 0.084 ${xHue})">
+  <figure style="background: oklch(from var(--figure-main) l c h)">
+    <p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)">Text</p>
+  </figure>
+
+  <figure style="background: oklch(from var(--figure-main) calc(l - 0.4) c h)">
+    <p style="color: oklch(from var(--figure-main) l c h)">Text</p>
+  </figure>
+</div>
+	`;
+	}
+
+	const source4 = $derived(getSource());
 </script>
 
 <svelte:head>
@@ -305,22 +314,9 @@ a {
 			</div>
 		</div>
 	</div>
-	<div class="large">
-		<pre class="fullWidth">
-<code>
-&lt;div style="--figure-main: oklch(0.9 0.084 {xHue})"&gt;
-  &lt;figure style="background: oklch(from var(--figure-main) l c h)"&gt;
-    &lt;p style="color: oklch(from var(--figure-main) calc(l - 0.4) c h)"&gt;Text&lt;/p&gt;
-  &lt;/figure&gt;
 
-  &lt;figure style="background: oklch(from var(--figure-main) calc(l - 0.4) c h)"&gt;
-    &lt;p style="color: oklch(from var(--figure-main) l c h)"&gt;Text&lt;/p&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
+	<HighLightWrap source={source4} />
 
-</code>
-</pre>
-	</div>
 	<div>
 		<p>Notice that the only thing I change is one parameter - <code>hue</code>.<br> The rest is calculated in CSS
 			automatically while
