@@ -329,7 +329,7 @@ a {
 
 		<p>I bet I only scratched the surface of all the possibilities.</p>
 
-		<p>Let me know your thoughts on BlueSky or Mastodon.</p>
+		<p>Let me know your thoughts on BlueSky or <a href="https://fosstodon.org/@shvarcs/114177537705282847">Mastodon</a>.</p>
 
 		<p style="font-size: var(--step--1)">P.S. This post was written by a human, and no AI was harmed in the process.</p>
 	</div>
