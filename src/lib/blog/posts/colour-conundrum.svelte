@@ -341,11 +341,6 @@ a {
     margin-top: 2rem;
   }
 
-  .large {
-    display: flex;
-    justify-content: center;
-  }
-
   pre {
     margin-top: 1rem;
   }
