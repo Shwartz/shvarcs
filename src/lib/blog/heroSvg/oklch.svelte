@@ -41,6 +41,7 @@
     width: 100%;
     background: url('https://imagedelivery.net/OsbYeWCzhRDS5xpqlDmBXA/a7ca7924-dcd2-4155-bc98-9491c614c300/1024w') no-repeat center;
     background-size: cover;
+		overflow: hidden;
   }
 
   .frankTitle {
