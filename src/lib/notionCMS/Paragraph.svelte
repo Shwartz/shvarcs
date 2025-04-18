@@ -1,11 +1,17 @@
 <script lang="ts">
 	import type { ParagraphBlockObjectResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { base } from '$app/paths';
+	import { escapeHtml } from '$lib/utils/snippets';
 
 	const { block } = $props<{ block: ParagraphBlockObjectResponse }>();
 
 	function renderRichText(textItem: RichTextItemResponse) {
 		let content = textItem.plain_text;
+
+		// Escape HTML FIRST before any annotations
+		if (textItem.annotations.code) {
+			content = escapeHtml(content);  // ← Crucial: Escape before wrapping in <code>
+		}
 
 		if (textItem.href) {
 			const isInternalLink = textItem.href.startsWith('/');
