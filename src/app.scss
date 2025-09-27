@@ -5,6 +5,7 @@ html {
 }
 
 body {
+  /** TODO: where is default size defined? Can't see anywhere. */
   font-size: var(--ff-default-size);
   font-family: var(--ff-family), serif;
   background-color: var(--background-color);
