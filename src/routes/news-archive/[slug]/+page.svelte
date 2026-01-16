@@ -12,6 +12,9 @@
 	const title = post?.title;
 	const description = post?.summary;
 	const dueDate = post?.dueDate;
+	const heroImg = post?.heroImage; // cloudflare img uuid || ''
+	const showHeroImg = post?.showHeroImage; // boolean || false
+
 </script>
 
 <svelte:head>
@@ -23,9 +26,9 @@
 	<meta property="twitter:title" content="{title}" />
 	<meta property="twitter:description" content="{description}" />
 	<meta property="og:type" content="article">
-	<meta property="og:image" itemprop="image" content="{createImgUrl('6264affc-9b6f-4e52-c8be-ffef4d2f0100', '1024w')}">
+	<meta property="og:image" itemprop="image" content="{createImgUrl(heroImg || '6264affc-9b6f-4e52-c8be-ffef4d2f0100', '1024w')}">
 	<meta property="og:image:width" content="1024">
-	<meta property="og:image:height" content="497">
+	<meta property="og:image:height" content="536">
 	<meta name="robots" content="index,follow" />
 </svelte:head>
 
@@ -49,6 +52,17 @@
 			</div>
 		</div>
 		<div class="content">
+			{#if showHeroImg && heroImg}
+				<img
+					src="{createImgUrl(heroImg, '640w')}"
+					srcset="{createImgUrl(heroImg, '320w')} 320w,
+           {createImgUrl(heroImg, '640w')} 640w,
+           {createImgUrl(heroImg, '1024w')} 1024w"
+					sizes="(max-width: 640px) 100vw, 640px"
+					alt="{post.title}"
+					loading="lazy"
+				/>
+			{/if}
 			<!-- Render post content here -->
 			{#each post.content as block (block.id)}
 				<Block block={block} />
