@@ -89,7 +89,7 @@
 </svelte:head>
 
 <div class="news">
-	<h1 id="mainTitle" class="frankTitle">news</h1>
+	<h1 id="mainTitle" class="frankTitle">fe news</h1>
 	<p class="intro">I curate this bi-weekly collection from across the web,
 		<a href="https://bsky.app/profile/andrissvarcs.bsky.social">BlueSky</a> and various newsletters, capturing the
 		latest trends and useful articles. Originally a personal <a href="https://www.notion.com/">Notion</a> database, I'm
@@ -108,7 +108,7 @@
 				<li>
 					<Tooltip color={getColor(index)}>
 						<a title="{post.title}" href="{base}/news-archive/{post.slug}">
-							<h3>{post.title}</h3>
+							<h3>{post.title.replace('Nr.', '')}</h3>
 							<p class="date">
 								<Icon size="16" color="var(--text)" src={TrOutlineCalendarMonth} />
 								<span>{post.dueDate}</span>
