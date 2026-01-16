@@ -15,6 +15,8 @@ export async function load({ params }) {
 	const title = postData.properties.Name.title[0].plain_text.split('|')[0].trim().replace('#', 'Nr.') || 'Friday Issue';
 	const summary = postData.properties.Summary.rich_text[0].plain_text || 'Weekly front-end post';
 	const dueDate = postData.properties['Due Date'].date.start || '';
+	const heroImage = postData.properties['heroImg']?.rich_text[0]?.plain_text || '';
+	const showHeroImage = postData.properties['showHeroImg'].checkbox || false;
 
 	return {
 		post: {
@@ -22,6 +24,8 @@ export async function load({ params }) {
 			title,
 			summary,
 			dueDate,
+			heroImage,
+			showHeroImage
 		}
 	};
 }
