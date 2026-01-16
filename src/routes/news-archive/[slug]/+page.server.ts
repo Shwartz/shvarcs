@@ -12,7 +12,7 @@ export async function load({ params }) {
 		throw error(500, 'Failed to fetch post content');
 	}
 
-	const title = postData.properties.Name.title[0].plain_text.split('|')[0].trim().replace('#', 'Nr.') || 'Friday Issue';
+	const title = postData.properties.Name.title[0].plain_text.split('|')[0].trim().replace('#', '') || 'Friday Issue';
 	const summary = postData.properties.Summary.rich_text[0].plain_text || 'Weekly front-end post';
 	const dueDate = postData.properties['Due Date'].date.start || '';
 	const heroImage = postData.properties['heroImg']?.rich_text[0]?.plain_text || '';
